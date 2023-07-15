@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:simply_sell/core/config/theme.dart';
-import 'package:simply_sell/home/presentation/pages/home_page.dart';
+import 'package:simply_sell/features/home/presentation/pages/home_page.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 void main() async {
