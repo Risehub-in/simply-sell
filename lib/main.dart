@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:simply_sell/core/config/theme.dart';
-import 'package:simply_sell/features/home/presentation/pages/home_page.dart';
+import 'package:simply_sell/features/products/presentation/pages/product_list_page.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 void main() async {
@@ -23,7 +23,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Simply Sell',
       theme: AppTheme.lightTheme,
-      home: const HomePage(),
+      home: const ProductListPage(),
     );
   }
 }

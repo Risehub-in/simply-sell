@@ -25,10 +25,10 @@ class AppTheme {
         fontWeight: FontWeight.bold,
       ),
       titleMedium: TextStyle(
-        color: AppColors.textColorLight,
+        color: AppColors.textColor,
       ),
       labelLarge: TextStyle(
-        color: AppColors.textColorLight,
+        color: AppColors.textColor,
         fontWeight: FontWeight.bold,
       ),
       headlineLarge: TextStyle(
