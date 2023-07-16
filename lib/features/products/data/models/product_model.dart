@@ -1,19 +1,25 @@
-class Product {
-  final int id;
-  final DateTime createdAt;
-  final String productTitle;
-  final bool isAvailable;
-  final String? featuredImage;
-  final String? description;
-  final String? brand;
+import 'package:intl/intl.dart';
+import 'package:simply_sell/features/products/domain/entities/product_entity.dart';
 
-  Product({
-    required this.id,
-    required this.productTitle,
-    required this.createdAt,
-    required this.isAvailable,
-    this.featuredImage,
-    this.description,
-    this.brand,
+class ProductModel extends ProductEntity {
+  ProductModel({
+    required super.id,
+    required super.productTitle,
+    required super.createdAt,
+    required super.isAvailable,
+    super.featuredImage,
+    super.description,
   });
+
+  factory ProductModel.fromJson(Map<String, dynamic> json) {
+    return ProductModel(
+      id: json['id'],
+      createdAt:
+          DateFormat("yyyy-MM-ddTHH:mm:ss.SSSSSSZ").parse(json['created_at']),
+      productTitle: json['product_title'],
+      isAvailable: json['is_available'],
+      featuredImage: json['featured_image'],
+      description: json['description'],
+    );
+  }
 }

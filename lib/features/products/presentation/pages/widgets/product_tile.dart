@@ -11,7 +11,7 @@ class ProductTile extends StatelessWidget {
     required this.product,
   });
 
-  final Product product;
+  final ProductModel product;
 
   @override
   Widget build(BuildContext context) {
@@ -39,12 +39,6 @@ class ProductTile extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  product.brand != null
-                      ? Text(
-                          product.brand!,
-                          style: Theme.of(context).textTheme.bodySmall,
-                        )
-                      : SizedBox(),
                   Text(
                     product.productTitle,
                     style: Theme.of(context).textTheme.labelMedium?.copyWith(

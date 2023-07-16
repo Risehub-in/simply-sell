@@ -1,17 +1,10 @@
-class Variant {
-  final int id;
-  final DateTime updatedAt;
-  final double price;
-  final bool? isAvailable;
-  final String? sku;
-  final int inventoryQuantity;
+import 'package:simply_sell/features/products/domain/entities/variant_entity.dart';
 
-  Variant({
-    required this.id,
-    required this.updatedAt,
-    required this.price,
-    this.isAvailable,
-    this.sku,
-    required this.inventoryQuantity,
+class VariantModel extends VariantEntity {
+  VariantModel({
+    required super.id,
+    required super.updatedAt,
+    required super.price,
+    required super.inventoryQuantity,
   });
 }
