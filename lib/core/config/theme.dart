@@ -10,12 +10,11 @@ class AppTheme {
     useMaterial3: true,
     colorScheme: ColorScheme.fromSeed(
       seedColor: AppColors.primary,
-      brightness: Brightness.light,
     ),
 
     // AppBar Theme
     appBarTheme: const AppBarTheme(
-      backgroundColor: AppColors.primary,
+      backgroundColor: AppColors.secondary,
       foregroundColor: Colors.white,
     ),
 

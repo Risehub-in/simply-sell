@@ -1,9 +1,8 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-
 import '../../../../../core/constants/app_colors.dart';
 import '../../../../../core/constants/app_defaults.dart';
-import '../../../data/models/product_model.dart';
+import '../../../domain/entities/product_entity.dart';
 
 class ProductTile extends StatelessWidget {
   const ProductTile({
@@ -11,7 +10,7 @@ class ProductTile extends StatelessWidget {
     required this.product,
   });
 
-  final ProductModel product;
+  final ProductEntity product;
 
   @override
   Widget build(BuildContext context) {
