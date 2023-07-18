@@ -368,6 +368,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.1.2"
+  go_router:
+    dependency: "direct main"
+    description:
+      name: go_router
+      sha256: b33a88c67816312597e5e0f5906c5139a0b9bd9bb137346e872c788da7af8ea0
+      url: "https://pub.dev"
+    source: hosted
+    version: "9.0.3"
   gotrue:
     dependency: transitive
     description:
@@ -1053,6 +1061,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.1.4"
+  very_good_analysis:
+    dependency: "direct dev"
+    description:
+      name: very_good_analysis
+      sha256: "5e4ea72d2a9188630f0dd8f120a541de730090ef8863243fedca8267a84508b8"
+      url: "https://pub.dev"
+    source: hosted
+    version: "5.0.0+1"
   watcher:
     dependency: transitive
     description:

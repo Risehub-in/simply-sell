@@ -1,6 +1,7 @@
 import 'package:simply_sell/features/products/data/remote_data_source/product_remote_data_source.dart';
-import 'package:simply_sell/features/products/domain/entities/product_entity.dart';
 import 'package:simply_sell/features/products/domain/repositories/product_repository.dart';
+
+import '../models/product_model.dart';
 
 class ProductRepoImpl implements ProductRepository {
   final ProductRemoteDataSource productRemoteDataSource;
@@ -8,12 +9,12 @@ class ProductRepoImpl implements ProductRepository {
   ProductRepoImpl({required this.productRemoteDataSource});
 
   @override
-  Future<List<ProductEntity>> getProducts() async {
+  Future<List<ProductModel>> getProducts() async {
     return productRemoteDataSource.getProducts();
   }
 
   @override
-  Future<ProductEntity> getSingleProduct(int id) {
+  Future<ProductModel> getSingleProduct(int id) {
     return productRemoteDataSource.getSingleProduct(id);
   }
 }

@@ -5,6 +5,7 @@ class VariantEntity {
   final bool? isAvailable;
   final String? sku;
   final int inventoryQuantity;
+  final int productId;
 
   VariantEntity({
     required this.id,
@@ -13,5 +14,6 @@ class VariantEntity {
     this.isAvailable,
     this.sku,
     required this.inventoryQuantity,
+    required this.productId,
   });
 }

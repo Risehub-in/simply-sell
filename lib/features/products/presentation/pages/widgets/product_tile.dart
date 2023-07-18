@@ -19,8 +19,8 @@ class ProductTile extends StatelessWidget {
       child: Container(
         decoration: BoxDecoration(
           border: Border.all(
-            color: Colors.grey,
-            width: 0.5,
+            color: AppColors.placeholder,
+            width: 0.1,
             style: BorderStyle.solid,
           ),
         ),
