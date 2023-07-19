@@ -9,6 +9,9 @@ class LoginPage extends StatelessWidget {
       appBar: AppBar(
         title: Text('Login'),
       ),
+      body: Center(
+        child: Text('Auth Component here...')
+      ),
     );
   }
 }
