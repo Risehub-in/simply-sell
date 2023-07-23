@@ -9,11 +9,15 @@ part 'product_state.dart';
 
 class ProductCubit extends Cubit<ProductState> {
   final GetProductsUseCase getProductsUseCase;
-  ProductCubit({required this.getProductsUseCase})
-      : super(ProductStateInitial());
-
-  final Supabase supabase = Supabase.instance;
-  final ProductSupabaseTable productSupabaseTable = ProductSupabaseTable();
+  final Supabase supabase;
+  final ProductSupabaseTable productSupabaseTable;
+  ProductCubit(
+      {required this.getProductsUseCase,
+      required this.supabase,
+      required this.productSupabaseTable})
+      : super(ProductStateInitial()) {
+    getProducts();
+  }
 
   Future getProducts() async {
     try {
