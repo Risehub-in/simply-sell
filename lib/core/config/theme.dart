@@ -12,9 +12,10 @@ class AppTheme {
       seedColor: AppColors.primary,
     ),
 
+    scaffoldBackgroundColor: Colors.white,
+
     // AppBar Theme
     appBarTheme: const AppBarTheme(
-      backgroundColor: AppColors.secondary,
       foregroundColor: Colors.white,
     ),
 
@@ -57,7 +58,6 @@ class AppTheme {
 
     // Floating Action Button
     floatingActionButtonTheme: FloatingActionButtonThemeData(
-      backgroundColor: AppColors.secondary,
       shape: RoundedRectangleBorder(
         borderRadius: AppDefaults.borderRadius,
       ),
@@ -76,8 +76,9 @@ class AppTheme {
     ),
     elevatedButtonTheme: ElevatedButtonThemeData(
       style: ElevatedButton.styleFrom(
-        backgroundColor: AppColors.secondary,
-        padding: const EdgeInsets.symmetric(horizontal: 32),
+        backgroundColor: AppColors.primary,
+        foregroundColor: Colors.white,
+        padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 16),
         elevation: 0,
         shape: RoundedRectangleBorder(
           borderRadius: AppDefaults.borderRadius,

@@ -4,7 +4,7 @@ class AppDefaults {
   static const double radius = 4;
   static const double margin = 16;
   static const double padding = 16;
-  static const double horizontalPadding = 12;
+  static const double horizontalPadding = 16;
   static const String currency = '₹';
 
   /// Used For Border Radius
