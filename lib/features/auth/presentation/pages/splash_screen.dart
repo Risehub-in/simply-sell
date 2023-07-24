@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:simply_sell/features/products/presentation/pages/product_list_page.dart';
+import 'package:simply_sell/features/home/presentation/pages/home_page.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 import 'login_page.dart';
@@ -22,7 +22,7 @@ class _SplashScreenState extends State<SplashScreen> {
           final Session? session = snapshot.data?.session;
           if (session != null) {
             print(snapshot.data?.session?.user.aud);
-            return ProductListPage();
+            return HomePage();
           } else {
             return LoginPage();
           }
