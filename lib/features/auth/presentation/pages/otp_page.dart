@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
 import 'package:simply_sell/core/constants/app_colors.dart';
 import 'package:simply_sell/core/constants/app_defaults.dart';
@@ -119,5 +120,6 @@ class _OtpPageState extends State<OtpPage> {
         token: _phoneController.text,
         type: OtpType.sms);
     print(response.session?.user.id);
+    context.go('/');
   }
 }
