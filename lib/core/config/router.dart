@@ -1,8 +1,9 @@
 import 'package:go_router/go_router.dart';
 import 'package:simply_sell/features/auth/presentation/pages/login_page.dart';
 import 'package:simply_sell/features/auth/presentation/pages/otp_page.dart';
+import 'package:simply_sell/features/categories/presentation/pages/category_page.dart';
 import 'package:simply_sell/features/home/presentation/pages/home_page.dart';
-import 'package:simply_sell/features/products/presentation/pages/product_list_page.dart';
+import 'package:simply_sell/features/products/presentation/pages/products_page.dart';
 
 import '../../features/auth/presentation/pages/splash_screen.dart';
 
@@ -23,12 +24,16 @@ class AppRouter {
         builder: (context, state) => OtpPage(phone: state.extra as int),
       ),
       GoRoute(
-        path: '/product-list',
-        builder: (context, state) => ProductListPage(),
+        path: '/products',
+        builder: (context, state) => ProductsPage(),
       ),
       GoRoute(
         path: '/splash-screen',
         builder: (context, state) => SplashScreen(),
+      ),
+      GoRoute(
+        path: '/categories',
+        builder: (context, state) => CategoryPage(),
       ),
     ],
   );

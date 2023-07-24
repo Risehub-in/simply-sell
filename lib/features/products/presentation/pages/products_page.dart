@@ -3,8 +3,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:simply_sell/features/products/presentation/bloc/cubit/product_cubit.dart';
 import 'package:simply_sell/features/products/presentation/pages/widgets/product_tile.dart';
 
-class ProductListPage extends StatelessWidget {
-  const ProductListPage({super.key});
+class ProductsPage extends StatelessWidget {
+  const ProductsPage({super.key});
 
   @override
   Widget build(BuildContext context) {

@@ -9,10 +9,7 @@ import 'package:simply_sell/features/products/presentation/bloc/cubit/product_cu
 
 Future<void> productInjenctionContainer() async {
   // Cubit
-  sl.registerFactory(() => ProductCubit(
-      getProductsUseCase: sl.call(),
-      supabase: sl.call(),
-      productSupabaseTable: sl.call()));
+  sl.registerFactory(() => ProductCubit(getProductsUseCase: sl.call()));
 
   // UserCases
   sl.registerLazySingleton<GetProductsUseCase>(
