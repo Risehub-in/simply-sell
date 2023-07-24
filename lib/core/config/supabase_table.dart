@@ -15,3 +15,14 @@ class ProductSupabaseTable implements SupabaseTable {
   String get featured_image => "featured_image";
   String get decription => "description";
 }
+
+class CategorySupabaseTable implements SupabaseTable {
+  const CategorySupabaseTable();
+
+  @override
+  String get tableName => "categories";
+  String get id => "id";
+  String get createdAt => "created_at";
+  String get categoryName => "category_name";
+  String get categoryImage => "category_image";
+}

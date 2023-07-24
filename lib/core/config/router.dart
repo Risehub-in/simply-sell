@@ -1,7 +1,7 @@
 import 'package:go_router/go_router.dart';
 import 'package:simply_sell/features/auth/presentation/pages/login_page.dart';
 import 'package:simply_sell/features/auth/presentation/pages/otp_page.dart';
-import 'package:simply_sell/features/categories/presentation/pages/category_page.dart';
+import 'package:simply_sell/features/categories/presentation/pages/categories_page.dart';
 import 'package:simply_sell/features/home/presentation/pages/home_page.dart';
 import 'package:simply_sell/features/products/presentation/pages/products_page.dart';
 
@@ -33,7 +33,7 @@ class AppRouter {
       ),
       GoRoute(
         path: '/categories',
-        builder: (context, state) => CategoryPage(),
+        builder: (context, state) => CategoriesPage(),
       ),
     ],
   );
