@@ -17,7 +17,7 @@ class ProductCubit extends Cubit<ProductState> {
       final products = await getProductsUseCase.call();
       emit(ProductStateDone(products: products));
     } catch (e) {
-      emit(ProductStateError(message: "an Error occured"));
+      emit(ProductStateError(message: e.toString()));
     }
   }
 }

@@ -24,9 +24,15 @@ class AppTheme {
     textTheme: const TextTheme(
       titleLarge: TextStyle(
         fontWeight: FontWeight.bold,
+        color: AppColors.textColor,
       ),
       titleMedium: TextStyle(
         color: AppColors.textColor,
+        fontWeight: FontWeight.bold,
+      ),
+      titleSmall: TextStyle(
+        color: AppColors.textColor,
+        fontWeight: FontWeight.bold,
       ),
       labelLarge: TextStyle(
         color: AppColors.textColor,
@@ -34,6 +40,7 @@ class AppTheme {
       ),
       headlineLarge: TextStyle(
         fontWeight: FontWeight.bold,
+        color: AppColors.textColor,
       ),
     ),
 
@@ -67,24 +74,23 @@ class AppTheme {
     // Button Theme
     outlinedButtonTheme: OutlinedButtonThemeData(
       style: OutlinedButton.styleFrom(
-        padding: const EdgeInsets.symmetric(horizontal: 32),
-        elevation: 0,
         shape: RoundedRectangleBorder(
           borderRadius: AppDefaults.borderRadius,
         ),
-        textStyle: const TextStyle(fontWeight: FontWeight.w700),
       ),
     ),
     elevatedButtonTheme: ElevatedButtonThemeData(
       style: ElevatedButton.styleFrom(
         backgroundColor: AppColors.primary,
         foregroundColor: Colors.white,
-        padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 16),
+        // padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 16),
         elevation: 0,
         shape: RoundedRectangleBorder(
           borderRadius: AppDefaults.borderRadius,
         ),
-        textStyle: const TextStyle(fontWeight: FontWeight.w700),
+        textStyle: const TextStyle(
+          fontWeight: FontWeight.bold,
+        ),
       ),
     ),
   );

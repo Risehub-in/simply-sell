@@ -29,11 +29,26 @@ class ProductRemoteDataSourceImpl implements ProductRemoteDataSource {
 
   @override
   Future<List<ProductModel>> getProducts() async {
+    // try {
+    //   List<ProductModel> products = [];
+
+    //   final response =
+    //       await supabase.client.from(productSupabaseTable.tableName).select();
+    //   for (var data in response) {
+    //     ProductModel product = ProductModel.fromJson(data);
+    //     products.add(product);
+    //   }
+    //   return products;
+    // } catch (e) {
+    //   print(e.toString());
+    //   rethrow;
+    // }
+
     try {
       List<ProductModel> products = [];
-
-      final response =
-          await supabase.client.from(productSupabaseTable.tableName).select();
+      final response = await supabase.client
+          .from('products')
+          .select('*, variants!product_id!inner(*)');
       for (var data in response) {
         ProductModel product = ProductModel.fromJson(data);
         products.add(product);

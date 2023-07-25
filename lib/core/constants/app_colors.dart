@@ -9,6 +9,10 @@ class AppColors {
   static const Color textInputBackground = Colors.white;
   static const Color placeholder = Color(0xffE6E7E8);
 
-  static const textColor = Colors.black87;
-  static const iconColor = Colors.black87;
+  static const Color borderColor = Color(0xFF444444);
+
+  static const Color lightTextColor = Color(0xFF8292B4);
+
+  static const textColor = Color(0xFF444444);
+  static const iconColor = Color(0xFF444444);
 }

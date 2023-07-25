@@ -7,9 +7,9 @@ class VariantModel extends VariantEntity {
     required super.updatedAt,
     required super.price,
     required super.inventoryQuantity,
-    required super.isAvailable,
     super.sku,
     required super.productId,
+    required super.uom,
   });
 
   factory VariantModel.fromJson(Map<String, dynamic> json) {
@@ -19,9 +19,9 @@ class VariantModel extends VariantEntity {
           DateFormat("yyyy-MM-ddTHH:mm:ss.SSSSSSZ").parse(json['updated_at']),
       price: json['price'],
       inventoryQuantity: json['inventory_quantity'],
-      isAvailable: json['is_available'],
       sku: json['sku'],
       productId: json['product_id'],
+      uom: json['uom'],
     );
   }
 }

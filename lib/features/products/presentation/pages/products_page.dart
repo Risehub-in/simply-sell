@@ -10,7 +10,6 @@ class ProductsPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        actions: [IconButton(onPressed: () {}, icon: Icon(Icons.add))],
         title: Text('Products'),
       ),
       body: BlocBuilder<ProductCubit, ProductState>(
@@ -24,28 +23,23 @@ class ProductsPage extends StatelessWidget {
             return Center(child: Text(state.message));
           }
           if (state is ProductStateDone) {
+            print(state.products.first.variants.first.id);
             return Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 8.0),
-              child: SingleChildScrollView(
-                child: Column(
-                  children: [
-                    SizedBox(height: 10),
-                    GridView.builder(
-                      shrinkWrap: true,
-                      physics: NeverScrollableScrollPhysics(),
-                      gridDelegate:
-                          const SliverGridDelegateWithFixedCrossAxisCount(
-                        crossAxisCount: 2,
-                        childAspectRatio: 0.7,
-                      ),
-                      itemCount: state.products.length,
-                      itemBuilder: (context, index) {
-                        final product = state.products[index];
-                        return ProductTile(product: product);
-                      },
-                    ),
-                  ],
+              padding: const EdgeInsets.symmetric(horizontal: 12.0),
+              child: GridView.builder(
+                padding: EdgeInsets.symmetric(vertical: 12),
+                physics: BouncingScrollPhysics(),
+                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: 2,
+                  childAspectRatio: 0.68,
+                  mainAxisSpacing: 4,
+                  crossAxisSpacing: 4,
                 ),
+                itemCount: state.products.length,
+                itemBuilder: (context, index) {
+                  final product = state.products[index];
+                  return ProductTile(product: product);
+                },
               ),
             );
           }

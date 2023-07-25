@@ -1,4 +1,5 @@
 import 'package:intl/intl.dart';
+import 'package:simply_sell/features/products/data/models/variant_model.dart';
 import 'package:simply_sell/features/products/domain/entities/product_entity.dart';
 
 class ProductModel extends ProductEntity {
@@ -7,6 +8,7 @@ class ProductModel extends ProductEntity {
     required super.productTitle,
     required super.createdAt,
     required super.isAvailable,
+    required super.variants,
     super.featuredImage,
     super.description,
   });
@@ -20,6 +22,18 @@ class ProductModel extends ProductEntity {
       isAvailable: json['is_available'],
       featuredImage: json['featured_image'],
       description: json['description'],
+      variants: parseVariants(json['variants']),
     );
   }
+}
+
+List<VariantModel> parseVariants(List<dynamic> variantData) {
+  final List<VariantModel> variants = [];
+
+  for (final variant in variantData) {
+    final variantObj = VariantModel.fromJson(variant);
+    variants.add(variantObj);
+  }
+
+  return variants;
 }

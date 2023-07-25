@@ -1,7 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:simply_sell/core/constants/app_defaults.dart';
 import '../../../../../core/constants/app_colors.dart';
-import '../../../../../core/constants/app_defaults.dart';
 import '../../../domain/entities/product_entity.dart';
 
 class ProductTile extends StatelessWidget {
@@ -16,82 +16,69 @@ class ProductTile extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {},
-      child: Container(
-        decoration: BoxDecoration(
-          border: Border.all(
-            color: AppColors.placeholder,
-            width: 0.1,
-            style: BorderStyle.solid,
-          ),
-        ),
+      child: Card(
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(6)),
+        color: Colors.white,
+        surfaceTintColor: Colors.white,
+        elevation: 1,
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             CachedNetworkImage(
               imageUrl: product.featuredImage ??
                   "https://craftypixels.com/placeholder-image/300",
-              width: 156,
-              height: 110,
+              height: 150,
             ),
-            SizedBox(
-              width: 156,
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 12.0),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(
-                    product.productTitle,
-                    style: Theme.of(context).textTheme.labelMedium?.copyWith(
-                          fontWeight: FontWeight.bold,
-                          color: AppColors.textColor,
-                        ),
-                    maxLines: 2,
-                    overflow: TextOverflow.ellipsis,
+                  SizedBox(
+                    height: 38,
+                    child: Text(
+                      product.productTitle,
+                      style: Theme.of(context).textTheme.labelMedium?.copyWith(
+                            fontWeight: FontWeight.bold,
+                            color: AppColors.textColor,
+                          ),
+                      maxLines: 2,
+                      overflow: TextOverflow.ellipsis,
+                    ),
                   ),
-                  const SizedBox(height: AppDefaults.margin * 0.4),
-                  // Text(
-                  //   '${product.measurement} ${product.unitOfMeasurement}',
-                  //   style: Theme.of(context).textTheme.bodySmall,
-                  // ),
+                  SizedBox(height: 6),
                   Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
-                      // Column(
-                      //   children: [
-                      //     Text(
-                      //       '${AppDefaults.currency} ${(product.maxRetailPrice)?.toStringAsFixed(0)}',
-                      //       style:
-                      //           Theme.of(context).textTheme.bodySmall?.copyWith(
-                      //                 decoration: TextDecoration.lineThrough,
-                      //               ),
-                      //     ),
-                      //     Text(
-                      //       '${AppDefaults.currency} ${(product.salesPrice).toStringAsFixed(0)}',
-                      //       style: Theme.of(context)
-                      //           .textTheme
-                      //           .labelLarge
-                      //           ?.copyWith(
-                      //             fontWeight: FontWeight.bold,
-                      //             color: AppColors.lightBlack,
-                      //           ),
-                      //     )
-                      //   ],
-                      // ),
-                      const Spacer(),
-                      OutlinedButton(
-                        style: OutlinedButton.styleFrom(
-                          shape: const RoundedRectangleBorder(
-                            borderRadius: BorderRadius.all(
-                              Radius.circular(6),
-                            ),
+                      Text(
+                        AppDefaults.currency +
+                            ' ${product.variants.first.price.toStringAsFixed(0)}',
+                        style: Theme.of(context).textTheme.titleSmall,
+                      ),
+                      SizedBox(
+                        height: 28,
+                        width: 76,
+                        child: OutlinedButton(
+                          style: OutlinedButton.styleFrom(
+                            side: BorderSide(color: AppColors.primary),
+                            elevation: 10,
                           ),
-                          padding: const EdgeInsets.symmetric(
-                            vertical: 2,
+                          onPressed: () {},
+                          child: Text(
+                            'ADD',
+                            style: Theme.of(context)
+                                .textTheme
+                                .labelMedium
+                                ?.copyWith(
+                                  fontWeight: FontWeight.bold,
+                                  color: AppColors.primary,
+                                ),
                           ),
                         ),
-                        onPressed: () {},
-                        child: const Text('ADD'),
-                      ),
+                      )
                     ],
-                  )
+                  ),
                 ],
               ),
             ),
