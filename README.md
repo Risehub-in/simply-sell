@@ -1,6 +1,6 @@
-# simply_sell
+# Simply Sell 
 
-A new Flutter project.
+Opensource On-demand grocery delivery app built with Flutter & Supabase.
 
 ## Getting Started
 
