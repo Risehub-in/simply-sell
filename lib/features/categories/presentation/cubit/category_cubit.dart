@@ -16,7 +16,7 @@ class CategoryCubit extends Cubit<CategoryState> {
       final categories = await getCategoriesUsecase.call();
       emit(CategoryStateDone(categories: categories));
     } catch (e) {
-      emit(CategoryStateError(message: "an Error occured"));
+      emit(CategoryStateError(message: e.toString()));
     }
   }
 }

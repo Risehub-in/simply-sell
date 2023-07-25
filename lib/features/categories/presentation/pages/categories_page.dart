@@ -1,6 +1,10 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:simply_sell/features/categories/domain/entity/category_entity.dart';
 import 'package:simply_sell/features/categories/presentation/cubit/category_cubit.dart';
+
+import '../widgets/category_tile.dart';
 
 class CategoriesPage extends StatelessWidget {
   const CategoriesPage({super.key});
@@ -11,17 +15,38 @@ class CategoriesPage extends StatelessWidget {
       appBar: AppBar(
         title: Text('Categories'),
       ),
-      body: BlocListener<CategoryCubit, CategoryState>(
-        listener: (context, state) {
+      body: BlocBuilder<CategoryCubit, CategoryState>(
+        builder: (context, state) {
           if (state is CategoryInitial) {
-            print('Loading');
+            return Center(child: CircularProgressIndicator());
           } else if (state is CategoryStateError) {
-            print(state.message);
+            Center(
+              child: Text(state.message!),
+            );
           } else if (state is CategoryStateDone) {
-            print(state.categories);
+            return Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 12.0),
+              child: GridView.builder(
+                  physics: BouncingScrollPhysics(),
+                  padding: const EdgeInsets.symmetric(
+                    vertical: 14,
+                  ),
+                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: 3,
+                    crossAxisSpacing: 16,
+                    childAspectRatio: 0.68,
+                  ),
+                  itemCount: state.categories.length,
+                  itemBuilder: (context, index) {
+                    CategoryEntity category = state.categories[index];
+                    return CategoryTile(
+                      category: category,
+                    );
+                  }),
+            );
           }
+          return SizedBox();
         },
-        child: SizedBox(),
       ),
     );
   }
