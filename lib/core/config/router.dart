@@ -1,4 +1,5 @@
 import 'package:go_router/go_router.dart';
+import 'package:simply_sell/core/constants/page_constant.dart';
 import 'package:simply_sell/features/auth/presentation/pages/login_page.dart';
 import 'package:simply_sell/features/auth/presentation/pages/otp_page.dart';
 import 'package:simply_sell/features/categories/presentation/pages/categories_page.dart';
@@ -12,27 +13,27 @@ class AppRouter {
     initialLocation: '/splash-screen',
     routes: [
       GoRoute(
-        path: '/',
+        path: PageConst.home,
         builder: (context, state) => HomePage(),
       ),
       GoRoute(
-        path: '/login',
+        path: PageConst.login,
         builder: (context, state) => LoginPage(),
       ),
       GoRoute(
-        path: '/otp',
+        path: PageConst.otp,
         builder: (context, state) => OtpPage(phone: state.extra as int),
       ),
       GoRoute(
-        path: '/products',
+        path: PageConst.products,
         builder: (context, state) => ProductsPage(),
       ),
       GoRoute(
-        path: '/splash-screen',
+        path: PageConst.splashScreen,
         builder: (context, state) => SplashScreen(),
       ),
       GoRoute(
-        path: '/categories',
+        path: PageConst.categories,
         builder: (context, state) => CategoriesPage(),
       ),
     ],
