@@ -1,10 +1,12 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
 import 'package:simply_sell/core/constants/app_colors.dart';
 import 'package:simply_sell/core/constants/app_defaults.dart';
+import 'package:simply_sell/features/auth/presentation/cubit/app_auth_cubit.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 class OtpPage extends StatefulWidget {
@@ -40,6 +42,19 @@ class _OtpPageState extends State<OtpPage> {
     signInWithPhone();
     errorController = StreamController<ErrorAnimationType>();
     super.initState();
+  }
+
+  Future signInWithPhone() async {
+    await context.read<AppAuthCubit>().signInWithPhone('91${widget.phone}');
+  }
+
+  Future verifyOtpAndSignIn() async {
+    final response = await _supabase.client.auth.verifyOTP(
+        phone: '${widget.phone}',
+        token: _phoneController.text,
+        type: OtpType.sms);
+    print(response.session?.user.id);
+    context.go('/');
   }
 
   @override
@@ -108,18 +123,5 @@ class _OtpPageState extends State<OtpPage> {
         ),
       ),
     );
-  }
-
-  Future signInWithPhone() async {
-    await _supabase.client.auth.signInWithOtp(phone: '${widget.phone}');
-  }
-
-  Future verifyOtpAndSignIn() async {
-    final response = await _supabase.client.auth.verifyOTP(
-        phone: '${widget.phone}',
-        token: _phoneController.text,
-        type: OtpType.sms);
-    print(response.session?.user.id);
-    context.go('/');
   }
 }

@@ -21,5 +21,13 @@ class AppAuthenticated extends AppAuthState {
   List<Object> get props => [id];
 }
 
-class AppUnauthenticated extends AppAuthState {
+class AppUnauthenticated extends AppAuthState {}
+
+class AppAuthError extends AppAuthState {
+  final String message;
+
+  AppAuthError(this.message);
+
+  @override
+  List<Object> get props => [message];
 }
