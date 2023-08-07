@@ -6,6 +6,7 @@ class AppDefaults {
   static const double padding = 16;
   static const double horizontalPadding = 16;
   static const String currency = '₹';
+  static const String countryCode = "91";
 
   /// Used For Border Radius
   static BorderRadius borderRadius = BorderRadius.circular(radius);

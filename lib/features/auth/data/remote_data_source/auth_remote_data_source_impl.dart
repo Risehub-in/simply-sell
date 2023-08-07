@@ -25,7 +25,7 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
   @override
   Future verifyOtpAndSignIn(String phone, String token) async {
     try {
-      supabase.client.auth.verifyOTP(
+      await supabase.client.auth.verifyOTP(
         phone: phone,
         token: token,
         type: OtpType.sms,

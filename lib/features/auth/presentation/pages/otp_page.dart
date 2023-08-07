@@ -1,5 +1,4 @@
 import 'dart:async';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
@@ -7,7 +6,6 @@ import 'package:pin_code_fields/pin_code_fields.dart';
 import 'package:simply_sell/core/constants/app_colors.dart';
 import 'package:simply_sell/core/constants/app_defaults.dart';
 import 'package:simply_sell/features/auth/presentation/cubit/app_auth_cubit.dart';
-import 'package:supabase_flutter/supabase_flutter.dart';
 
 class OtpPage extends StatefulWidget {
   const OtpPage({
@@ -22,8 +20,6 @@ class OtpPage extends StatefulWidget {
 
 class _OtpPageState extends State<OtpPage> {
   final TextEditingController _phoneController = TextEditingController();
-
-  final Supabase _supabase = Supabase.instance;
 
   final FocusNode _focusNode = FocusNode();
 
@@ -45,15 +41,15 @@ class _OtpPageState extends State<OtpPage> {
   }
 
   Future signInWithPhone() async {
-    await context.read<AppAuthCubit>().signInWithPhone('91${widget.phone}');
+    await context
+        .read<AppAuthCubit>()
+        .signInWithPhone('${AppDefaults.countryCode}${widget.phone}');
   }
 
-  Future verifyOtpAndSignIn() async {
-    final response = await _supabase.client.auth.verifyOTP(
-        phone: '${widget.phone}',
-        token: _phoneController.text,
-        type: OtpType.sms);
-    print(response.session?.user.id);
+  Future verfyOtpAndSignIn() async {
+    await context.read<AppAuthCubit>().verifyOtpAndSignIn(
+        '${AppDefaults.countryCode}${widget.phone}', _phoneController.text);
+    print('done');
     context.go('/');
   }
 
@@ -105,10 +101,7 @@ class _OtpPageState extends State<OtpPage> {
                   inactiveColor: AppColors.placeholder,
                 ),
                 animationDuration: Duration(milliseconds: 300),
-                onCompleted: (v) async {
-                  await verifyOtpAndSignIn();
-                  print("Completed");
-                },
+                onCompleted: (_) => verfyOtpAndSignIn(),
                 onChanged: (value) {
                   setState(() {
                     currentText = value;

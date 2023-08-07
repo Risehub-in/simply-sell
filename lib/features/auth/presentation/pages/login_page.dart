@@ -51,7 +51,7 @@ class _LoginPageState extends State<LoginPage> {
                   maxLength: 10,
                   keyboardType: TextInputType.phone,
                   decoration: InputDecoration(
-                    prefixText: '+91 ',
+                    prefixText: '+${AppDefaults.countryCode} ',
                     hintStyle: Theme.of(context).textTheme.titleMedium,
                   ),
                 ),
