@@ -1,4 +1,4 @@
-import '../entities/repositories/auth_repository.dart';
+import '../repositories/auth_repository.dart';
 
 class VerifyOtpAndSignInUsercase {
   final AuthRepository authRepository;

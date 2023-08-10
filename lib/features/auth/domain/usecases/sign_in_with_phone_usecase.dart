@@ -1,4 +1,4 @@
-import 'package:simply_sell/features/auth/domain/entities/repositories/auth_repository.dart';
+import 'package:simply_sell/features/auth/domain/repositories/auth_repository.dart';
 
 class SignInWithPhoneUsecase {
   final AuthRepository authRepository;
