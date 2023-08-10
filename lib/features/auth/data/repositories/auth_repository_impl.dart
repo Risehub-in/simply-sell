@@ -1,6 +1,6 @@
 import 'package:simply_sell/features/auth/data/remote_data_source/auth_remote_data_source.dart';
 
-import '../../domain/entities/repositories/auth_repository.dart';
+import '../../domain/repositories/auth_repository.dart';
 import '../models/auth_model.dart';
 
 class AuthRepositoryImpl implements AuthRepository {
