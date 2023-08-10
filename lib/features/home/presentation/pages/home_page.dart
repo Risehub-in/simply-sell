@@ -46,8 +46,8 @@ query MyQuery {
       body: Center(
         child: ElevatedButton(
           onPressed: () {
-            getCategories();
-            // context.push('/categories');
+            //getCategories();
+            context.push('/categories');
           },
           child: Text('Category'),
         ),
