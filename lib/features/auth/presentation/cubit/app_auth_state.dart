@@ -14,11 +14,15 @@ class AppAuthInitial extends AppAuthState {
 
 class AppAuthenticated extends AppAuthState {
   final String id;
+  final String accessToken;
 
-  AppAuthenticated({required this.id});
+  AppAuthenticated({
+    required this.id,
+    required this.accessToken,
+  });
 
   @override
-  List<Object> get props => [id];
+  List<Object> get props => [id, accessToken];
 }
 
 class AppUnauthenticated extends AppAuthState {}

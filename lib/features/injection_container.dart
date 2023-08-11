@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:get_it/get_it.dart';
 import 'package:simply_sell/core/config/supabase_table.dart';
 import 'package:simply_sell/features/auth/auth_injection_container.dart';
