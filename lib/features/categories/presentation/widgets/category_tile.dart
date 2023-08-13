@@ -1,7 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:simply_sell/core/constants/page_constant.dart';
+import 'package:simply_sell/core/constants/app_routes.dart';
 
 import '../../domain/entity/category_entity.dart';
 
@@ -16,7 +16,7 @@ class CategoryTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () => context.push(PageConst.products),
+      onTap: () => context.push(AppRoutes.products),
       child: Column(
         children: [
           CachedNetworkImage(

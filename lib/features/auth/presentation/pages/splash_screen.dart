@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:simply_sell/features/home/presentation/pages/home_page.dart';
-import 'package:supabase_flutter/supabase_flutter.dart';
-
-import 'login_page.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
+import 'package:simply_sell/core/constants/app_routes.dart';
+import 'package:simply_sell/features/auth/presentation/cubit/app_auth_cubit.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -12,22 +12,25 @@ class SplashScreen extends StatefulWidget {
 }
 
 class _SplashScreenState extends State<SplashScreen> {
-  final supabase = Supabase.instance.client;
+  @override
+  void initState() {
+    redirectUser();
+    super.initState();
+  }
+
+  void redirectUser() {
+    final authCubit = context.read<AppAuthCubit>();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      if (authCubit.state is AppAuthenticated) {
+        context.go(AppRoutes.home);
+      } else {
+        context.go(AppRoutes.login);
+      }
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: StreamBuilder(
-        stream: supabase.auth.onAuthStateChange,
-        builder: (context, snapshot) {
-          final Session? session = snapshot.data?.session;
-          if (session != null) {
-            print(snapshot.data?.session?.user.aud);
-            return HomePage();
-          } else {
-            return LoginPage();
-          }
-        },
-      ),
-    );
+    return Scaffold();
   }
 }

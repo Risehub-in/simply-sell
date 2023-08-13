@@ -1,4 +1,4 @@
-class PageConst {
+class AppRoutes {
   static const String home = '/';
   static const String categories = '/categories';
   static const String singleProduct = '/single-product';

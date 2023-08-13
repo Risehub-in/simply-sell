@@ -33,7 +33,6 @@ class _OtpPageState extends State<OtpPage> {
 
   @override
   void initState() {
-    print(widget.phone);
     _focusNode.requestFocus();
     signInWithPhone();
     errorController = StreamController<ErrorAnimationType>();
@@ -49,14 +48,12 @@ class _OtpPageState extends State<OtpPage> {
   Future verfyOtpAndSignIn() async {
     await context.read<AppAuthCubit>().verifyOtpAndSignIn(
         '${AppDefaults.countryCode}${widget.phone}', _phoneController.text);
-    print('done');
     context.go('/');
   }
 
   @override
   void dispose() {
     errorController!.close();
-    _focusNode.dispose();
     super.dispose();
   }
 
