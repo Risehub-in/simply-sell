@@ -47,6 +47,7 @@ dependencies:
   go_router: ^9.0.3
   pin_code_fields: ^8.0.1
   hasura_connect: ^4.0.0+4
+  graphql_flutter: ^5.1.2
 
 dev_dependencies:
   flutter_test:

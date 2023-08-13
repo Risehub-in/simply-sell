@@ -1,5 +1,4 @@
 import 'dart:async';
-
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
@@ -7,7 +6,6 @@ part 'app_auth_state.dart';
 
 class AppAuthCubit extends Cubit<AppAuthState> {
   final Supabase supabase;
-  late StreamSubscription<AuthState> _authSubscription;
 
   AppAuthCubit({
     required this.supabase,
@@ -16,15 +14,15 @@ class AppAuthCubit extends Cubit<AppAuthState> {
   }
 
   getSession() {
-    _authSubscription = supabase.client.auth.onAuthStateChange.listen((event) {
-      if (event.session != null) {
-        emit(AppAuthenticated(
-            id: event.session!.user.id,
-            accessToken: event.session!.accessToken));
-      } else {
-        emit(AppUnauthenticated());
-      }
-    });
+    final session = supabase.client.auth.currentSession;
+    if (session != null) {
+      emit(AppAuthenticated(
+        id: session.user.id,
+        accessToken: session.accessToken,
+      ));
+    } else {
+      emit(AppUnauthenticated());
+    }
   }
 
   Future signInWithPhone(String phone) async {
@@ -43,17 +41,15 @@ class AppAuthCubit extends Cubit<AppAuthState> {
         type: OtpType.sms,
       );
     } catch (e) {
-      rethrow;
+      emit(AppAuthError(e.toString()));
     }
   }
 
   Future<void> signOut() async {
-    supabase.client.auth.signOut();
-  }
-
-  @override
-  Future<void> close() {
-    _authSubscription.cancel();
-    return super.close();
+    try {
+      supabase.client.auth.signOut();
+    } catch (e) {
+      print(e.toString());
+    }
   }
 }

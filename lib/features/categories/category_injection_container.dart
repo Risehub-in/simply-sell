@@ -22,5 +22,7 @@ Future<void> categoryInjenctionContainer() async {
   // RemoteDataSource
   sl.registerLazySingleton<CategoryRemoteDataSource>(() =>
       CategoryRemoteDataSourceImpl(
-          supabase: sl.call(), categorySupabaseTable: sl.call()));
+          hasuraService: sl.call(),
+          supabase: sl.call(),
+          categorySupabaseTable: sl.call()));
 }
