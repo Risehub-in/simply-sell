@@ -2,10 +2,9 @@ import 'package:simply_sell/features/products/domain/entities/product_entity.dar
 import 'package:simply_sell/features/products/domain/repositories/product_repository.dart';
 
 class GetProductsUseCase {
-  final ProductRepository _repository;
+  final ProductRepository repository;
 
-  GetProductsUseCase({required ProductRepository repository})
-      : _repository = repository;
+  GetProductsUseCase({required this.repository});
 
-  Future<List<ProductEntity>> call() => _repository.getProducts();
+  Future<List<ProductEntity>> call() => repository.getProducts();
 }

@@ -1,19 +1,30 @@
-class VariantEntity {
+import 'package:equatable/equatable.dart';
+import 'package:simply_sell/features/products/domain/entities/uom_entity.dart';
+
+class VariantEntity extends Equatable {
   final int id;
-  final DateTime updatedAt;
   final double price;
   final String? sku;
-  final int inventoryQuantity;
   final int productId;
-  final int uom;
+  final UomEntity? uomName;
+  final int? uomValue;
 
   VariantEntity({
     required this.id,
-    required this.updatedAt,
     required this.price,
     this.sku,
-    required this.inventoryQuantity,
     required this.productId,
-    required this.uom,
+    this.uomValue,
+    this.uomName,
   });
+
+  @override
+  List<Object?> get props => [
+        id,
+        price,
+        sku,
+        productId,
+        uomName,
+        uomValue,
+      ];
 }

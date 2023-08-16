@@ -23,4 +23,7 @@ class ProductStateDone extends ProductState {
   final List<ProductEntity> products;
 
   ProductStateDone({required this.products});
+
+  @override
+  List<Object> get props => [products];
 }

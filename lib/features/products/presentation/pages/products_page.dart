@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:simply_sell/features/products/presentation/bloc/cubit/product_cubit.dart';
 import 'package:simply_sell/features/products/presentation/pages/widgets/product_tile.dart';
+
+import '../cubit/product_cubit.dart';
 
 class ProductsPage extends StatelessWidget {
   const ProductsPage({super.key});
