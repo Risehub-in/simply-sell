@@ -20,7 +20,7 @@ class CategoriesPage extends StatelessWidget {
             return Center(child: CircularProgressIndicator());
           } else if (state is CategoryStateError) {
             Center(
-              child: Text(state.message!),
+              child: Text(state.message),
             );
           } else if (state is CategoryStateDone) {
             return Padding(
