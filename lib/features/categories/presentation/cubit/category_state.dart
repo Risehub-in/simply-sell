@@ -10,12 +10,12 @@ abstract class CategoryState extends Equatable {
 class CategoryInitial extends CategoryState {}
 
 class CategoryStateError extends CategoryState {
-  final String? message;
+  final String message;
 
-  CategoryStateError({this.message});
+  CategoryStateError({required this.message});
 
   @override
-  List<Object> get props => [message!];
+  List<Object> get props => [message];
 }
 
 class CategoryStateDone extends CategoryState {
