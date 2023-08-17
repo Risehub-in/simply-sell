@@ -26,7 +26,9 @@ class AppRouter {
       ),
       GoRoute(
         path: AppRoutes.products,
-        builder: (context, state) => ProductsPage(),
+        builder: (context, state) => ProductsPage(
+          category_id: state.extra as int,
+        ),
       ),
       GoRoute(
         path: AppRoutes.splashScreen,

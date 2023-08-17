@@ -42,9 +42,11 @@ class ProductRemoteDataSourceImpl implements ProductRemoteDataSource {
   Future<List<ProductModel>> getProductsByCategoryId(int id) async {
     try {
       QueryResult queryResult = await hasuraService.client.query(
-        QueryOptions(document: gql(GqlQueries.getProducts), variables: {
-          'category_id': id,
-        }),
+        QueryOptions(
+            document: gql(GqlQueries.getProductsByCategoryId),
+            variables: {
+              'category_id': id,
+            }),
       );
       final productListData = List.from(queryResult.data?['products']);
 
