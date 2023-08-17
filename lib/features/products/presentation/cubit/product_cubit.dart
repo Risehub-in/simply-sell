@@ -12,6 +12,7 @@ class ProductCubit extends Cubit<ProductState> {
 
   Future getProductsByCategoryId(int category_id) async {
     try {
+      emit(ProductStateInitial());
       final products = await getProductsByCategoryIdUsecase.call(category_id);
       emit(ProductStateDone(products: products));
     } catch (e) {

@@ -1,13 +1,15 @@
 class GqlQueries {
   // Categories
   static final String getCategories = '''
-  query MyQuery {
-  categories {
-    id
+ query getCategories {
+  categories(where: {products: {id: {_is_null: false}}}) {
     category_image
     category_name
+    created_at
+    id
   }
 }
+
 ''';
 
   // Products
