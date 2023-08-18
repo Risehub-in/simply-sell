@@ -38,11 +38,18 @@ class GqlQueries {
     product_title
     featured_image
     description
+    brand {
+      brand_name
+    }
     variants {
       id
       sku
       price
       product_id
+      uom{
+        uom_name
+      }
+      uom_value
     }
   }
 }

@@ -49,11 +49,11 @@ class ProductRemoteDataSourceImpl implements ProductRemoteDataSource {
             }),
       );
       final productListData = List.from(queryResult.data?['products']);
+      print(queryResult.exception);
 
       List<ProductModel> products = productListData
           .map((product) => ProductModel.fromJson(product))
           .toList();
-      print(products);
       return products;
     } catch (e) {
       print(e.toString());

@@ -38,6 +38,10 @@ class AppTheme {
         color: AppColors.textColor,
         fontWeight: FontWeight.bold,
       ),
+      labelMedium: TextStyle(
+        color: AppColors.textColor,
+        fontWeight: FontWeight.bold,
+      ),
       headlineLarge: TextStyle(
         fontWeight: FontWeight.bold,
         color: AppColors.textColor,

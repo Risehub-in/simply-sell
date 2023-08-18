@@ -5,9 +5,10 @@ class ProductModel extends ProductEntity {
   ProductModel({
     required super.id,
     required super.productTitle,
-    required super.variants,
     super.featuredImage,
     super.description,
+    super.brandName,
+    required super.variants,
   });
 
   factory ProductModel.fromJson(Map<String, dynamic> json) {
@@ -20,6 +21,7 @@ class ProductModel extends ProductEntity {
       productTitle: json['product_title'],
       featuredImage: json['featured_image'],
       description: json['description'],
+      brandName: json['brand']['brand_name'],
       variants: variants,
     );
   }

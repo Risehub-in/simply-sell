@@ -42,7 +42,7 @@ class _ProductsPageState extends State<ProductsPage> {
                 physics: BouncingScrollPhysics(),
                 gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                   crossAxisCount: 2,
-                  childAspectRatio: 0.68,
+                  childAspectRatio: 0.60,
                   mainAxisSpacing: 4,
                   crossAxisSpacing: 4,
                 ),

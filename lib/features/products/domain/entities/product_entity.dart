@@ -6,14 +6,16 @@ class ProductEntity extends Equatable {
   final String productTitle;
   final String? featuredImage;
   final String? description;
+  final String? brandName;
   final List<VariantEntity> variants;
 
   ProductEntity({
     required this.id,
     required this.productTitle,
-    required this.variants,
     this.featuredImage,
     this.description,
+    this.brandName,
+    required this.variants,
   });
 
   @override
