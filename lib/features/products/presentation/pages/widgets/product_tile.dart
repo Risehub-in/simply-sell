@@ -1,8 +1,8 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:simply_sell/core/constants/app_defaults.dart';
-import '../../../../../core/constants/app_colors.dart';
 import '../../../domain/entities/product_entity.dart';
+import 'add_to_cart_button.dart';
 
 class ProductTile extends StatelessWidget {
   const ProductTile({
@@ -16,11 +16,11 @@ class ProductTile extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {},
-      child: Card(
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(6)),
-        color: Colors.white,
-        surfaceTintColor: Colors.white,
-        elevation: 1,
+      child: Container(
+        padding: EdgeInsets.symmetric(vertical: 4),
+        decoration: BoxDecoration(
+          border: Border.all(width: 0.6, color: Colors.grey.shade300),
+        ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
@@ -34,65 +34,87 @@ class ProductTile extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  product.brandName != null
-                      ? Text(
-                          '${product.id}',
-                          style: Theme.of(context).textTheme.labelMedium,
-                        )
-                      : SizedBox(),
-                  SizedBox(height: 4),
-                  SizedBox(
-                    height: 36,
-                    child: Text(
-                      product.productTitle,
-                      style: Theme.of(context).textTheme.labelMedium?.copyWith(
-                            fontWeight: FontWeight.bold,
-                            color: AppColors.textColor,
-                          ),
-                      maxLines: 2,
-                      overflow: TextOverflow.ellipsis,
-                    ),
-                  ),
-                  Text(product.variants.first.uomName!),
-                  SizedBox(height: 6),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      Text(
-                        AppDefaults.currency +
-                            ' ${product.variants.first.price.toStringAsFixed(0)}',
-                        style: Theme.of(context).textTheme.titleSmall,
-                      ),
-                      SizedBox(
-                        height: 28,
-                        width: 76,
-                        child: OutlinedButton(
-                          style: OutlinedButton.styleFrom(
-                            side: BorderSide(color: AppColors.primary),
-                            elevation: 10,
-                          ),
-                          onPressed: () {},
-                          child: Text(
-                            'ADD',
-                            style: Theme.of(context)
-                                .textTheme
-                                .labelMedium
-                                ?.copyWith(
-                                  fontWeight: FontWeight.bold,
-                                  color: AppColors.primary,
-                                ),
-                          ),
-                        ),
-                      )
-                    ],
-                  ),
+                  buildBrandAndTitle(context),
+                  SizedBox(height: 10),
+                  buildUom(context),
+                  SizedBox(height: 10),
+                  buildPriceAndAddToCartButton(context),
                 ],
               ),
             ),
           ],
         ),
       ),
+    );
+  }
+
+  Widget buildBrandAndTitle(BuildContext context) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        if (product.brandName != null)
+          Text(
+            '${product.brandName}',
+            style: Theme.of(context).textTheme.labelMedium,
+          ),
+        SizedBox(
+          height: 36,
+          child: Text(
+            product.productTitle,
+            style: Theme.of(context).textTheme.labelLarge?.copyWith(
+                  fontWeight: FontWeight.bold,
+                ),
+            maxLines: 2,
+            overflow: TextOverflow.ellipsis,
+          ),
+        ),
+      ],
+    );
+  }
+
+  Widget buildUom(BuildContext context) {
+    return Row(
+      children: [
+        if (product.variants.first.uomName != null &&
+            product.variants.first.uomValue != null)
+          Text(
+            '${product.variants.first.uomValue}${product.variants.first.uomName!}',
+            style: Theme.of(context).textTheme.labelMedium,
+          ),
+        if (product.variants.first.uom_packaging != null)
+          Text(
+            ' x ${product.variants.first.uom_packaging}',
+            style: Theme.of(context).textTheme.bodySmall,
+          )
+      ],
+    );
+  }
+
+  Widget buildPriceAndAddToCartButton(BuildContext context) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Column(
+          children: [
+            if (product.variants.first.mrp != null)
+              Text(
+                AppDefaults.currency +
+                    '${product.variants.first.mrp?.toStringAsFixed(0)}',
+                style: Theme.of(context).textTheme.labelSmall?.copyWith(
+                      decoration: TextDecoration.lineThrough,
+                      height: 0.6,
+                    ),
+              ),
+            Text(
+              AppDefaults.currency +
+                  '${product.variants.first.price.toStringAsFixed(0)}',
+              style: Theme.of(context).textTheme.titleMedium,
+            ),
+          ],
+        ),
+        AddToCartButton(variants: product.variants)
+      ],
     );
   }
 }
