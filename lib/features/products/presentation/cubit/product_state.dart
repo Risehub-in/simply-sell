@@ -1,11 +1,10 @@
 part of 'product_cubit.dart';
 
 abstract class ProductState extends Equatable {
-  final List<ProductEntity>? products;
-  const ProductState({this.products});
+  const ProductState();
 
   @override
-  List<Object> get props => [products!];
+  List<Object> get props => [];
 }
 
 class ProductStateInitial extends ProductState {}
@@ -23,4 +22,7 @@ class ProductStateDone extends ProductState {
   final List<ProductEntity> products;
 
   ProductStateDone({required this.products});
+
+  @override
+  List<Object> get props => [products];
 }

@@ -1,58 +1,59 @@
+import 'package:graphql_flutter/graphql_flutter.dart';
+import 'package:simply_sell/core/config/hasura_service.dart';
 import 'package:simply_sell/features/products/data/remote_data_source/product_remote_data_source.dart';
-import 'package:supabase_flutter/supabase_flutter.dart';
-
-import '../../../../core/config/supabase_table.dart';
+import '../../../../core/constants/queries.dart';
 import '../models/product_model.dart';
 
 class ProductRemoteDataSourceImpl implements ProductRemoteDataSource {
-  final Supabase supabase;
-  final ProductSupabaseTable productSupabaseTable;
+  final HasuraService hasuraService;
 
-  ProductRemoteDataSourceImpl(
-      {required this.supabase, required this.productSupabaseTable});
+  ProductRemoteDataSourceImpl({
+    required this.hasuraService,
+  });
 
   @override
-  Future<ProductModel> getSingleProduct(int id) async {
+  Future<List<ProductModel>> getProducts() async {
     try {
-      final response = await supabase.client
-          .from(productSupabaseTable.tableName)
-          .select()
-          .eq(productSupabaseTable.idColumn, id)
-          .single();
-      final productModel =
-          ProductModel.fromJson(response as Map<String, dynamic>);
-      return productModel;
+      QueryResult queryResult = await hasuraService.client.query(
+        QueryOptions(
+          document: gql(GqlQueries.getProducts),
+        ),
+      );
+      final productListData = List.from(queryResult.data?['products']);
+
+      List<ProductModel> products = productListData
+          .map((product) => ProductModel.fromJson(product))
+          .toList();
+      print(products);
+      return products;
     } catch (e) {
+      print(e.toString());
       rethrow;
     }
   }
 
   @override
-  Future<List<ProductModel>> getProducts() async {
-    // try {
-    //   List<ProductModel> products = [];
+  Future<ProductModel> getSingleProduct(int id) {
+    // TODO: implement getSingleProduct
+    throw UnimplementedError();
+  }
 
-    //   final response =
-    //       await supabase.client.from(productSupabaseTable.tableName).select();
-    //   for (var data in response) {
-    //     ProductModel product = ProductModel.fromJson(data);
-    //     products.add(product);
-    //   }
-    //   return products;
-    // } catch (e) {
-    //   print(e.toString());
-    //   rethrow;
-    // }
-
+  @override
+  Future<List<ProductModel>> getProductsByCategoryId(int id) async {
     try {
-      List<ProductModel> products = [];
-      final response = await supabase.client
-          .from('products')
-          .select('*, variants!product_id!inner(*)');
-      for (var data in response) {
-        ProductModel product = ProductModel.fromJson(data);
-        products.add(product);
-      }
+      QueryResult queryResult = await hasuraService.client.query(
+        QueryOptions(
+            document: gql(GqlQueries.getProductsByCategoryId),
+            variables: {
+              'category_id': id,
+            }),
+      );
+      final productListData = List.from(queryResult.data?['products']);
+      print(queryResult.exception);
+
+      List<ProductModel> products = productListData
+          .map((product) => ProductModel.fromJson(product))
+          .toList();
       return products;
     } catch (e) {
       print(e.toString());

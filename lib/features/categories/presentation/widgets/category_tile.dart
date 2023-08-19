@@ -16,7 +16,10 @@ class CategoryTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () => context.push(AppRoutes.products),
+      onTap: () => context.push(
+        AppRoutes.products,
+        extra: category.id,
+      ),
       child: Column(
         children: [
           CachedNetworkImage(

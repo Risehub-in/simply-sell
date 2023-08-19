@@ -3,29 +3,25 @@ import 'package:simply_sell/features/products/domain/entities/variant_entity.dar
 
 class ProductEntity extends Equatable {
   final int id;
-  final DateTime createdAt;
   final String productTitle;
-  final bool isAvailable;
   final String? featuredImage;
   final String? description;
+  final String? brandName;
   final List<VariantEntity> variants;
 
   ProductEntity({
     required this.id,
     required this.productTitle,
-    required this.createdAt,
-    required this.isAvailable,
-    required this.variants,
     this.featuredImage,
     this.description,
+    this.brandName,
+    required this.variants,
   });
 
   @override
   List<Object?> get props => [
         id,
         productTitle,
-        createdAt,
-        isAvailable,
         featuredImage,
         description,
         variants,

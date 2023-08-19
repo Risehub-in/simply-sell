@@ -1,10 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:simply_sell/features/products/presentation/bloc/cubit/product_cubit.dart';
 import 'package:simply_sell/features/products/presentation/pages/widgets/product_tile.dart';
+import '../cubit/product_cubit.dart';
 
-class ProductsPage extends StatelessWidget {
-  const ProductsPage({super.key});
+class ProductsPage extends StatefulWidget {
+  final int category_id;
+  const ProductsPage({super.key, required this.category_id});
+
+  @override
+  State<ProductsPage> createState() => _ProductsPageState();
+}
+
+class _ProductsPageState extends State<ProductsPage> {
+  @override
+  void initState() {
+    context.read<ProductCubit>().getProductsByCategoryId(widget.category_id);
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -23,7 +35,6 @@ class ProductsPage extends StatelessWidget {
             return Center(child: Text(state.message));
           }
           if (state is ProductStateDone) {
-            print(state.products.first.variants.first.id);
             return Padding(
               padding: const EdgeInsets.symmetric(horizontal: 12.0),
               child: GridView.builder(
@@ -31,7 +42,7 @@ class ProductsPage extends StatelessWidget {
                 physics: BouncingScrollPhysics(),
                 gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                   crossAxisCount: 2,
-                  childAspectRatio: 0.68,
+                  childAspectRatio: 0.60,
                   mainAxisSpacing: 4,
                   crossAxisSpacing: 4,
                 ),

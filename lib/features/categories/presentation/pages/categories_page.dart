@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:simply_sell/features/categories/domain/entity/category_entity.dart';
 import 'package:simply_sell/features/categories/presentation/cubit/category_cubit.dart';
-
 import '../widgets/category_tile.dart';
 
 class CategoriesPage extends StatelessWidget {
@@ -20,11 +19,11 @@ class CategoriesPage extends StatelessWidget {
             return Center(child: CircularProgressIndicator());
           } else if (state is CategoryStateError) {
             Center(
-              child: Text(state.message!),
+              child: Text(state.message),
             );
           } else if (state is CategoryStateDone) {
             return Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 12.0),
+              padding: const EdgeInsets.symmetric(horizontal: 16.0),
               child: GridView.builder(
                   physics: BouncingScrollPhysics(),
                   padding: const EdgeInsets.symmetric(

@@ -34,8 +34,15 @@ class ProductTile extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
+                  product.brandName != null
+                      ? Text(
+                          '${product.id}',
+                          style: Theme.of(context).textTheme.labelMedium,
+                        )
+                      : SizedBox(),
+                  SizedBox(height: 4),
                   SizedBox(
-                    height: 38,
+                    height: 36,
                     child: Text(
                       product.productTitle,
                       style: Theme.of(context).textTheme.labelMedium?.copyWith(
@@ -46,6 +53,7 @@ class ProductTile extends StatelessWidget {
                       overflow: TextOverflow.ellipsis,
                     ),
                   ),
+                  Text(product.variants.first.uomName!),
                   SizedBox(height: 6),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
