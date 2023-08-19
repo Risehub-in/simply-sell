@@ -57,11 +57,9 @@ class AppIcons {
   static const contactEmail = 'assets/icons/contact_email.svg';
   static const contactMap = 'assets/icons/contact_map.svg';
 
-  static const cardAdd = 'assets/icons/card_add.svg';
-  static const salesDiscount = 'assets/icons/sale-discount.svg';
-
 //Bottom App Bar
-  static const house = 'assets/icons/house.svg';
+  static const house = 'assets/icons/home.svg';
+  static const category = 'assets/icons/category.svg';
   static const shop = 'assets/icons/shop.svg';
   static const geoAlt = 'assets/icons/geo-alt.svg';
   static const basket = 'assets/icons/basket.svg';
