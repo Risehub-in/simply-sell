@@ -42,7 +42,7 @@ class MyApp extends StatelessWidget {
       child: MaterialApp.router(
         debugShowCheckedModeBanner: false,
         title: 'Simply Sell',
-        theme: AppTheme.lightTheme,
+        theme: AppTheme.newTheme,
         routerConfig: AppRouter.router,
       ),
     );

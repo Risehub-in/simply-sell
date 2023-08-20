@@ -35,23 +35,18 @@ class _ProductsPageState extends State<ProductsPage> {
             return Center(child: Text(state.message));
           }
           if (state is ProductStateDone) {
-            return Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 12.0),
-              child: GridView.builder(
-                padding: EdgeInsets.symmetric(vertical: 12),
-                physics: BouncingScrollPhysics(),
-                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 2,
-                  childAspectRatio: 0.60,
-                  mainAxisSpacing: 4,
-                  crossAxisSpacing: 4,
-                ),
-                itemCount: state.products.length,
-                itemBuilder: (context, index) {
-                  final product = state.products[index];
-                  return ProductTile(product: product);
-                },
+            return GridView.builder(
+              padding: EdgeInsets.symmetric(vertical: 0),
+              physics: BouncingScrollPhysics(),
+              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: 2,
+                childAspectRatio: 0.60,
               ),
+              itemCount: state.products.length,
+              itemBuilder: (context, index) {
+                final product = state.products[index];
+                return ProductTile(product: product);
+              },
             );
           }
           return SizedBox();

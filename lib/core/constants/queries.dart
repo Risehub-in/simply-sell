@@ -45,11 +45,13 @@ class GqlQueries {
       id
       sku
       price
+      mrp
       product_id
       uom{
         uom_name
       }
       uom_value
+      uom_packaging
     }
   }
 }
