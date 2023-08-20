@@ -1,6 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:simply_sell/core/constants/app_defaults.dart';
+import 'package:simply_sell/features/products/presentation/pages/widgets/variant_bottom_sheet.dart';
 import '../../../domain/entities/product_entity.dart';
 import 'add_to_cart_button.dart';
 
@@ -19,7 +20,7 @@ class ProductTile extends StatelessWidget {
       child: Container(
         padding: EdgeInsets.symmetric(vertical: 4),
         decoration: BoxDecoration(
-          border: Border.all(width: 0.6, color: Colors.grey.shade300),
+          border: Border.all(width: 0.4, color: Colors.grey.shade300),
         ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -78,7 +79,7 @@ class ProductTile extends StatelessWidget {
         if (product.variants.first.uomName != null &&
             product.variants.first.uomValue != null)
           Text(
-            '${product.variants.first.uomValue}${product.variants.first.uomName!}',
+            '${product.variants.first.uomValue} ${product.variants.first.uomName!}',
             style: Theme.of(context).textTheme.labelMedium,
           ),
         if (product.variants.first.uom_packaging != null)
@@ -113,8 +114,36 @@ class ProductTile extends StatelessWidget {
             ),
           ],
         ),
-        AddToCartButton(variants: product.variants)
+        AddToCartButton(
+          text: product.variants.length > 1
+              ? '${product.variants.length} options'
+              : 'ADD',
+          onPressed: () {
+            product.variants.length > 1
+                ? _displayVariantOptionBottomSheet(context)
+                : _addToCart();
+          },
+        )
       ],
+    );
+  }
+
+  Future<void> _addToCart() async {
+    // TODO: Implement Add to cart function
+    print('Add to Cart');
+  }
+
+  Future _displayVariantOptionBottomSheet(BuildContext context) async {
+    return showModalBottomSheet(
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.all(
+          Radius.circular(24),
+        ),
+      ),
+      context: context,
+      builder: (BuildContext context) {
+        return VariantBottomSheet(product: product);
+      },
     );
   }
 }
