@@ -1,23 +1,32 @@
 import 'package:equatable/equatable.dart';
 
 class CartEntity extends Equatable {
-  final int variantId;
-  final String userId;
-  final String productTitle;
+  final String image;
   final double price;
+  final String productTitle;
+  final String? uomName;
+  final String? uomValue;
+  final String? userId;
+  final int variantId;
 
   CartEntity({
-    required this.variantId,
-    required this.userId,
-    required this.productTitle,
+    required this.image,
     required this.price,
+    required this.productTitle,
+    this.uomName,
+    this.uomValue,
+    this.userId,
+    required this.variantId,
   });
 
   @override
   List<Object?> get props => [
-        variantId,
-        userId,
-        productTitle,
+        image,
         price,
+        productTitle,
+        uomName,
+        uomValue,
+        userId,
+        variantId,
       ];
 }

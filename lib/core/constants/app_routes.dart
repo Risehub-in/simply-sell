@@ -6,4 +6,5 @@ class AppRoutes {
   static const String splashScreen = '/splash-screen';
   static const String login = '/login';
   static const String otp = '/otp';
+  static const String cart = '/cart';
 }

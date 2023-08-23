@@ -1,6 +1,9 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:simply_sell/core/constants/app_defaults.dart';
+import 'package:simply_sell/features/cart/domain/entity/cart_entity.dart';
+import 'package:simply_sell/features/cart/presentation/cubit/cart_cubit.dart';
 import 'package:simply_sell/features/products/presentation/pages/widgets/variant_bottom_sheet.dart';
 import '../../../domain/entities/product_entity.dart';
 import 'add_to_cart_button.dart';
@@ -121,16 +124,24 @@ class ProductTile extends StatelessWidget {
           onPressed: () {
             product.variants.length > 1
                 ? _displayVariantOptionBottomSheet(context)
-                : _addToCart();
+                : _addToCart(context);
           },
         )
       ],
     );
   }
 
-  Future<void> _addToCart() async {
-    // TODO: Implement Add to cart function
-    print('Add to Cart');
+  Future<void> _addToCart(BuildContext context) async {
+    try {
+      context.read<CartCubit>().addToCart(CartEntity(
+            image: product.featuredImage!,
+            price: product.variants.first.price,
+            productTitle: product.productTitle,
+            variantId: product.variants.first.id,
+          ));
+    } catch (e) {
+      print(e.toString());
+    }
   }
 
   Future _displayVariantOptionBottomSheet(BuildContext context) async {

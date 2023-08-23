@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:simply_sell/core/config/router.dart';
 import 'package:simply_sell/core/config/theme.dart';
 import 'package:simply_sell/features/auth/presentation/cubit/app_auth_cubit.dart';
+import 'package:simply_sell/features/cart/presentation/cubit/cart_cubit.dart';
 import 'package:simply_sell/features/categories/presentation/cubit/category_cubit.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 import 'features/injection_container.dart' as di;
@@ -37,6 +38,9 @@ class MyApp extends StatelessWidget {
         ),
         BlocProvider(
           create: (_) => di.sl<CategoryCubit>(),
+        ),
+        BlocProvider(
+          create: (_) => di.sl<CartCubit>(),
         ),
       ],
       child: MaterialApp.router(

@@ -3,6 +3,7 @@ import 'package:go_router/go_router.dart';
 import 'package:simply_sell/core/constants/app_routes.dart';
 import 'package:simply_sell/features/auth/presentation/pages/login_page.dart';
 import 'package:simply_sell/features/auth/presentation/pages/otp_page.dart';
+import 'package:simply_sell/features/cart/presentation/pages/cart_page.dart';
 import 'package:simply_sell/features/categories/presentation/pages/categories_page.dart';
 import 'package:simply_sell/features/home/presentation/pages/home_page.dart';
 import 'package:simply_sell/features/home/presentation/widgets/home_bottom_nav_bar.dart';
@@ -33,6 +34,11 @@ class AppRouter {
             builder: (context, state) => CategoriesPage(),
           ),
         ],
+      ),
+      GoRoute(
+        parentNavigatorKey: _rootNavigatorKey,
+        path: AppRoutes.cart,
+        builder: (context, state) => CartPage(),
       ),
       GoRoute(
         path: AppRoutes.home,

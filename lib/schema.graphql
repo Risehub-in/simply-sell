@@ -1,0 +1,27 @@
+type Query {
+    cart : Cart
+}
+
+type Mutation {
+    insert_cart(objects: [Cart!]!) : InsertCartResponse!
+}
+
+type InsertCartResponse {
+    affected_rows: Int!
+}
+
+
+type Cart {
+    id: bigint!,
+    image: String!,
+    price: numeric!,
+    product_title: String!,
+    uom_name: String,
+    uom_value: String,
+    user_id: uuid!,
+    variant_id: bigint!
+}
+
+scalar numeric
+scalar bigint
+scalar uuid
