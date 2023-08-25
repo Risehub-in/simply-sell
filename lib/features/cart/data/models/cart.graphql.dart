@@ -152,13 +152,6 @@ const documentNodeQueryFetchCart = DocumentNode(definitions: [
         directives: [],
         selectionSet: SelectionSetNode(selections: [
           FieldNode(
-            name: NameNode(value: 'id'),
-            alias: NameNode(value: 'id'),
-            arguments: [],
-            directives: [],
-            selectionSet: null,
-          ),
-          FieldNode(
             name: NameNode(value: 'image'),
             alias: NameNode(value: 'image'),
             arguments: [],
@@ -362,7 +355,6 @@ class Query$FetchCart$Widget extends graphql_flutter.Query<Query$FetchCart> {
 
 class Query$FetchCart$cart {
   Query$FetchCart$cart({
-    required this.id,
     required this.image,
     required this.price,
     required this.productTitle,
@@ -370,11 +362,10 @@ class Query$FetchCart$cart {
     this.uomValue,
     required this.userId,
     required this.variantId,
-    this.$__typename = 'Cart',
+    this.$__typename = 'cart',
   });
 
   factory Query$FetchCart$cart.fromJson(Map<String, dynamic> json) {
-    final l$id = json['id'];
     final l$image = json['image'];
     final l$price = json['price'];
     final l$productTitle = json['productTitle'];
@@ -384,7 +375,6 @@ class Query$FetchCart$cart {
     final l$variantId = json['variantId'];
     final l$$__typename = json['__typename'];
     return Query$FetchCart$cart(
-      id: (l$id as int),
       image: (l$image as String),
       price: (l$price as num).toDouble(),
       productTitle: (l$productTitle as String),
@@ -395,8 +385,6 @@ class Query$FetchCart$cart {
       $__typename: (l$$__typename as String),
     );
   }
-
-  final int id;
 
   final String image;
 
@@ -416,8 +404,6 @@ class Query$FetchCart$cart {
 
   Map<String, dynamic> toJson() {
     final _resultData = <String, dynamic>{};
-    final l$id = id;
-    _resultData['id'] = l$id;
     final l$image = image;
     _resultData['image'] = l$image;
     final l$price = price;
@@ -439,7 +425,6 @@ class Query$FetchCart$cart {
 
   @override
   int get hashCode {
-    final l$id = id;
     final l$image = image;
     final l$price = price;
     final l$productTitle = productTitle;
@@ -449,7 +434,6 @@ class Query$FetchCart$cart {
     final l$variantId = variantId;
     final l$$__typename = $__typename;
     return Object.hashAll([
-      l$id,
       l$image,
       l$price,
       l$productTitle,
@@ -467,11 +451,6 @@ class Query$FetchCart$cart {
       return true;
     }
     if (!(other is Query$FetchCart$cart) || runtimeType != other.runtimeType) {
-      return false;
-    }
-    final l$id = id;
-    final lOther$id = other.id;
-    if (l$id != lOther$id) {
       return false;
     }
     final l$image = image;
@@ -536,7 +515,6 @@ abstract class CopyWith$Query$FetchCart$cart<TRes> {
       _CopyWithStubImpl$Query$FetchCart$cart;
 
   TRes call({
-    int? id,
     String? image,
     double? price,
     String? productTitle,
@@ -562,7 +540,6 @@ class _CopyWithImpl$Query$FetchCart$cart<TRes>
   static const _undefined = <dynamic, dynamic>{};
 
   TRes call({
-    Object? id = _undefined,
     Object? image = _undefined,
     Object? price = _undefined,
     Object? productTitle = _undefined,
@@ -573,7 +550,6 @@ class _CopyWithImpl$Query$FetchCart$cart<TRes>
     Object? $__typename = _undefined,
   }) =>
       _then(Query$FetchCart$cart(
-        id: id == _undefined || id == null ? _instance.id : (id as int),
         image: image == _undefined || image == null
             ? _instance.image
             : (image as String),
@@ -606,7 +582,571 @@ class _CopyWithStubImpl$Query$FetchCart$cart<TRes>
   TRes _res;
 
   call({
-    int? id,
+    String? image,
+    double? price,
+    String? productTitle,
+    String? uomName,
+    String? uomValue,
+    String? userId,
+    int? variantId,
+    String? $__typename,
+  }) =>
+      _res;
+}
+
+class Subscription$CartSubscription {
+  Subscription$CartSubscription({
+    this.cart,
+    this.$__typename = 'Subscription',
+  });
+
+  factory Subscription$CartSubscription.fromJson(Map<String, dynamic> json) {
+    final l$cart = json['cart'];
+    final l$$__typename = json['__typename'];
+    return Subscription$CartSubscription(
+      cart: l$cart == null
+          ? null
+          : Subscription$CartSubscription$cart.fromJson(
+              (l$cart as Map<String, dynamic>)),
+      $__typename: (l$$__typename as String),
+    );
+  }
+
+  final Subscription$CartSubscription$cart? cart;
+
+  final String $__typename;
+
+  Map<String, dynamic> toJson() {
+    final _resultData = <String, dynamic>{};
+    final l$cart = cart;
+    _resultData['cart'] = l$cart?.toJson();
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
+  }
+
+  @override
+  int get hashCode {
+    final l$cart = cart;
+    final l$$__typename = $__typename;
+    return Object.hashAll([
+      l$cart,
+      l$$__typename,
+    ]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (!(other is Subscription$CartSubscription) ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$cart = cart;
+    final lOther$cart = other.cart;
+    if (l$cart != lOther$cart) {
+      return false;
+    }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
+      return false;
+    }
+    return true;
+  }
+}
+
+extension UtilityExtension$Subscription$CartSubscription
+    on Subscription$CartSubscription {
+  CopyWith$Subscription$CartSubscription<Subscription$CartSubscription>
+      get copyWith => CopyWith$Subscription$CartSubscription(
+            this,
+            (i) => i,
+          );
+}
+
+abstract class CopyWith$Subscription$CartSubscription<TRes> {
+  factory CopyWith$Subscription$CartSubscription(
+    Subscription$CartSubscription instance,
+    TRes Function(Subscription$CartSubscription) then,
+  ) = _CopyWithImpl$Subscription$CartSubscription;
+
+  factory CopyWith$Subscription$CartSubscription.stub(TRes res) =
+      _CopyWithStubImpl$Subscription$CartSubscription;
+
+  TRes call({
+    Subscription$CartSubscription$cart? cart,
+    String? $__typename,
+  });
+  CopyWith$Subscription$CartSubscription$cart<TRes> get cart;
+}
+
+class _CopyWithImpl$Subscription$CartSubscription<TRes>
+    implements CopyWith$Subscription$CartSubscription<TRes> {
+  _CopyWithImpl$Subscription$CartSubscription(
+    this._instance,
+    this._then,
+  );
+
+  final Subscription$CartSubscription _instance;
+
+  final TRes Function(Subscription$CartSubscription) _then;
+
+  static const _undefined = <dynamic, dynamic>{};
+
+  TRes call({
+    Object? cart = _undefined,
+    Object? $__typename = _undefined,
+  }) =>
+      _then(Subscription$CartSubscription(
+        cart: cart == _undefined
+            ? _instance.cart
+            : (cart as Subscription$CartSubscription$cart?),
+        $__typename: $__typename == _undefined || $__typename == null
+            ? _instance.$__typename
+            : ($__typename as String),
+      ));
+  CopyWith$Subscription$CartSubscription$cart<TRes> get cart {
+    final local$cart = _instance.cart;
+    return local$cart == null
+        ? CopyWith$Subscription$CartSubscription$cart.stub(_then(_instance))
+        : CopyWith$Subscription$CartSubscription$cart(
+            local$cart, (e) => call(cart: e));
+  }
+}
+
+class _CopyWithStubImpl$Subscription$CartSubscription<TRes>
+    implements CopyWith$Subscription$CartSubscription<TRes> {
+  _CopyWithStubImpl$Subscription$CartSubscription(this._res);
+
+  TRes _res;
+
+  call({
+    Subscription$CartSubscription$cart? cart,
+    String? $__typename,
+  }) =>
+      _res;
+  CopyWith$Subscription$CartSubscription$cart<TRes> get cart =>
+      CopyWith$Subscription$CartSubscription$cart.stub(_res);
+}
+
+const documentNodeSubscriptionCartSubscription = DocumentNode(definitions: [
+  OperationDefinitionNode(
+    type: OperationType.subscription,
+    name: NameNode(value: 'CartSubscription'),
+    variableDefinitions: [],
+    directives: [],
+    selectionSet: SelectionSetNode(selections: [
+      FieldNode(
+        name: NameNode(value: 'cart'),
+        alias: null,
+        arguments: [],
+        directives: [],
+        selectionSet: SelectionSetNode(selections: [
+          FieldNode(
+            name: NameNode(value: 'image'),
+            alias: NameNode(value: 'image'),
+            arguments: [],
+            directives: [],
+            selectionSet: null,
+          ),
+          FieldNode(
+            name: NameNode(value: 'price'),
+            alias: NameNode(value: 'price'),
+            arguments: [],
+            directives: [],
+            selectionSet: null,
+          ),
+          FieldNode(
+            name: NameNode(value: 'product_title'),
+            alias: NameNode(value: 'productTitle'),
+            arguments: [],
+            directives: [],
+            selectionSet: null,
+          ),
+          FieldNode(
+            name: NameNode(value: 'uom_name'),
+            alias: NameNode(value: 'uomName'),
+            arguments: [],
+            directives: [],
+            selectionSet: null,
+          ),
+          FieldNode(
+            name: NameNode(value: 'uom_value'),
+            alias: NameNode(value: 'uomValue'),
+            arguments: [],
+            directives: [],
+            selectionSet: null,
+          ),
+          FieldNode(
+            name: NameNode(value: 'user_id'),
+            alias: NameNode(value: 'userId'),
+            arguments: [],
+            directives: [],
+            selectionSet: null,
+          ),
+          FieldNode(
+            name: NameNode(value: 'variant_id'),
+            alias: NameNode(value: 'variantId'),
+            arguments: [],
+            directives: [],
+            selectionSet: null,
+          ),
+          FieldNode(
+            name: NameNode(value: '__typename'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null,
+          ),
+        ]),
+      ),
+      FieldNode(
+        name: NameNode(value: '__typename'),
+        alias: null,
+        arguments: [],
+        directives: [],
+        selectionSet: null,
+      ),
+    ]),
+  ),
+]);
+Subscription$CartSubscription _parserFn$Subscription$CartSubscription(
+        Map<String, dynamic> data) =>
+    Subscription$CartSubscription.fromJson(data);
+
+class Options$Subscription$CartSubscription
+    extends graphql.SubscriptionOptions<Subscription$CartSubscription> {
+  Options$Subscription$CartSubscription({
+    String? operationName,
+    graphql.FetchPolicy? fetchPolicy,
+    graphql.ErrorPolicy? errorPolicy,
+    graphql.CacheRereadPolicy? cacheRereadPolicy,
+    Object? optimisticResult,
+    Subscription$CartSubscription? typedOptimisticResult,
+    graphql.Context? context,
+  }) : super(
+          operationName: operationName,
+          fetchPolicy: fetchPolicy,
+          errorPolicy: errorPolicy,
+          cacheRereadPolicy: cacheRereadPolicy,
+          optimisticResult: optimisticResult ?? typedOptimisticResult?.toJson(),
+          context: context,
+          document: documentNodeSubscriptionCartSubscription,
+          parserFn: _parserFn$Subscription$CartSubscription,
+        );
+}
+
+class WatchOptions$Subscription$CartSubscription
+    extends graphql.WatchQueryOptions<Subscription$CartSubscription> {
+  WatchOptions$Subscription$CartSubscription({
+    String? operationName,
+    graphql.FetchPolicy? fetchPolicy,
+    graphql.ErrorPolicy? errorPolicy,
+    graphql.CacheRereadPolicy? cacheRereadPolicy,
+    Object? optimisticResult,
+    Subscription$CartSubscription? typedOptimisticResult,
+    graphql.Context? context,
+    Duration? pollInterval,
+    bool? eagerlyFetchResults,
+    bool carryForwardDataOnException = true,
+    bool fetchResults = false,
+  }) : super(
+          operationName: operationName,
+          fetchPolicy: fetchPolicy,
+          errorPolicy: errorPolicy,
+          cacheRereadPolicy: cacheRereadPolicy,
+          optimisticResult: optimisticResult ?? typedOptimisticResult?.toJson(),
+          context: context,
+          document: documentNodeSubscriptionCartSubscription,
+          pollInterval: pollInterval,
+          eagerlyFetchResults: eagerlyFetchResults,
+          carryForwardDataOnException: carryForwardDataOnException,
+          fetchResults: fetchResults,
+          parserFn: _parserFn$Subscription$CartSubscription,
+        );
+}
+
+class FetchMoreOptions$Subscription$CartSubscription
+    extends graphql.FetchMoreOptions {
+  FetchMoreOptions$Subscription$CartSubscription(
+      {required graphql.UpdateQuery updateQuery})
+      : super(
+          updateQuery: updateQuery,
+          document: documentNodeSubscriptionCartSubscription,
+        );
+}
+
+extension ClientExtension$Subscription$CartSubscription
+    on graphql.GraphQLClient {
+  Stream<graphql.QueryResult<Subscription$CartSubscription>>
+      subscribe$CartSubscription(
+              [Options$Subscription$CartSubscription? options]) =>
+          this.subscribe(options ?? Options$Subscription$CartSubscription());
+  graphql.ObservableQuery<Subscription$CartSubscription>
+      watchSubscription$CartSubscription(
+              [WatchOptions$Subscription$CartSubscription? options]) =>
+          this.watchQuery(
+              options ?? WatchOptions$Subscription$CartSubscription());
+}
+
+graphql.QueryResult<Subscription$CartSubscription>
+    useSubscription$CartSubscription(
+            Options$Subscription$CartSubscription options) =>
+        graphql_flutter.useSubscription(options);
+
+class Subscription$CartSubscription$Widget
+    extends graphql_flutter.Subscription<Subscription$CartSubscription> {
+  Subscription$CartSubscription$Widget({
+    widgets.Key? key,
+    Options$Subscription$CartSubscription? options,
+    required graphql_flutter.SubscriptionBuilder<Subscription$CartSubscription>
+        builder,
+    graphql_flutter.OnSubscriptionResult<Subscription$CartSubscription>?
+        onSubscriptionResult,
+  }) : super(
+          key: key,
+          options: options ?? Options$Subscription$CartSubscription(),
+          builder: builder,
+          onSubscriptionResult: onSubscriptionResult,
+        );
+}
+
+class Subscription$CartSubscription$cart {
+  Subscription$CartSubscription$cart({
+    required this.image,
+    required this.price,
+    required this.productTitle,
+    this.uomName,
+    this.uomValue,
+    required this.userId,
+    required this.variantId,
+    this.$__typename = 'cart',
+  });
+
+  factory Subscription$CartSubscription$cart.fromJson(
+      Map<String, dynamic> json) {
+    final l$image = json['image'];
+    final l$price = json['price'];
+    final l$productTitle = json['productTitle'];
+    final l$uomName = json['uomName'];
+    final l$uomValue = json['uomValue'];
+    final l$userId = json['userId'];
+    final l$variantId = json['variantId'];
+    final l$$__typename = json['__typename'];
+    return Subscription$CartSubscription$cart(
+      image: (l$image as String),
+      price: (l$price as num).toDouble(),
+      productTitle: (l$productTitle as String),
+      uomName: (l$uomName as String?),
+      uomValue: (l$uomValue as String?),
+      userId: (l$userId as String),
+      variantId: (l$variantId as int),
+      $__typename: (l$$__typename as String),
+    );
+  }
+
+  final String image;
+
+  final double price;
+
+  final String productTitle;
+
+  final String? uomName;
+
+  final String? uomValue;
+
+  final String userId;
+
+  final int variantId;
+
+  final String $__typename;
+
+  Map<String, dynamic> toJson() {
+    final _resultData = <String, dynamic>{};
+    final l$image = image;
+    _resultData['image'] = l$image;
+    final l$price = price;
+    _resultData['price'] = l$price;
+    final l$productTitle = productTitle;
+    _resultData['productTitle'] = l$productTitle;
+    final l$uomName = uomName;
+    _resultData['uomName'] = l$uomName;
+    final l$uomValue = uomValue;
+    _resultData['uomValue'] = l$uomValue;
+    final l$userId = userId;
+    _resultData['userId'] = l$userId;
+    final l$variantId = variantId;
+    _resultData['variantId'] = l$variantId;
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
+  }
+
+  @override
+  int get hashCode {
+    final l$image = image;
+    final l$price = price;
+    final l$productTitle = productTitle;
+    final l$uomName = uomName;
+    final l$uomValue = uomValue;
+    final l$userId = userId;
+    final l$variantId = variantId;
+    final l$$__typename = $__typename;
+    return Object.hashAll([
+      l$image,
+      l$price,
+      l$productTitle,
+      l$uomName,
+      l$uomValue,
+      l$userId,
+      l$variantId,
+      l$$__typename,
+    ]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (!(other is Subscription$CartSubscription$cart) ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$image = image;
+    final lOther$image = other.image;
+    if (l$image != lOther$image) {
+      return false;
+    }
+    final l$price = price;
+    final lOther$price = other.price;
+    if (l$price != lOther$price) {
+      return false;
+    }
+    final l$productTitle = productTitle;
+    final lOther$productTitle = other.productTitle;
+    if (l$productTitle != lOther$productTitle) {
+      return false;
+    }
+    final l$uomName = uomName;
+    final lOther$uomName = other.uomName;
+    if (l$uomName != lOther$uomName) {
+      return false;
+    }
+    final l$uomValue = uomValue;
+    final lOther$uomValue = other.uomValue;
+    if (l$uomValue != lOther$uomValue) {
+      return false;
+    }
+    final l$userId = userId;
+    final lOther$userId = other.userId;
+    if (l$userId != lOther$userId) {
+      return false;
+    }
+    final l$variantId = variantId;
+    final lOther$variantId = other.variantId;
+    if (l$variantId != lOther$variantId) {
+      return false;
+    }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
+      return false;
+    }
+    return true;
+  }
+}
+
+extension UtilityExtension$Subscription$CartSubscription$cart
+    on Subscription$CartSubscription$cart {
+  CopyWith$Subscription$CartSubscription$cart<
+          Subscription$CartSubscription$cart>
+      get copyWith => CopyWith$Subscription$CartSubscription$cart(
+            this,
+            (i) => i,
+          );
+}
+
+abstract class CopyWith$Subscription$CartSubscription$cart<TRes> {
+  factory CopyWith$Subscription$CartSubscription$cart(
+    Subscription$CartSubscription$cart instance,
+    TRes Function(Subscription$CartSubscription$cart) then,
+  ) = _CopyWithImpl$Subscription$CartSubscription$cart;
+
+  factory CopyWith$Subscription$CartSubscription$cart.stub(TRes res) =
+      _CopyWithStubImpl$Subscription$CartSubscription$cart;
+
+  TRes call({
+    String? image,
+    double? price,
+    String? productTitle,
+    String? uomName,
+    String? uomValue,
+    String? userId,
+    int? variantId,
+    String? $__typename,
+  });
+}
+
+class _CopyWithImpl$Subscription$CartSubscription$cart<TRes>
+    implements CopyWith$Subscription$CartSubscription$cart<TRes> {
+  _CopyWithImpl$Subscription$CartSubscription$cart(
+    this._instance,
+    this._then,
+  );
+
+  final Subscription$CartSubscription$cart _instance;
+
+  final TRes Function(Subscription$CartSubscription$cart) _then;
+
+  static const _undefined = <dynamic, dynamic>{};
+
+  TRes call({
+    Object? image = _undefined,
+    Object? price = _undefined,
+    Object? productTitle = _undefined,
+    Object? uomName = _undefined,
+    Object? uomValue = _undefined,
+    Object? userId = _undefined,
+    Object? variantId = _undefined,
+    Object? $__typename = _undefined,
+  }) =>
+      _then(Subscription$CartSubscription$cart(
+        image: image == _undefined || image == null
+            ? _instance.image
+            : (image as String),
+        price: price == _undefined || price == null
+            ? _instance.price
+            : (price as double),
+        productTitle: productTitle == _undefined || productTitle == null
+            ? _instance.productTitle
+            : (productTitle as String),
+        uomName:
+            uomName == _undefined ? _instance.uomName : (uomName as String?),
+        uomValue:
+            uomValue == _undefined ? _instance.uomValue : (uomValue as String?),
+        userId: userId == _undefined || userId == null
+            ? _instance.userId
+            : (userId as String),
+        variantId: variantId == _undefined || variantId == null
+            ? _instance.variantId
+            : (variantId as int),
+        $__typename: $__typename == _undefined || $__typename == null
+            ? _instance.$__typename
+            : ($__typename as String),
+      ));
+}
+
+class _CopyWithStubImpl$Subscription$CartSubscription$cart<TRes>
+    implements CopyWith$Subscription$CartSubscription$cart<TRes> {
+  _CopyWithStubImpl$Subscription$CartSubscription$cart(this._res);
+
+  TRes _res;
+
+  call({
     String? image,
     double? price,
     String? productTitle,

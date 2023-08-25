@@ -12,12 +12,12 @@ final class CartInitial extends CartState {}
 final class CartStateLoading extends CartState {}
 
 final class CartStateDone extends CartState {
-  final List<CartEntity> cartEntity;
+  final List<CartEntity> cartItems;
 
-  CartStateDone({required this.cartEntity});
+  CartStateDone({required this.cartItems});
 
   @override
-  List<Object> get props => [cartEntity];
+  List<Object> get props => [cartItems];
 }
 
 final class CartStateError extends CartState {

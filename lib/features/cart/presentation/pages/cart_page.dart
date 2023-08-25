@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:simply_sell/features/cart/presentation/cubit/cart_cubit.dart';
+import '../../domain/entity/cart_entity.dart';
 
 class CartPage extends StatelessWidget {
   const CartPage({super.key});
@@ -19,8 +20,14 @@ class CartPage extends StatelessWidget {
             );
           }
           if (state is CartStateDone) {
-            print(state.cartEntity);
-            return SizedBox();
+            print(state.cartItems);
+            return ListView.builder(
+              itemCount: state.cartItems.length,
+              itemBuilder: (context, index) {
+                CartEntity cartItem = state.cartItems[index];
+                return Text('${cartItem.price}');
+              },
+            );
           }
           if (state is CartStateError) {
             return Text(state.message);

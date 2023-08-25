@@ -1,9 +1,13 @@
 type Query {
-    cart : Cart
+    cart : cart
+}
+
+type Subscription {
+    cart : cart
 }
 
 type Mutation {
-    insert_cart(objects: [Cart!]!) : InsertCartResponse!
+    insert_cart(objects: [cart!]!) : InsertCartResponse!
 }
 
 type InsertCartResponse {
@@ -11,8 +15,7 @@ type InsertCartResponse {
 }
 
 
-type Cart {
-    id: bigint!,
+type cart {
     image: String!,
     price: numeric!,
     product_title: String!,

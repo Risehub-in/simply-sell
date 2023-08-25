@@ -1,6 +1,5 @@
 query FetchCart {
     cart {
-    id: id,
     image: image,
     price: price,
     productTitle: product_title,
@@ -9,6 +8,18 @@ query FetchCart {
     userId: user_id,
     variantId: variant_id
     }
+}
+
+subscription CartSubscription {
+  cart {
+    image: image,
+    price: price,
+    productTitle: product_title,
+    uomName: uom_name,
+    uomValue: uom_value,
+    userId: user_id,
+    variantId: variant_id
+  }
 }
 
 mutation AddToCart(

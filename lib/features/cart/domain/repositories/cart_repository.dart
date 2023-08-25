@@ -4,4 +4,6 @@ abstract class CartRepository {
   Future<void> addToCart(CartEntity cartEntity);
 
   Future<List<CartEntity>> getCart();
+
+  Stream<List<CartEntity>> streamCart();
 }

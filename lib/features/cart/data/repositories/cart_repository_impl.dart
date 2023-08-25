@@ -24,6 +24,11 @@ class CartRepositoryImpl implements CartRepository {
 
   @override
   Future<List<CartModel>> getCart() async {
-    return cartRemoteDataSource.getCart();
+    throw UnimplementedError();
+  }
+
+  @override
+  Stream<List<CartEntity>> streamCart() {
+    return cartRemoteDataSource.streamCart();
   }
 }
