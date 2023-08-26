@@ -30,6 +30,8 @@ mutation AddToCart(
   $uom_value: String
   $uom_name: String
   $image: String!
+  $mrp: numeric,
+  $cart_quantity: smallint,
 ) {
   insert_cart(
     objects: {
@@ -40,6 +42,8 @@ mutation AddToCart(
       uom_value: $uom_value
       uom_name: $uom_name
       image: $image
+      mrp: $mrp
+      cart_quantity: $cart_quantity
     }
   ) {
     affected_rows

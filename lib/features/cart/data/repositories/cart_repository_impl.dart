@@ -18,6 +18,8 @@ class CartRepositoryImpl implements CartRepository {
       uomValue: cart.uomValue,
       userId: cart.userId,
       variantId: cart.variantId,
+      cartQuantity: cart.cartQuantity,
+      mrp: cart.mrp,
     );
     await cartRemoteDataSource.addToCart(cartEntity);
   }

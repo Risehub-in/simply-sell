@@ -9,17 +9,20 @@ class CartModel extends CartEntity {
     super.uomValue,
     super.userId,
     required super.variantId,
+    required super.cartQuantity,
+    super.mrp,
   });
 
   factory CartModel.fromJson(Map<String, dynamic> json) {
     return CartModel(
-      image: json['image'],
-      price: json['price'],
-      productTitle: json['product_title'],
-      uomName: json['uom_name'],
-      uomValue: json['uom_value'],
-      userId: json['user_d'],
-      variantId: json['variant_id'],
-    );
+        image: json['image'],
+        price: json['price'],
+        productTitle: json['product_title'],
+        uomName: json['uom_name'],
+        uomValue: json['uom_value'],
+        userId: json['user_d'],
+        variantId: json['variant_id'],
+        cartQuantity: json['cart_quantity'],
+        mrp: json['mrp']);
   }
 }

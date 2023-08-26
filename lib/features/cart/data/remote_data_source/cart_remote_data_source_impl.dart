@@ -26,6 +26,10 @@ class CartRemoteDataSourceImpl implements CartRemoteDataSource {
             product_title: cart.productTitle,
             user_id: supabase.client.auth.currentSession!.user.id,
             variant_id: cart.variantId,
+            uom_name: cart.uomName,
+            uom_value: cart.uomValue,
+            cart_quantity: cart.cartQuantity,
+            mrp: cart.mrp,
           ),
         ),
       );
@@ -49,6 +53,8 @@ class CartRemoteDataSourceImpl implements CartRemoteDataSource {
           uom_value
           user_id
           variant_id
+          mrp
+          cart_quantity
         }
       }
           '''))).asyncExpand((result) {

@@ -1168,6 +1168,8 @@ class Variables$Mutation$AddToCart {
     String? uom_value,
     String? uom_name,
     required String image,
+    double? mrp,
+    int? cart_quantity,
   }) =>
       Variables$Mutation$AddToCart._({
         r'price': price,
@@ -1177,6 +1179,8 @@ class Variables$Mutation$AddToCart {
         if (uom_value != null) r'uom_value': uom_value,
         if (uom_name != null) r'uom_name': uom_name,
         r'image': image,
+        if (mrp != null) r'mrp': mrp,
+        if (cart_quantity != null) r'cart_quantity': cart_quantity,
       });
 
   Variables$Mutation$AddToCart._(this._$data);
@@ -1201,6 +1205,14 @@ class Variables$Mutation$AddToCart {
     }
     final l$image = data['image'];
     result$data['image'] = (l$image as String);
+    if (data.containsKey('mrp')) {
+      final l$mrp = data['mrp'];
+      result$data['mrp'] = (l$mrp as num?)?.toDouble();
+    }
+    if (data.containsKey('cart_quantity')) {
+      final l$cart_quantity = data['cart_quantity'];
+      result$data['cart_quantity'] = (l$cart_quantity as int?);
+    }
     return Variables$Mutation$AddToCart._(result$data);
   }
 
@@ -1213,6 +1225,8 @@ class Variables$Mutation$AddToCart {
   String? get uom_value => (_$data['uom_value'] as String?);
   String? get uom_name => (_$data['uom_name'] as String?);
   String get image => (_$data['image'] as String);
+  double? get mrp => (_$data['mrp'] as double?);
+  int? get cart_quantity => (_$data['cart_quantity'] as int?);
   Map<String, dynamic> toJson() {
     final result$data = <String, dynamic>{};
     final l$price = price;
@@ -1233,6 +1247,14 @@ class Variables$Mutation$AddToCart {
     }
     final l$image = image;
     result$data['image'] = l$image;
+    if (_$data.containsKey('mrp')) {
+      final l$mrp = mrp;
+      result$data['mrp'] = l$mrp;
+    }
+    if (_$data.containsKey('cart_quantity')) {
+      final l$cart_quantity = cart_quantity;
+      result$data['cart_quantity'] = l$cart_quantity;
+    }
     return result$data;
   }
 
@@ -1293,6 +1315,23 @@ class Variables$Mutation$AddToCart {
     if (l$image != lOther$image) {
       return false;
     }
+    final l$mrp = mrp;
+    final lOther$mrp = other.mrp;
+    if (_$data.containsKey('mrp') != other._$data.containsKey('mrp')) {
+      return false;
+    }
+    if (l$mrp != lOther$mrp) {
+      return false;
+    }
+    final l$cart_quantity = cart_quantity;
+    final lOther$cart_quantity = other.cart_quantity;
+    if (_$data.containsKey('cart_quantity') !=
+        other._$data.containsKey('cart_quantity')) {
+      return false;
+    }
+    if (l$cart_quantity != lOther$cart_quantity) {
+      return false;
+    }
     return true;
   }
 
@@ -1305,6 +1344,8 @@ class Variables$Mutation$AddToCart {
     final l$uom_value = uom_value;
     final l$uom_name = uom_name;
     final l$image = image;
+    final l$mrp = mrp;
+    final l$cart_quantity = cart_quantity;
     return Object.hashAll([
       l$price,
       l$product_title,
@@ -1313,6 +1354,8 @@ class Variables$Mutation$AddToCart {
       _$data.containsKey('uom_value') ? l$uom_value : const {},
       _$data.containsKey('uom_name') ? l$uom_name : const {},
       l$image,
+      _$data.containsKey('mrp') ? l$mrp : const {},
+      _$data.containsKey('cart_quantity') ? l$cart_quantity : const {},
     ]);
   }
 }
@@ -1334,6 +1377,8 @@ abstract class CopyWith$Variables$Mutation$AddToCart<TRes> {
     String? uom_value,
     String? uom_name,
     String? image,
+    double? mrp,
+    int? cart_quantity,
   });
 }
 
@@ -1358,6 +1403,8 @@ class _CopyWithImpl$Variables$Mutation$AddToCart<TRes>
     Object? uom_value = _undefined,
     Object? uom_name = _undefined,
     Object? image = _undefined,
+    Object? mrp = _undefined,
+    Object? cart_quantity = _undefined,
   }) =>
       _then(Variables$Mutation$AddToCart._({
         ..._instance._$data,
@@ -1371,6 +1418,9 @@ class _CopyWithImpl$Variables$Mutation$AddToCart<TRes>
         if (uom_value != _undefined) 'uom_value': (uom_value as String?),
         if (uom_name != _undefined) 'uom_name': (uom_name as String?),
         if (image != _undefined && image != null) 'image': (image as String),
+        if (mrp != _undefined) 'mrp': (mrp as double?),
+        if (cart_quantity != _undefined)
+          'cart_quantity': (cart_quantity as int?),
       }));
 }
 
@@ -1388,6 +1438,8 @@ class _CopyWithStubImpl$Variables$Mutation$AddToCart<TRes>
     String? uom_value,
     String? uom_name,
     String? image,
+    double? mrp,
+    int? cart_quantity,
   }) =>
       _res;
 }
@@ -1592,6 +1644,24 @@ const documentNodeMutationAddToCart = DocumentNode(definitions: [
         defaultValue: DefaultValueNode(value: null),
         directives: [],
       ),
+      VariableDefinitionNode(
+        variable: VariableNode(name: NameNode(value: 'mrp')),
+        type: NamedTypeNode(
+          name: NameNode(value: 'numeric'),
+          isNonNull: false,
+        ),
+        defaultValue: DefaultValueNode(value: null),
+        directives: [],
+      ),
+      VariableDefinitionNode(
+        variable: VariableNode(name: NameNode(value: 'cart_quantity')),
+        type: NamedTypeNode(
+          name: NameNode(value: 'smallint'),
+          isNonNull: false,
+        ),
+        defaultValue: DefaultValueNode(value: null),
+        directives: [],
+      ),
     ],
     directives: [],
     selectionSet: SelectionSetNode(selections: [
@@ -1629,6 +1699,14 @@ const documentNodeMutationAddToCart = DocumentNode(definitions: [
               ObjectFieldNode(
                 name: NameNode(value: 'image'),
                 value: VariableNode(name: NameNode(value: 'image')),
+              ),
+              ObjectFieldNode(
+                name: NameNode(value: 'mrp'),
+                value: VariableNode(name: NameNode(value: 'mrp')),
+              ),
+              ObjectFieldNode(
+                name: NameNode(value: 'cart_quantity'),
+                value: VariableNode(name: NameNode(value: 'cart_quantity')),
               ),
             ]),
           )

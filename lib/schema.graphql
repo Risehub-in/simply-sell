@@ -23,8 +23,11 @@ type cart {
     uom_value: String,
     user_id: uuid!,
     variant_id: bigint!
+    cart_quantity: smallint!
+    mrp: numeric
 }
 
 scalar numeric
 scalar bigint
 scalar uuid
+scalar smallint

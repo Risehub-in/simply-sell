@@ -8,6 +8,8 @@ targets:
               type: double
             bigint:
               type: int
+            smallint:
+              type: int
             uuid:
               type: String
           clients:

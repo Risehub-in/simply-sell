@@ -138,6 +138,10 @@ class ProductTile extends StatelessWidget {
             price: product.variants.first.price,
             productTitle: product.productTitle,
             variantId: product.variants.first.id,
+            uomName: product.variants.first.uomName,
+            uomValue: product.variants.first.uomValue,
+            cartQuantity: 1,
+            mrp: product.variants.first.mrp,
           ));
     } catch (e) {
       print(e.toString());

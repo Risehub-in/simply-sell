@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:simply_sell/features/cart/presentation/cubit/cart_cubit.dart';
-import '../../domain/entity/cart_entity.dart';
+import '../widgets/cart_items.dart';
 
 class CartPage extends StatelessWidget {
   const CartPage({super.key});
@@ -9,31 +7,19 @@ class CartPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      //TODO Add color constant
+      backgroundColor: Color(0xFFF1F0F4),
       appBar: AppBar(
-        title: Text('Cart'),
+        title: Text('Your Cart'),
       ),
-      body: BlocBuilder<CartCubit, CartState>(
-        builder: (context, state) {
-          if (state is CartStateLoading) {
-            return Center(
-              child: CircularProgressIndicator(),
-            );
-          }
-          if (state is CartStateDone) {
-            print(state.cartItems);
-            return ListView.builder(
-              itemCount: state.cartItems.length,
-              itemBuilder: (context, index) {
-                CartEntity cartItem = state.cartItems[index];
-                return Text('${cartItem.price}');
-              },
-            );
-          }
-          if (state is CartStateError) {
-            return Text(state.message);
-          }
-          return SizedBox();
-        },
+      body: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 12.0, vertical: 12.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            CartItems(),
+          ],
+        ),
       ),
     );
   }
