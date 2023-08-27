@@ -12,33 +12,6 @@ class ProductRemoteDataSourceImpl implements ProductRemoteDataSource {
   });
 
   @override
-  Future<List<ProductModel>> getProducts() async {
-    try {
-      QueryResult queryResult = await hasuraService.client.query(
-        QueryOptions(
-          document: gql(GqlQueries.getProducts),
-        ),
-      );
-      final productListData = List.from(queryResult.data?['products']);
-
-      List<ProductModel> products = productListData
-          .map((product) => ProductModel.fromJson(product))
-          .toList();
-      print(products);
-      return products;
-    } catch (e) {
-      print(e.toString());
-      rethrow;
-    }
-  }
-
-  @override
-  Future<ProductModel> getSingleProduct(int id) {
-    // TODO: implement getSingleProduct
-    throw UnimplementedError();
-  }
-
-  @override
   Future<List<ProductModel>> getProductsByCategoryId(int id) async {
     try {
       QueryResult queryResult = await hasuraService.client.query(
