@@ -14,7 +14,6 @@ type InsertCartResponse {
     affected_rows: Int!
 }
 
-
 type cart {
     image: String!,
     price: numeric!,

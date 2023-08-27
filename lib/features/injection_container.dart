@@ -7,7 +7,6 @@ import 'package:simply_sell/features/categories/category_injection_container.dar
 import 'package:simply_sell/features/products/product_injection_container.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 import '../core/config/hasura_service.dart';
-import 'cart/data/models/cart_model.dart';
 
 final GetIt sl = GetIt.instance;
 
@@ -17,13 +16,11 @@ Future<void> init() async {
   ProductSupabaseTable productSupabaseTable = ProductSupabaseTable();
   CategorySupabaseTable categorySupabaseTable = CategorySupabaseTable();
   HasuraService hasuraService = HasuraService(supabase: supabase);
-  StreamController<List<CartModel>> cartStream = StreamController();
 
   sl.registerLazySingleton(() => supabase);
   sl.registerLazySingleton(() => productSupabaseTable);
   sl.registerLazySingleton(() => categorySupabaseTable);
   sl.registerLazySingleton(() => hasuraService);
-  sl.registerLazySingleton(() => cartStream);
 
   await productInjenctionContainer();
   await categoryInjenctionContainer();

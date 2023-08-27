@@ -1,8 +1,10 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../core/constants/app_defaults.dart';
 import '../../../../core/widgets/increment_decrement_cart_quantity.dart';
 import '../../domain/entity/cart_entity.dart';
+import '../cubit/cart_cubit.dart';
 
 class CartItemRow extends StatelessWidget {
   const CartItemRow({super.key, required this.cartItem});
@@ -12,7 +14,6 @@ class CartItemRow extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         Row(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -31,7 +32,7 @@ class CartItemRow extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 SizedBox(
-                  width: 110,
+                  width: 120,
                   child: Text(
                     cartItem.productTitle,
                     maxLines: 2,
@@ -51,9 +52,25 @@ class CartItemRow extends StatelessWidget {
             ),
           ],
         ),
+        SizedBox(width: 12),
         IncrementDecrementCartQuantity(
+          minusQuantityOnpress: () async {
+            if (cartItem.cartQuantity == 1) {
+              await context
+                  .read<CartCubit>()
+                  .deleteCartItem(cartItem.variantId);
+            } else {
+              await context.read<CartCubit>().updateCartQuantity(
+                  cartItem.variantId, cartItem.cartQuantity - 1);
+            }
+          },
+          addQuantityOnpress: () async {
+            await context.read<CartCubit>().updateCartQuantity(
+                cartItem.variantId, cartItem.cartQuantity + 1);
+          },
           cartQuantity: cartItem.cartQuantity,
         ),
+        Spacer(),
         Column(
           children: [
             if (cartItem.mrp != null)

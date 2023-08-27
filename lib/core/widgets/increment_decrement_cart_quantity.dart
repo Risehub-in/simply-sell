@@ -6,42 +6,48 @@ class IncrementDecrementCartQuantity extends StatelessWidget {
   const IncrementDecrementCartQuantity({
     super.key,
     required this.cartQuantity,
+    required this.minusQuantityOnpress,
+    required this.addQuantityOnpress,
   });
 
   final int cartQuantity;
+  final Function()? minusQuantityOnpress;
+  final Function()? addQuantityOnpress;
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.all(Radius.circular(8)),
-        border: Border.all(
-          width: 1,
-          //TODO Add color constant
-          color: Colors.grey.shade200,
+    return InkWell(
+      child: Container(
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.all(Radius.circular(8)),
+          border: Border.all(
+            width: 1,
+            //TODO Add color constant
+            color: Colors.grey.shade200,
+          ),
         ),
-      ),
-      padding: EdgeInsets.symmetric(horizontal: 6, vertical: 6),
-      child: Row(
-        children: [
-          QuantityButton(
-            icon: Icons.remove,
-            onTap: () {},
-          ),
-          SizedBox(width: 10),
-          Text(
-            '$cartQuantity',
-            style: Theme.of(context).textTheme.labelLarge?.copyWith(
-                  color: AppColors.primary,
-                  fontWeight: FontWeight.bold,
-                ),
-          ),
-          SizedBox(width: 10),
-          QuantityButton(
-            icon: Icons.add,
-            onTap: () {},
-          )
-        ],
+        padding: EdgeInsets.symmetric(horizontal: 6, vertical: 6),
+        child: Row(
+          children: [
+            QuantityButton(
+              icon: Icons.remove,
+              onTap: minusQuantityOnpress,
+            ),
+            SizedBox(width: 10),
+            Text(
+              '$cartQuantity',
+              style: Theme.of(context).textTheme.labelLarge?.copyWith(
+                    color: AppColors.primary,
+                    fontWeight: FontWeight.bold,
+                  ),
+            ),
+            SizedBox(width: 10),
+            QuantityButton(
+              icon: Icons.add,
+              onTap: addQuantityOnpress,
+            )
+          ],
+        ),
       ),
     );
   }

@@ -1,9 +1,13 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:simply_sell/core/constants/app_colors.dart';
+import 'package:simply_sell/core/widgets/add_to_cart_button.dart';
+import 'package:simply_sell/core/widgets/increment_decrement_cart_quantity.dart';
+import 'package:simply_sell/features/cart/domain/entity/cart_entity.dart';
+import 'package:simply_sell/features/cart/presentation/cubit/cart_cubit.dart';
 import 'package:simply_sell/features/products/domain/entities/product_entity.dart';
 import 'package:simply_sell/features/products/domain/entities/variant_entity.dart';
-import 'package:simply_sell/features/products/presentation/pages/widgets/add_to_cart_button.dart';
 import '../../../../../core/constants/app_defaults.dart';
 
 class VariantBottomSheet extends StatelessWidget {
@@ -35,7 +39,9 @@ class VariantBottomSheet extends StatelessWidget {
               itemBuilder: (context, index) {
                 VariantEntity variant = product.variants[index];
                 return BottomSheetVariantCard(
-                    product: product, variant: variant);
+                  product: product,
+                  variant: variant,
+                );
               }),
           SizedBox(height: 12),
           Card(
@@ -106,7 +112,7 @@ class BottomSheetVariantCard extends StatelessWidget {
                   children: [
                     if (variant.uomName != null && variant.uomValue != null)
                       Text(
-                        '${variant.uomValue} ${variant.uomName!}',
+                        '${variant.uomValue}${variant.uomName!}',
                         style: Theme.of(context).textTheme.labelMedium,
                       ),
                     if (variant.uom_packaging != null)
@@ -135,9 +141,44 @@ class BottomSheetVariantCard extends StatelessWidget {
                   ),
               ],
             ),
-            AddToCartButton(
-              text: 'ADD',
-              onPressed: () {},
+            BlocBuilder<CartCubit, CartState>(
+              builder: (context, state) {
+                if (state is CartStateDone) {
+                  for (var cartItem in state.cartItems) {
+                    if (cartItem.variantId == variant.id) {
+                      return IncrementDecrementCartQuantity(
+                        minusQuantityOnpress: () async {
+                          if (cartItem.cartQuantity > 1) {
+                            await context.read<CartCubit>().updateCartQuantity(
+                                variant.id, cartItem.cartQuantity - 1);
+                          }
+                        },
+                        addQuantityOnpress: () async {
+                          await context.read<CartCubit>().updateCartQuantity(
+                              variant.id, cartItem.cartQuantity + 1);
+                        },
+                        cartQuantity: cartItem.cartQuantity,
+                      );
+                    }
+                  }
+                }
+                return AddToCartButton(
+                  width: 76,
+                  product: product,
+                  onPressed: () {
+                    context.read<CartCubit>().addToCart(
+                          CartEntity(
+                            image: product.featuredImage!,
+                            price: variant.price,
+                            productTitle: product.productTitle,
+                            variantId: variant.id,
+                            cartQuantity: 1,
+                          ),
+                        );
+                  },
+                  text: 'ADD',
+                );
+              },
             )
           ],
         ),

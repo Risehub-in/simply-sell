@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'package:graphql_flutter/graphql_flutter.dart';
+import 'package:simply_sell/core/constants/queries.dart';
 import 'package:simply_sell/features/cart/data/models/cart_model.dart';
 import 'package:simply_sell/features/cart/data/remote_data_source/cart_remote_data_source.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
@@ -42,22 +43,15 @@ class CartRemoteDataSourceImpl implements CartRemoteDataSource {
 
   @override
   Stream<List<CartModel>> streamCart() {
-    final resultStream =
-        hasuraService.client.subscribe(SubscriptionOptions(document: gql('''
-      subscription CartSubscription {
-        cart {
-          image
-          price
-          product_title
-          uom_name
-          uom_value
-          user_id
-          variant_id
-          mrp
-          cart_quantity
-        }
-      }
-          '''))).asyncExpand((result) {
+    final resultStream = hasuraService.client
+        .subscribe(
+      SubscriptionOptions(
+        document: gql(
+          GqlQueries.cartSubscription,
+        ),
+      ),
+    )
+        .asyncExpand((result) {
       final cartData = result.data?['cart'] as List<dynamic>;
       final List<CartModel> cartItems =
           cartData.map((cartItem) => CartModel.fromJson(cartItem)).toList();
@@ -66,5 +60,36 @@ class CartRemoteDataSourceImpl implements CartRemoteDataSource {
       print(error.toString());
     });
     return resultStream;
+  }
+
+  @override
+  Future<void> updateCartQuantity(int variantId, int cartQuantity) async {
+    try {
+      await hasuraService.client.mutate(MutationOptions(
+          document: gql(GqlQueries.updateCartQuery),
+          variables: {
+            'variant_id': variantId,
+            'cart_quantity': cartQuantity,
+          }));
+    } catch (e) {
+      rethrow;
+    }
+  }
+
+  @override
+  Future<void> deleteCartItem(int variantId) async {
+    try {
+      hasuraService.client.mutate(
+        MutationOptions(
+          document: gql(
+            GqlQueries.deleteCartItem,
+          ),
+          variables: {'variant_id': variantId},
+        ),
+      );
+    } catch (e) {
+      print(e.toString());
+      rethrow;
+    }
   }
 }

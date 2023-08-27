@@ -33,4 +33,14 @@ class CartRepositoryImpl implements CartRepository {
   Stream<List<CartEntity>> streamCart() {
     return cartRemoteDataSource.streamCart();
   }
+
+  @override
+  Future<void> updateCartQuantity(int variantId, int cartQuantity) async {
+    await cartRemoteDataSource.updateCartQuantity(variantId, cartQuantity);
+  }
+
+  @override
+  Future<void> deleteCartItem(int variantId) async {
+    await cartRemoteDataSource.deleteCartItem(variantId);
+  }
 }

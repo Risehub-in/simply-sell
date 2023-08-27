@@ -6,4 +6,8 @@ abstract class CartRepository {
   Future<List<CartEntity>> getCart();
 
   Stream<List<CartEntity>> streamCart();
+
+  Future<void> updateCartQuantity(int variantId, int cartQuantity);
+
+  Future<void> deleteCartItem(int variantId);
 }

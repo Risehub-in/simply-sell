@@ -56,4 +56,39 @@ class GqlQueries {
   }
 }
 ''';
+
+  static final cartSubscription = '''
+      subscription MySubscription {
+  cart(order_by: {created_at: asc}) {
+    image
+    price
+    product_title
+    uom_name
+    uom_value
+    user_id
+    variant_id
+    cart_quantity
+    mrp
+  }
+}
+          ''';
+
+  static final updateCartQuery = '''
+        mutation UpdateCartQuantity(\$variant_id: bigint!,
+        \$cart_quantity: smallint!) {
+          update_cart(where: {variant_id: {_eq: \$variant_id}},
+          _set: {cart_quantity: \$cart_quantity}) {
+            affected_rows
+            }
+          }
+''';
+
+  static final deleteCartItem = '''
+    mutation delteCartItem(\$variant_id: bigint!) {
+      delete_cart(where: {variant_id: {_eq: \$variant_id}}) {
+        affected_rows
+      }
+    }
+
+''';
 }
