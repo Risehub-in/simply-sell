@@ -1,6 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:simply_sell/core/constants/app_colors.dart';
 import '../../../../core/constants/app_defaults.dart';
 import '../../../../core/widgets/increment_decrement_cart_quantity.dart';
 import '../../domain/entity/cart_entity.dart';
@@ -20,8 +21,7 @@ class CartItemRow extends StatelessWidget {
           children: [
             Container(
               padding: EdgeInsets.all(2),
-              //TODO Add color constant
-              color: Colors.indigo.shade50,
+              color: AppColors.scaffoldColor,
               child: CachedNetworkImage(
                 height: 40,
                 imageUrl: cartItem.image,

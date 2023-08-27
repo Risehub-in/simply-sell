@@ -22,8 +22,7 @@ class IncrementDecrementCartQuantity extends StatelessWidget {
           borderRadius: BorderRadius.all(Radius.circular(8)),
           border: Border.all(
             width: 1,
-            //TODO Add color constant
-            color: Colors.grey.shade200,
+            color: AppColors.borderColor,
           ),
         ),
         padding: EdgeInsets.symmetric(horizontal: 6, vertical: 6),

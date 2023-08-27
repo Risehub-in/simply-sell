@@ -30,7 +30,7 @@ class AddToCartButton extends StatelessWidget {
             ),
           ),
           side: BorderSide(
-            color: AppColors.secondaryContainer,
+            color: AppColors.borderColor,
           ),
         ),
         onPressed: onPressed,

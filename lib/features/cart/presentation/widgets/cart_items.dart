@@ -33,7 +33,6 @@ class CartItems extends StatelessWidget {
               SizedBox(height: 4),
               Card(
                 margin: EdgeInsets.all(0),
-                //TODO Add color constant
                 surfaceTintColor: Colors.white,
                 color: Colors.white,
                 child: Padding(

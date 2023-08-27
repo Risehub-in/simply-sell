@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:simply_sell/core/constants/app_colors.dart';
 import '../widgets/cart_items.dart';
 
 class CartPage extends StatelessWidget {
@@ -7,8 +8,7 @@ class CartPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      //TODO Add color constant
-      backgroundColor: Color(0xFFF1F0F4),
+      backgroundColor: AppColors.scaffoldColor,
       appBar: AppBar(
         title: Text('Your Cart'),
       ),
