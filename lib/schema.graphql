@@ -15,6 +15,7 @@ type InsertCartResponse {
 }
 
 type cart {
+    product_id: bigint!
     image: String!,
     price: numeric!,
     product_title: String!,

@@ -11,6 +11,7 @@ class CartRepositoryImpl implements CartRepository {
   @override
   Future<void> addToCart(CartEntity cart) async {
     final cartEntity = CartModel(
+      productId: cart.productId,
       image: cart.image,
       price: cart.price,
       productTitle: cart.productTitle,

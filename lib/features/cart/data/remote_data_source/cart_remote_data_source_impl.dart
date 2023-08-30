@@ -22,6 +22,7 @@ class CartRemoteDataSourceImpl implements CartRemoteDataSource {
       final result = await hasuraService.client.mutate$AddToCart(
         Options$Mutation$AddToCart(
           variables: Variables$Mutation$AddToCart(
+            product_id: cart.productId,
             image: cart.image,
             price: cart.price,
             product_title: cart.productTitle,
@@ -55,6 +56,7 @@ class CartRemoteDataSourceImpl implements CartRemoteDataSource {
       final cartData = result.data?['cart'] as List<dynamic>;
       final List<CartModel> cartItems =
           cartData.map((cartItem) => CartModel.fromJson(cartItem)).toList();
+      // print(cartItems);
       return Stream.value(cartItems);
     }).handleError((error) {
       print(error.toString());

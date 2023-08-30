@@ -4,8 +4,8 @@ import 'package:equatable/equatable.dart';
 import 'package:simply_sell/features/cart/domain/usecases/add_to_cart_usercase.dart';
 import 'package:simply_sell/features/cart/domain/usecases/stream_cart_usecase.dart';
 import 'package:simply_sell/features/cart/domain/usecases/update_cart_quantity_usecase.dart';
-import '../../domain/entity/cart_entity.dart';
-import '../../domain/usecases/delete_cart_item_usecase.dart';
+import '../../../domain/entity/cart_entity.dart';
+import '../../../domain/usecases/delete_cart_item_usecase.dart';
 part 'cart_state.dart';
 
 class CartCubit extends Cubit<CartState> {
@@ -19,7 +19,9 @@ class CartCubit extends Cubit<CartState> {
     required this.streamCartUsecase,
     required this.updateCartQuantityUsecase,
     required this.deleteCartItemUsecase,
-  }) : super(CartStateLoading());
+  }) : super(CartStateLoading()) {
+    streamCart();
+  }
 
   Future<void> addToCart(CartEntity cart) async {
     try {
@@ -45,7 +47,10 @@ class CartCubit extends Cubit<CartState> {
     }
   }
 
-  Stream<List<CartEntity>> streamCart() {
-    return streamCartUsecase.call();
+  streamCart() {
+    streamCartUsecase.call().listen((cartItems) {
+      emit(CartStateLoading());
+      emit(CartStateDone(cartItems: cartItems));
+    });
   }
 }

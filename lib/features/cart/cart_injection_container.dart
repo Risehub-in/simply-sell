@@ -6,7 +6,7 @@ import 'package:simply_sell/features/cart/domain/usecases/add_to_cart_usercase.d
 import 'package:simply_sell/features/cart/domain/usecases/delete_cart_item_usecase.dart';
 import 'package:simply_sell/features/cart/domain/usecases/stream_cart_usecase.dart';
 import 'package:simply_sell/features/cart/domain/usecases/update_cart_quantity_usecase.dart';
-import 'package:simply_sell/features/cart/presentation/cubit/cart_cubit.dart';
+import 'package:simply_sell/features/cart/presentation/cubit/cart_cubit/cart_cubit.dart';
 
 import '../injection_container.dart';
 

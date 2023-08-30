@@ -1161,6 +1161,7 @@ class _CopyWithStubImpl$Subscription$CartSubscription$cart<TRes>
 
 class Variables$Mutation$AddToCart {
   factory Variables$Mutation$AddToCart({
+    required int product_id,
     required double price,
     required String product_title,
     required String user_id,
@@ -1172,6 +1173,7 @@ class Variables$Mutation$AddToCart {
     int? cart_quantity,
   }) =>
       Variables$Mutation$AddToCart._({
+        r'product_id': product_id,
         r'price': price,
         r'product_title': product_title,
         r'user_id': user_id,
@@ -1187,6 +1189,8 @@ class Variables$Mutation$AddToCart {
 
   factory Variables$Mutation$AddToCart.fromJson(Map<String, dynamic> data) {
     final result$data = <String, dynamic>{};
+    final l$product_id = data['product_id'];
+    result$data['product_id'] = (l$product_id as int);
     final l$price = data['price'];
     result$data['price'] = (l$price as num).toDouble();
     final l$product_title = data['product_title'];
@@ -1218,6 +1222,7 @@ class Variables$Mutation$AddToCart {
 
   Map<String, dynamic> _$data;
 
+  int get product_id => (_$data['product_id'] as int);
   double get price => (_$data['price'] as double);
   String get product_title => (_$data['product_title'] as String);
   String get user_id => (_$data['user_id'] as String);
@@ -1229,6 +1234,8 @@ class Variables$Mutation$AddToCart {
   int? get cart_quantity => (_$data['cart_quantity'] as int?);
   Map<String, dynamic> toJson() {
     final result$data = <String, dynamic>{};
+    final l$product_id = product_id;
+    result$data['product_id'] = l$product_id;
     final l$price = price;
     result$data['price'] = l$price;
     final l$product_title = product_title;
@@ -1270,6 +1277,11 @@ class Variables$Mutation$AddToCart {
     }
     if (!(other is Variables$Mutation$AddToCart) ||
         runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$product_id = product_id;
+    final lOther$product_id = other.product_id;
+    if (l$product_id != lOther$product_id) {
       return false;
     }
     final l$price = price;
@@ -1337,6 +1349,7 @@ class Variables$Mutation$AddToCart {
 
   @override
   int get hashCode {
+    final l$product_id = product_id;
     final l$price = price;
     final l$product_title = product_title;
     final l$user_id = user_id;
@@ -1347,6 +1360,7 @@ class Variables$Mutation$AddToCart {
     final l$mrp = mrp;
     final l$cart_quantity = cart_quantity;
     return Object.hashAll([
+      l$product_id,
       l$price,
       l$product_title,
       l$user_id,
@@ -1370,6 +1384,7 @@ abstract class CopyWith$Variables$Mutation$AddToCart<TRes> {
       _CopyWithStubImpl$Variables$Mutation$AddToCart;
 
   TRes call({
+    int? product_id,
     double? price,
     String? product_title,
     String? user_id,
@@ -1396,6 +1411,7 @@ class _CopyWithImpl$Variables$Mutation$AddToCart<TRes>
   static const _undefined = <dynamic, dynamic>{};
 
   TRes call({
+    Object? product_id = _undefined,
     Object? price = _undefined,
     Object? product_title = _undefined,
     Object? user_id = _undefined,
@@ -1408,6 +1424,8 @@ class _CopyWithImpl$Variables$Mutation$AddToCart<TRes>
   }) =>
       _then(Variables$Mutation$AddToCart._({
         ..._instance._$data,
+        if (product_id != _undefined && product_id != null)
+          'product_id': (product_id as int),
         if (price != _undefined && price != null) 'price': (price as double),
         if (product_title != _undefined && product_title != null)
           'product_title': (product_title as String),
@@ -1431,6 +1449,7 @@ class _CopyWithStubImpl$Variables$Mutation$AddToCart<TRes>
   TRes _res;
 
   call({
+    int? product_id,
     double? price,
     String? product_title,
     String? user_id,
@@ -1582,6 +1601,15 @@ const documentNodeMutationAddToCart = DocumentNode(definitions: [
     name: NameNode(value: 'AddToCart'),
     variableDefinitions: [
       VariableDefinitionNode(
+        variable: VariableNode(name: NameNode(value: 'product_id')),
+        type: NamedTypeNode(
+          name: NameNode(value: 'bigint'),
+          isNonNull: true,
+        ),
+        defaultValue: DefaultValueNode(value: null),
+        directives: [],
+      ),
+      VariableDefinitionNode(
         variable: VariableNode(name: NameNode(value: 'price')),
         type: NamedTypeNode(
           name: NameNode(value: 'numeric'),
@@ -1672,6 +1700,10 @@ const documentNodeMutationAddToCart = DocumentNode(definitions: [
           ArgumentNode(
             name: NameNode(value: 'objects'),
             value: ObjectValueNode(fields: [
+              ObjectFieldNode(
+                name: NameNode(value: 'product_id'),
+                value: VariableNode(name: NameNode(value: 'product_id')),
+              ),
               ObjectFieldNode(
                 name: NameNode(value: 'price'),
                 value: VariableNode(name: NameNode(value: 'price')),

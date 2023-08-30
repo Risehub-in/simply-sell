@@ -5,7 +5,7 @@ import 'package:simply_sell/core/constants/app_colors.dart';
 import '../../../../core/constants/app_defaults.dart';
 import '../../../../core/widgets/increment_decrement_cart_quantity.dart';
 import '../../domain/entity/cart_entity.dart';
-import '../cubit/cart_cubit.dart';
+import '../cubit/cart_cubit/cart_cubit.dart';
 
 class CartItemRow extends StatelessWidget {
   const CartItemRow({super.key, required this.cartItem});

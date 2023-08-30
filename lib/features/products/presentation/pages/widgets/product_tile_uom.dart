@@ -20,9 +20,9 @@ class ProductTileUom extends StatelessWidget {
             '${product.variants.first.uomValue} ${product.variants.first.uomName!}',
             style: Theme.of(context).textTheme.labelMedium,
           ),
-        if (product.variants.first.uom_packaging != null)
+        if (product.variants.first.uomPackaging != null)
           Text(
-            ' x ${product.variants.first.uom_packaging}',
+            ' x ${product.variants.first.uomPackaging}',
             style: Theme.of(context).textTheme.bodySmall,
           )
       ],

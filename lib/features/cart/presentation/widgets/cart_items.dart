@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../domain/entity/cart_entity.dart';
-import '../cubit/cart_cubit.dart';
+import '../cubit/cart_cubit/cart_cubit.dart';
 import 'cart_item_row.dart';
 
 class CartItems extends StatelessWidget {
@@ -9,17 +9,15 @@ class CartItems extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final cartStream = context.read<CartCubit>().streamCart();
-    return StreamBuilder(
-      stream: cartStream,
-      builder: (context, snapshot) {
-        if (snapshot.connectionState == ConnectionState.waiting) {
+    return BlocBuilder<CartCubit, CartState>(
+      builder: (context, state) {
+        if (state is CartStateLoading) {
           return Center(
             child: CircularProgressIndicator(),
           );
         }
-        if (snapshot.hasData) {
-          List<CartEntity> cartItems = snapshot.data!;
+        if (state is CartStateDone) {
+          List<CartEntity> cartItems = state.cartItems;
           return Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -53,8 +51,8 @@ class CartItems extends StatelessWidget {
             ],
           );
         }
-        if (snapshot.hasError) {
-          return Text(snapshot.error.toString());
+        if (state is CartStateError) {
+          return Text(state.message);
         }
         return SizedBox();
       },

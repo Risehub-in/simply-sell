@@ -23,6 +23,7 @@ subscription CartSubscription {
 }
 
 mutation AddToCart(
+  $product_id: bigint!
   $price: numeric!
   $product_title: String!
   $user_id: uuid!
@@ -35,6 +36,7 @@ mutation AddToCart(
 ) {
   insert_cart(
     objects: {
+      product_id: $product_id
       price: $price
       product_title: $product_title
       user_id: $user_id

@@ -58,20 +58,21 @@ class GqlQueries {
 ''';
 
   static final cartSubscription = '''
-      subscription MySubscription {
+      subscription CartSubscription {
   cart(order_by: {created_at: asc}) {
+    product_id
+    variant_id
     image
     price
     product_title
     uom_name
     uom_value
     user_id
-    variant_id
     cart_quantity
     mrp
   }
 }
-          ''';
+  ''';
 
   static final updateCartQuery = '''
         mutation UpdateCartQuantity(\$variant_id: bigint!,
