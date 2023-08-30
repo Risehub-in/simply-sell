@@ -1,0 +1,16 @@
+targets:
+  $default:
+    builders:
+      graphql_codegen:
+        options:
+          scalars:
+            numeric:
+              type: double
+            bigint:
+              type: int
+            smallint:
+              type: int
+            uuid:
+              type: String
+          clients:
+            - graphql_flutter

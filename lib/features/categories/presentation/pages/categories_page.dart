@@ -23,15 +23,15 @@ class CategoriesPage extends StatelessWidget {
             );
           } else if (state is CategoryStateDone) {
             return Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 16.0),
+              padding: const EdgeInsets.symmetric(horizontal: 12.0),
               child: GridView.builder(
                   physics: BouncingScrollPhysics(),
                   padding: const EdgeInsets.symmetric(
-                    vertical: 14,
+                    vertical: 12,
                   ),
                   gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                     crossAxisCount: 3,
-                    crossAxisSpacing: 16,
+                    crossAxisSpacing: 12,
                     childAspectRatio: 0.68,
                   ),
                   itemCount: state.categories.length,

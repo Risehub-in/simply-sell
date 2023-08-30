@@ -8,7 +8,7 @@ class VariantEntity extends Equatable {
   final int productId;
   final String? uomName;
   final String? uomValue;
-  final int? uom_packaging;
+  final int? uomPackaging;
 
   VariantEntity({
     required this.id,
@@ -18,7 +18,7 @@ class VariantEntity extends Equatable {
     required this.productId,
     this.uomName,
     this.uomValue,
-    this.uom_packaging,
+    this.uomPackaging,
   });
 
   @override

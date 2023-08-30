@@ -62,6 +62,9 @@ class _HomeBottomNavBarState extends State<HomeBottomNavBar> {
             case 1:
               context.go(AppRoutes.categories);
               break;
+            case 2:
+              context.push(AppRoutes.cart);
+              break;
           }
         },
       ),

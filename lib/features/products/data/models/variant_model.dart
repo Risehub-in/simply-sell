@@ -9,7 +9,7 @@ class VariantModel extends VariantEntity {
     super.sku,
     super.uomName,
     super.uomValue,
-    super.uom_packaging,
+    super.uomPackaging,
   });
 
   factory VariantModel.fromJson(Map<String, dynamic> json) {
@@ -21,7 +21,7 @@ class VariantModel extends VariantEntity {
       productId: json['product_id'],
       uomName: json['uom']['uom_name'],
       uomValue: json['uom_value'],
-      uom_packaging: json['uom_packaging'],
+      uomPackaging: json['uom_packaging'],
     );
   }
 }

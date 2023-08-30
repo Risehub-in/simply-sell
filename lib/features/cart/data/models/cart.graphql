@@ -1,0 +1,53 @@
+query FetchCart {
+    cart {
+    image: image,
+    price: price,
+    productTitle: product_title,
+    uomName: uom_name,
+    uomValue: uom_value,
+    userId: user_id,
+    variantId: variant_id
+    }
+}
+
+subscription CartSubscription {
+  cart {
+    image: image,
+    price: price,
+    productTitle: product_title,
+    uomName: uom_name,
+    uomValue: uom_value,
+    userId: user_id,
+    variantId: variant_id
+  }
+}
+
+mutation AddToCart(
+  $product_id: bigint!
+  $price: numeric!
+  $product_title: String!
+  $user_id: uuid!
+  $variant_id: bigint!
+  $uom_value: String
+  $uom_name: String
+  $image: String!
+  $mrp: numeric,
+  $cart_quantity: smallint,
+) {
+  insert_cart(
+    objects: {
+      product_id: $product_id
+      price: $price
+      product_title: $product_title
+      user_id: $user_id
+      variant_id: $variant_id
+      uom_value: $uom_value
+      uom_name: $uom_name
+      image: $image
+      mrp: $mrp
+      cart_quantity: $cart_quantity
+    }
+  ) {
+    affected_rows
+  }
+}

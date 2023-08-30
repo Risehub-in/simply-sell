@@ -9,16 +9,6 @@ class ProductRepoImpl implements ProductRepository {
   ProductRepoImpl({required this.productRemoteDataSource});
 
   @override
-  Future<List<ProductModel>> getProducts() async {
-    return productRemoteDataSource.getProducts();
-  }
-
-  @override
-  Future<ProductModel> getSingleProduct(int id) {
-    return productRemoteDataSource.getSingleProduct(id);
-  }
-
-  @override
   Future<List<ProductModel>> getProductsByCategoryId(int id) {
     return productRemoteDataSource.getProductsByCategoryId(id);
   }
