@@ -7,6 +7,9 @@ import 'package:simply_sell/features/cart/presentation/cubit/cart_cubit/cart_cub
 import 'package:simply_sell/features/categories/presentation/cubit/category_cubit.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 import 'features/injection_container.dart' as di;
+import 'features/location/presentation/cubits/location_cubit.dart';
+import 'features/location/presentation/cubits/coordinates_cubit.dart';
+import 'features/location/presentation/cubits/prediction_cubit.dart';
 import 'features/products/presentation/cubit/product_cubit.dart';
 import 'keys.dart';
 
@@ -42,6 +45,13 @@ class MyApp extends StatelessWidget {
         BlocProvider(
           create: (_) => di.sl<CartCubit>(),
         ),
+        BlocProvider(
+          create: (_) => di.sl<LocationCubit>(),
+        ),
+        BlocProvider(
+          create: (_) => di.sl<PredictionCubit>(),
+        ),
+        BlocProvider(create: (_) => di.sl<CoordinatesCubt>()),
       ],
       child: MaterialApp.router(
         debugShowCheckedModeBanner: false,

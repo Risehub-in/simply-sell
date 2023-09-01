@@ -34,6 +34,21 @@ class AppTheme {
         borderRadius: BorderRadius.all(Radius.circular(4)),
       ),
     ),
+
+    elevatedButtonTheme: ElevatedButtonThemeData(
+      style: ElevatedButton.styleFrom(
+        backgroundColor: AppColors.primary,
+        foregroundColor: Colors.white,
+        // padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 16),
+        elevation: 0,
+        shape: RoundedRectangleBorder(
+          borderRadius: AppDefaults.borderRadius,
+        ),
+        textStyle: const TextStyle(
+          fontWeight: FontWeight.bold,
+        ),
+      ),
+    ),
   );
 
   static final ThemeData lightTheme = ThemeData(

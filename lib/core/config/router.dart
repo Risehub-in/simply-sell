@@ -7,9 +7,12 @@ import 'package:simply_sell/features/cart/presentation/pages/cart_page.dart';
 import 'package:simply_sell/features/categories/presentation/pages/categories_page.dart';
 import 'package:simply_sell/features/home/presentation/pages/home_page.dart';
 import 'package:simply_sell/features/home/presentation/widgets/home_bottom_nav_bar.dart';
+import 'package:simply_sell/features/location/domain/entities/coordinates_entity.dart';
+import 'package:simply_sell/features/location/presentation/pages/search_location_page.dart';
 import 'package:simply_sell/features/products/presentation/pages/products_page.dart';
 
 import '../../features/auth/presentation/pages/splash_screen.dart';
+import '../../features/location/presentation/pages/set_location_page.dart';
 
 final _rootNavigatorKey = GlobalKey<NavigatorState>();
 final _shellNavigatorKey = GlobalKey<NavigatorState>(debugLabel: 'shellA');
@@ -62,6 +65,17 @@ class AppRouter {
       GoRoute(
         path: AppRoutes.splashScreen,
         builder: (context, state) => SplashScreen(),
+      ),
+      GoRoute(
+        parentNavigatorKey: _rootNavigatorKey,
+        path: AppRoutes.searchLocation,
+        builder: (context, state) => SearchLocationPage(),
+      ),
+      GoRoute(
+        parentNavigatorKey: _rootNavigatorKey,
+        path: AppRoutes.setLocation,
+        builder: (context, state) =>
+            SetLocationPage(coordinates: state.extra as CoordinatesEntity),
       ),
     ],
   );

@@ -35,6 +35,7 @@ class _OtpPageState extends State<OtpPage> {
   void initState() {
     _focusNode.requestFocus();
     signInWithPhone();
+    print(widget.phone);
     errorController = StreamController<ErrorAnimationType>();
     super.initState();
   }
@@ -77,7 +78,7 @@ class _OtpPageState extends State<OtpPage> {
               style: Theme.of(context).textTheme.titleLarge,
             ),
             SizedBox(height: 8),
-            Text('Enter the code sent to +${widget.phone}'),
+            Text('Enter the code sent to +91 ${widget.phone}'),
             SizedBox(height: 24),
             Form(
               key: _formKey,
