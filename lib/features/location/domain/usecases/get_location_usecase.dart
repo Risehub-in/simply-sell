@@ -1,8 +1,8 @@
 import 'package:simply_sell/features/location/domain/entities/coordinates_entity.dart';
 import '../repository/location_repository.dart';
 
-class GetLocationUsecase {
+class GetCoordinatesUsecase {
   final LocationRepository locationRepository;
-  GetLocationUsecase({required this.locationRepository});
-  Future<CoordinatesEntity> call() => locationRepository.getLocation();
+  GetCoordinatesUsecase({required this.locationRepository});
+  Future<CoordinatesEntity> call() => locationRepository.getCoordinates();
 }

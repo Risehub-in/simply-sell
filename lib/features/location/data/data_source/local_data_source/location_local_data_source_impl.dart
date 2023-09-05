@@ -4,7 +4,7 @@ import 'location_local_data_source.dart';
 
 class LocationLocalDataSourceImpl implements LocationLocalDataSource {
   @override
-  Future<CoordinatesModel> getLocation() async {
+  Future<CoordinatesModel> getCoordinates() async {
     try {
       Position position = await _determinePosition();
 

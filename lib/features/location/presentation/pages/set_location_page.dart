@@ -1,10 +1,8 @@
-import 'dart:async';
-
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
-import 'package:simply_sell/features/location/domain/entities/coordinates_entity.dart';
-
-import '../../../../core/constants/app_colors.dart';
+import '../../domain/entities/coordinates_entity.dart';
+import '../cubits/coverage_cubit.dart';
 
 class SetLocationPage extends StatefulWidget {
   const SetLocationPage({super.key, required this.coordinates});
@@ -16,23 +14,38 @@ class SetLocationPage extends StatefulWidget {
 }
 
 class _SetLocationPageState extends State<SetLocationPage> {
-  final Completer<GoogleMapController> _controller = Completer();
+  late LatLng currentPosition;
+  LatLng branchCoordinates = LatLng(19.099748155447553, 72.84569058144776);
 
   final Set<Marker> _markers = {};
 
   addMarker() {
     _markers.add(
       Marker(
+        infoWindow: InfoWindow(title: 'Move the mapp to adjust your location'),
         markerId: MarkerId('1'),
-        position:
-            LatLng(widget.coordinates.latitude, widget.coordinates.longitude),
+        position: LatLng(currentPosition.latitude, currentPosition.longitude),
         icon: BitmapDescriptor.defaultMarker,
       ),
     );
   }
 
+  _onCameraMove(CameraPosition position) {
+    setState(() {
+      currentPosition = position.target;
+      print(currentPosition);
+    });
+    addMarker();
+  }
+
+  _onCameraIdle() async {
+    print('oncamera idle');
+  }
+
   @override
   void initState() {
+    currentPosition =
+        LatLng(widget.coordinates.latitude, widget.coordinates.longitude);
     addMarker();
     super.initState();
   }
@@ -42,22 +55,13 @@ class _SetLocationPageState extends State<SetLocationPage> {
     return Scaffold(
       extendBodyBehindAppBar: true,
       appBar: AppBar(
-        backgroundColor: Colors.transparent,
         elevation: 0,
-        leading: IconButton(
-          icon: Icon(
-            Icons.arrow_circle_left_sharp,
-            color: AppColors.primary,
-            size: 35,
-          ),
-          onPressed: () {
-            Navigator.pop(context);
-          },
-        ),
+        title: Text('Choose delivery location'),
       ),
       body: Stack(
         children: [
           GoogleMap(
+            myLocationEnabled: false,
             initialCameraPosition: CameraPosition(
               zoom: 19,
               target: LatLng(
@@ -66,9 +70,39 @@ class _SetLocationPageState extends State<SetLocationPage> {
               ),
             ),
             zoomControlsEnabled: false,
-            zoomGesturesEnabled: true,
+            onCameraMove: _onCameraMove,
+            onCameraIdle: _onCameraIdle,
             markers: _markers,
           ),
+          Align(
+            alignment: Alignment.bottomCenter,
+            child: Container(
+              color: Colors.white,
+              height: 100,
+              child: Padding(
+                padding: const EdgeInsets.symmetric(
+                    horizontal: 14.0, vertical: 14.0),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Row(
+                      children: [
+                        Icon(Icons.location_on),
+                        BlocBuilder<CoverageCubit, CoverageState>(
+                          builder: (context, state) {
+                            if (state is CoverageStateDone) {
+                              print(state.isUserInDeliveryRadius);
+                            }
+                            return Text('Evershine Global City');
+                          },
+                        )
+                      ],
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          )
         ],
       ),
     );

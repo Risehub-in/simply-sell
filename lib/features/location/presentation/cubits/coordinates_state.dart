@@ -26,10 +26,10 @@ class CoordinatesStateError extends CoordinatesState {
 }
 
 class CoordinatesStateDone extends CoordinatesState {
-  final CoordinatesEntity location;
+  final CoordinatesEntity coordinates;
 
-  CoordinatesStateDone({required this.location});
+  CoordinatesStateDone({required this.coordinates});
 
   @override
-  List<Object> get props => [location];
+  List<Object> get props => [coordinates];
 }

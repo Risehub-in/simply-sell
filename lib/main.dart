@@ -3,8 +3,10 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:simply_sell/core/config/router.dart';
 import 'package:simply_sell/core/config/theme.dart';
 import 'package:simply_sell/features/auth/presentation/cubit/app_auth_cubit.dart';
+import 'package:simply_sell/features/branch/presentation/cubit/branch_cubit.dart';
 import 'package:simply_sell/features/cart/presentation/cubit/cart_cubit/cart_cubit.dart';
 import 'package:simply_sell/features/categories/presentation/cubit/category_cubit.dart';
+import 'package:simply_sell/features/location/presentation/cubits/coverage_cubit.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 import 'features/injection_container.dart' as di;
 import 'features/location/presentation/cubits/location_cubit.dart';
@@ -51,7 +53,15 @@ class MyApp extends StatelessWidget {
         BlocProvider(
           create: (_) => di.sl<PredictionCubit>(),
         ),
-        BlocProvider(create: (_) => di.sl<CoordinatesCubt>()),
+        BlocProvider(
+          create: (_) => di.sl<CoordinatesCubit>(),
+        ),
+        BlocProvider(
+          create: (_) => di.sl<CoverageCubit>(),
+        ),
+        BlocProvider(
+          create: (_) => di.sl<BranchCubit>()..getBranchDetails(),
+        ),
       ],
       child: MaterialApp.router(
         debugShowCheckedModeBanner: false,

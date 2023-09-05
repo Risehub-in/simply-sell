@@ -9,4 +9,5 @@ class AppRoutes {
   static const String cart = '/cart';
   static const String searchLocation = '/search-location';
   static const String setLocation = '/set-location';
+  static const String outOfCoverage = '/out-of-coverage';
 }

@@ -8,4 +8,7 @@ abstract class LocationRemoteDataSource {
   Future<CoordinatesModel> getCoordinatesByPlaceID(String placeID);
   Future<LocationModel> getAddressBtCoordinates(
       double latitude, double longitude);
+
+  Future<bool> isUserInDeliveryRadius(double branchLat, double branchLng,
+      double userLat, double userLng, double branchRadius);
 }

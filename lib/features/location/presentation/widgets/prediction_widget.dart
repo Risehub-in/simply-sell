@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:simply_sell/features/location/presentation/cubits/coordinates_cubit.dart';
-import 'package:simply_sell/features/location/presentation/cubits/location_cubit.dart';
 
 import '../../../../core/constants/app_routes.dart';
 import '../cubits/prediction_cubit.dart';
@@ -12,7 +11,7 @@ class PredictionWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final coordinatesCubit = context.read<CoordinatesCubt>();
+    final coordinatesCubit = context.read<CoordinatesCubit>();
     return BlocBuilder<PredictionCubit, PredictionState>(
       builder: (context, state) {
         if (state is PredictionStateLoading) {

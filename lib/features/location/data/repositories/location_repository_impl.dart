@@ -31,7 +31,14 @@ class LocationRepositoryImpl implements LocationRepository {
   }
 
   @override
-  Future<CoordinatesModel> getLocation() {
-    return locationLocalDataSource.getLocation();
+  Future<CoordinatesModel> getCoordinates() {
+    return locationLocalDataSource.getCoordinates();
+  }
+
+  @override
+  Future<bool> isUserInDeliveryRadius(double branchLat, double branchLng,
+      double userLat, double userLng, double branchRadius) async {
+    return locationRemoteDataSource.isUserInDeliveryRadius(
+        branchLat, branchLng, userLat, userLng, branchRadius);
   }
 }

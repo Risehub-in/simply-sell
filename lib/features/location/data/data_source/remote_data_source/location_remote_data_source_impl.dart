@@ -79,4 +79,31 @@ class LocationRemoteDataSourceImpl implements LocationRemoteDataSource {
       throw error; // Rethrow the error to be caught by the caller.
     }
   }
+
+  @override
+  Future<bool> isUserInDeliveryRadius(double branchLat, double branchLng,
+      double userLat, double userLng, double branchRadius) async {
+    var url =
+        "https://maps.googleapis.com/maps/api/distancematrix/json?origins=$branchLat,$branchLng&destinations=$userLat,$userLng&key=$mapsApiKey";
+    print(url);
+    try {
+      final response = await http.get(Uri.parse(url));
+
+      final decodedData = json.decode(response.body.toString())['rows'][0]
+          ['elements'][0]['distance']['text'];
+      print(decodedData);
+      List<String> distanceParts = decodedData.split(" km");
+
+      final distance = double.parse(distanceParts[0]);
+
+      if (distance < branchRadius) {
+        return true;
+      } else {
+        return false;
+      }
+    } catch (e) {
+      print(e.toString());
+      rethrow;
+    }
+  }
 }
