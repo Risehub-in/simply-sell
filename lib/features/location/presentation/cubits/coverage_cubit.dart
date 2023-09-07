@@ -31,4 +31,8 @@ class CoverageCubit extends Cubit<CoverageState> {
       );
     }
   }
+
+  void setCoverageFromSetLocation() {
+    emit(CoverageStateDone(isUserInDeliveryRadius: true));
+  }
 }

@@ -1,6 +1,6 @@
 import 'dart:convert';
 
-import 'package:simply_sell/features/location/data/models/location_model.dart';
+import 'package:simply_sell/features/location/data/models/location_address.dart';
 import 'package:simply_sell/features/location/data/models/prediction_model.dart';
 import 'package:simply_sell/keys.dart';
 import 'package:http/http.dart' as http;
@@ -16,6 +16,7 @@ class LocationRemoteDataSourceImpl implements LocationRemoteDataSource {
         'https://maps.googleapis.com/maps/api/place/autocomplete/json';
     String requestURL =
         '$baseURL?input=$input&key=$mapsApiKey&sessiontoken=$uuidToken';
+    print(requestURL);
     try {
       var response = await http.get(Uri.parse(requestURL));
       List<dynamic> data = jsonDecode(response.body.toString())['predictions'];
@@ -58,22 +59,17 @@ class LocationRemoteDataSourceImpl implements LocationRemoteDataSource {
   }
 
   @override
-  Future<LocationModel> getAddressBtCoordinates(
+  Future<LocationAddressModel> getAddressByCoordinates(
       double latitude, double longitude) async {
-    String _formattedAddress = '';
     try {
       var url =
           "https://maps.googleapis.com/maps/api/geocode/json?latlng=$latitude,$longitude&key=$mapsApiKey";
       print(url);
       final response = await http.get(Uri.parse(url));
-      var results = jsonDecode(response.body.toString())['results'];
-      _formattedAddress =
-          '${results[0]['address_components'][0]['long_name']}' +
-              ', '
-                  '${results[0]['address_components'][2]['long_name']}';
-      print(_formattedAddress);
-
-      return LocationModel(address: _formattedAddress);
+      var results = jsonDecode(response.body.toString());
+      LocationAddressModel getLocationModel =
+          LocationAddressModel.fromJson(results);
+      return getLocationModel;
     } catch (error) {
       print('Error----------------$error');
       throw error; // Rethrow the error to be caught by the caller.
@@ -85,13 +81,13 @@ class LocationRemoteDataSourceImpl implements LocationRemoteDataSource {
       double userLat, double userLng, double branchRadius) async {
     var url =
         "https://maps.googleapis.com/maps/api/distancematrix/json?origins=$branchLat,$branchLng&destinations=$userLat,$userLng&key=$mapsApiKey";
-    print(url);
+
     try {
       final response = await http.get(Uri.parse(url));
 
       final decodedData = json.decode(response.body.toString())['rows'][0]
           ['elements'][0]['distance']['text'];
-      print(decodedData);
+
       List<String> distanceParts = decodedData.split(" km");
 
       final distance = double.parse(distanceParts[0]);

@@ -74,8 +74,9 @@ class AppRouter {
       GoRoute(
         parentNavigatorKey: _rootNavigatorKey,
         path: AppRoutes.setLocation,
-        builder: (context, state) =>
-            SetLocationPage(coordinates: state.extra as CoordinatesEntity),
+        builder: (context, state) => SetLocationPage(
+          coordinates: state.extra as CoordinatesEntity,
+        ),
       ),
     ],
   );

@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:simply_sell/core/constants/app_routes.dart';
 import 'package:simply_sell/features/location/presentation/cubits/coverage_cubit.dart';
-import '../../../location/presentation/cubits/location_cubit.dart';
+import '../../../location/presentation/cubits/get_location_cubit.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -60,15 +60,15 @@ class HomeAppBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<LocationCubit, LocationState>(
+    return BlocBuilder<GetLocationCubit, GetLocationState>(
       builder: (context, state) {
-        if (state is LocationStateLoading) {
+        if (state is GetLocationStateLoading) {
           return Text('Locating...');
         }
-        if (state is LocationStateError) {
-          return Text(state.message!);
+        if (state is GetLocationStateError) {
+          return Text(state.message);
         }
-        if (state is LocationStateDone) {
+        if (state is GetLocationStateDone) {
           return GestureDetector(
             onTap: () => context.push(AppRoutes.searchLocation),
             child: Row(
@@ -77,7 +77,7 @@ class HomeAppBar extends StatelessWidget {
                 SizedBox(width: 4),
                 Flexible(
                   child: Text(
-                    state.location.address,
+                    state.locationAddress.addressTitle,
                     style: Theme.of(context).textTheme.titleMedium,
                   ),
                 ),

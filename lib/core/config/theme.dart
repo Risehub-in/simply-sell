@@ -15,6 +15,15 @@ class AppTheme {
       tertiary: AppColors.tertiary,
     ),
 
+    // Text Theme
+
+    textTheme: const TextTheme(
+      titleLarge: TextStyle(
+        fontWeight: FontWeight.bold,
+        fontSize: 19,
+      ),
+    ),
+
     // input decoration
     inputDecorationTheme: const InputDecorationTheme(
       contentPadding: EdgeInsets.symmetric(horizontal: 8, vertical: 8),
@@ -46,6 +55,7 @@ class AppTheme {
         ),
         textStyle: const TextStyle(
           fontWeight: FontWeight.bold,
+          fontSize: 20,
         ),
       ),
     ),

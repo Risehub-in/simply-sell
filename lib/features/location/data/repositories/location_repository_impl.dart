@@ -2,7 +2,7 @@ import '../../domain/repository/location_repository.dart';
 import '../data_source/local_data_source/location_local_data_source.dart';
 import '../data_source/remote_data_source/location_remote_data_source.dart';
 import '../models/coordinates_model.dart';
-import '../models/location_model.dart';
+import '../models/location_address.dart';
 import '../models/prediction_model.dart';
 
 class LocationRepositoryImpl implements LocationRepository {
@@ -24,9 +24,9 @@ class LocationRepositoryImpl implements LocationRepository {
   }
 
   @override
-  Future<LocationModel> getAddressByCoordinates(
+  Future<LocationAddressModel> getAddressByCoordinates(
       double latitude, double longitude) {
-    return locationRemoteDataSource.getAddressBtCoordinates(
+    return locationRemoteDataSource.getAddressByCoordinates(
         latitude, longitude);
   }
 

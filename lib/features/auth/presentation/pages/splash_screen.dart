@@ -6,7 +6,7 @@ import 'package:simply_sell/features/auth/presentation/cubit/app_auth_cubit.dart
 import 'package:simply_sell/features/location/presentation/cubits/coordinates_cubit.dart';
 import 'package:simply_sell/features/location/presentation/cubits/coverage_cubit.dart';
 
-import '../../../location/presentation/cubits/location_cubit.dart';
+import '../../../location/presentation/cubits/get_location_cubit.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -40,7 +40,7 @@ class _SplashScreenState extends State<SplashScreen> {
       listener: (context, state) {
         if (state is CoordinatesStateDone) {
           print(state.coordinates);
-          context.read<LocationCubit>().getAddressByCoordinates(
+          context.read<GetLocationCubit>().getAddressByCoordinates(
               state.coordinates.latitude, state.coordinates.longitude);
           context.read<CoverageCubit>().isInDeliveryRadius(
               state.coordinates.latitude, state.coordinates.longitude);

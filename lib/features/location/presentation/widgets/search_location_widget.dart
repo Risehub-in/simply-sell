@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:simply_sell/core/constants/app_colors.dart';
 import 'package:uuid/uuid.dart';
 
 import '../cubits/prediction_cubit.dart';
@@ -46,7 +47,19 @@ class _SearchLocationState extends State<SearchLocation> {
           await getSearchPrediction(value);
         }
       },
-      decoration: InputDecoration(hintText: 'Try Agarwal Market, Lokhandwala'),
+      decoration: InputDecoration(
+        hintText: 'Try Agarwal Market, Lokhandwala',
+        suffixIcon: IconButton(
+          color: AppColors.textColor,
+          iconSize: 20,
+          onPressed: () {
+            _locationSearchController.clear();
+          },
+          icon: Icon(
+            Icons.close,
+          ),
+        ),
+      ),
     );
   }
 }

@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+import 'package:simply_sell/features/location/domain/entities/coordinates_entity.dart';
+import 'package:simply_sell/features/location/domain/entities/location_address.dart';
 import 'package:simply_sell/features/location/presentation/cubits/coordinates_cubit.dart';
+import 'package:simply_sell/features/location/presentation/cubits/set_location_cubit.dart';
 
 import '../../../../core/constants/app_routes.dart';
+import '../cubits/coverage_cubit.dart';
 import '../cubits/prediction_cubit.dart';
 
 class PredictionWidget extends StatelessWidget {
@@ -28,27 +32,33 @@ class PredictionWidget extends StatelessWidget {
             itemCount: predictions.length,
             itemBuilder: (context, index) {
               final prediction = predictions[index];
-              String title = prediction.description.split(',')[0];
-              String subtitle = prediction.description
-                  .replaceFirst(title, '')
-                  .replaceFirst(',', '')
-                  .trim();
+
               return GestureDetector(
                 onTap: () async {
                   await coordinatesCubit
                       .getCoordinatesByPlaceID(prediction.placeId);
-                  final coordinates = coordinatesCubit.state.props.first;
-
-                  await context.push(AppRoutes.setLocation, extra: coordinates);
+                  final coordinates =
+                      coordinatesCubit.state.props.first as CoordinatesEntity;
+                  context.read<CoverageCubit>().isInDeliveryRadius(
+                      coordinates.latitude, coordinates.longitude);
+                  context.read<SetLocationCubit>().setAddressFromPrediction(
+                        LocationAddressEntity(
+                            addressTitle: prediction.mainText,
+                            addressSubtitle: prediction.secondaryText),
+                      );
+                  await context.push(
+                    AppRoutes.setLocation,
+                    extra: coordinates,
+                  );
                 },
                 child: ListTile(
                   contentPadding: EdgeInsets.symmetric(horizontal: 0),
                   title: Text(
-                    title,
+                    prediction.mainText,
                     style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold),
                   ),
                   subtitle: Text(
-                    subtitle,
+                    prediction.secondaryText,
                     style: TextStyle(fontSize: 12),
                   ),
                 ),
