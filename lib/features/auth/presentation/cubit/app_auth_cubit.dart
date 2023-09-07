@@ -2,6 +2,7 @@ import 'dart:async';
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
+import 'package:uuid/uuid.dart';
 part 'app_auth_state.dart';
 
 class AppAuthCubit extends Cubit<AppAuthState> {
@@ -27,9 +28,24 @@ class AppAuthCubit extends Cubit<AppAuthState> {
 
   Future signInWithPhone(String phone) async {
     try {
-      await supabase.client.auth.signInWithOtp(phone: phone);
+        var uniqNo = Uuid().v4();
+        await supabase.client.auth.signUp(phone: phone, password: uniqNo.toString()); // password to be replaced by uuid.v4
+        //await supabase.client.auth.signInWithOtp(phone: phone);
     } catch (e) {
-      emit(AppAuthError(e.toString()));
+      print('Error on SignUp===>$e');
+      try{
+        if (e is AuthException) {
+          final authException = e as AuthException;
+          if (authException.statusCode == 400 || authException.message.contains('User already registered')) {
+            await supabase.client.auth.signInWithOtp(phone: phone);
+          }
+        }else{
+          emit(AppAuthError(e.toString()));
+        }
+      }catch(ex){
+        print('Error on SignIn===>$ex');
+        emit(AppAuthError(ex.toString()));
+      }
     }
   }
 
@@ -52,4 +68,13 @@ class AppAuthCubit extends Cubit<AppAuthState> {
       print(e.toString());
     }
   }
+
+/*  Future<bool> isUserExist(String phone) async {
+    final response = await supabase.client
+        .from('auth.users')
+        .select('id')
+        .eq('phone', phone);
+    print('response.data======>${response.data}');
+    return response.data != null && response.data.length > 0;
+  }*/
 }
