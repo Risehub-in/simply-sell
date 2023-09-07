@@ -15,6 +15,15 @@ class AppTheme {
       tertiary: AppColors.tertiary,
     ),
 
+    // Text Theme
+
+    textTheme: const TextTheme(
+      titleLarge: TextStyle(
+        fontWeight: FontWeight.bold,
+        fontSize: 19,
+      ),
+    ),
+
     // input decoration
     inputDecorationTheme: const InputDecorationTheme(
       contentPadding: EdgeInsets.symmetric(horizontal: 8, vertical: 8),
@@ -32,6 +41,22 @@ class AppTheme {
       focusedBorder: OutlineInputBorder(
         borderSide: BorderSide(width: 0.1),
         borderRadius: BorderRadius.all(Radius.circular(4)),
+      ),
+    ),
+
+    elevatedButtonTheme: ElevatedButtonThemeData(
+      style: ElevatedButton.styleFrom(
+        backgroundColor: AppColors.primary,
+        foregroundColor: Colors.white,
+        // padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 16),
+        elevation: 0,
+        shape: RoundedRectangleBorder(
+          borderRadius: AppDefaults.borderRadius,
+        ),
+        textStyle: const TextStyle(
+          fontWeight: FontWeight.bold,
+          fontSize: 20,
+        ),
       ),
     ),
   );

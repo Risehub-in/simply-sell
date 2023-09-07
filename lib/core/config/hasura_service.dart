@@ -56,9 +56,8 @@ class LoggingLink extends Link {
     final operationName = request.operation.operationName.toString();
     final variables = request.variables.toString();
 
-    final requestString =
-        '''
-      GraphQL Request:
+    final requestString = '''
+      GraphQL Request: $query
       Operation Name: $operationName
       Query: $query
       Variables: $variables

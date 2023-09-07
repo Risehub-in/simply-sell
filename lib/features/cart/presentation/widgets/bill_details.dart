@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-
-import '../../../../core/constants/app_colors.dart';
 import '../../../../core/constants/app_defaults.dart';
 import 'cart_page_common_card.dart';
 
@@ -61,11 +59,19 @@ class BillDetals extends StatelessWidget {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text('Sub Total'),
+                  Text(
+                    'To Pay',
+                    style: Theme.of(context)
+                        .textTheme
+                        .titleSmall
+                        ?.copyWith(fontWeight: FontWeight.bold),
+                  ),
                   Text(
                     AppDefaults.currency + '2500',
-                    style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                        fontWeight: FontWeight.bold, color: AppColors.primary),
+                    style: Theme.of(context)
+                        .textTheme
+                        .titleMedium
+                        ?.copyWith(fontWeight: FontWeight.bold),
                   ),
                 ],
               )

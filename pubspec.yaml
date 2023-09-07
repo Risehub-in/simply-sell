@@ -49,6 +49,8 @@ dependencies:
   hasura_connect: ^4.0.0+4
   graphql_flutter: ^5.1.2
   convex_bottom_bar: ^3.2.0
+  geolocator: ^10.0.0
+  google_maps_flutter: ^2.5.0
   uuid: ^3.0.7
 
 dev_dependencies:
@@ -65,7 +67,7 @@ dev_dependencies:
   json_serializable: ^6.7.1
   build_runner: ^2.4.6
   very_good_analysis: ^5.0.0+1
-  logger: ^2.0.1
+  logger: ^2.0.2
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
