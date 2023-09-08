@@ -28,21 +28,24 @@ class AppAuthCubit extends Cubit<AppAuthState> {
 
   Future signInWithPhone(String phone) async {
     try {
-        var uniqNo = Uuid().v4();
-        await supabase.client.auth.signUp(phone: phone, password: uniqNo.toString()); // password to be replaced by uuid.v4
-        //await supabase.client.auth.signInWithOtp(phone: phone);
+      var uniqNo = Uuid().v4();
+      await supabase.client.auth.signUp(
+          phone: phone,
+          password: uniqNo.toString()); // password to be replaced by uuid.v4
+      //await supabase.client.auth.signInWithOtp(phone: phone);
     } catch (e) {
       print('Error on SignUp===>$e');
-      try{
+      try {
         if (e is AuthException) {
-          final authException = e as AuthException;
-          if (authException.statusCode == 400 || authException.message.contains('User already registered')) {
+          final authException = e;
+          if (authException.statusCode == 400 ||
+              authException.message.contains('User already registered')) {
             await supabase.client.auth.signInWithOtp(phone: phone);
           }
-        }else{
+        } else {
           emit(AppAuthError(e.toString()));
         }
-      }catch(ex){
+      } catch (ex) {
         print('Error on SignIn===>$ex');
         emit(AppAuthError(ex.toString()));
       }

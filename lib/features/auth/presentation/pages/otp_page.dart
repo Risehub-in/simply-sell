@@ -41,7 +41,7 @@ class _OtpPageState extends State<OtpPage> {
   }
 
   Future signInWithPhone() async {
-    var response = await context
+    context
         .read<AppAuthCubit>()
         .signInWithPhone('${AppDefaults.countryCode}${widget.phone}');
   }
