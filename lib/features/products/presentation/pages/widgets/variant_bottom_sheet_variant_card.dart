@@ -5,7 +5,7 @@ import 'package:simply_sell/core/widgets/increment_decrement_cart_quantity.dart'
 import '../../../../../core/constants/app_defaults.dart';
 import '../../../../../core/widgets/add_to_cart_button.dart';
 import '../../../../cart/domain/entity/cart_entity.dart';
-import '../../../../cart/presentation/cubit/cart_cubit/cart_cubit.dart';
+import '../../../../cart/presentation/cubit/cart_cubit.dart';
 import '../../../domain/entities/product_entity.dart';
 import '../../../domain/entities/variant_entity.dart';
 

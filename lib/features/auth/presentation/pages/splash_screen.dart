@@ -39,10 +39,10 @@ class _SplashScreenState extends State<SplashScreen> {
     return BlocListener<CoordinatesCubit, CoordinatesState>(
       listener: (context, state) {
         if (state is CoordinatesStateDone) {
-          print(state.coordinates);
-          context.read<GetLocationCubit>().getAddressByCoordinates(
-              state.coordinates.latitude, state.coordinates.longitude);
           context.read<CoverageCubit>().isInDeliveryRadius(
+              state.coordinates.latitude, state.coordinates.longitude);
+
+          context.read<GetLocationCubit>().getAddressByCoordinates(
               state.coordinates.latitude, state.coordinates.longitude);
         }
       },

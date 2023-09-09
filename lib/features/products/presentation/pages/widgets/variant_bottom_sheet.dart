@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:simply_sell/features/cart/presentation/cubit/cart_cubit/cart_cubit.dart';
+import 'package:simply_sell/features/cart/presentation/cubit/cart_cubit.dart';
 import 'package:simply_sell/features/products/domain/entities/product_entity.dart';
 import 'package:simply_sell/features/products/domain/entities/variant_entity.dart';
 import 'package:simply_sell/features/products/presentation/pages/widgets/variant_bottom_sheet_subtotal.dart';

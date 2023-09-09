@@ -22,6 +22,12 @@ class AppTheme {
         fontWeight: FontWeight.bold,
         fontSize: 19,
       ),
+      titleMedium: TextStyle(
+        fontWeight: FontWeight.bold,
+      ),
+      titleSmall: TextStyle(
+        fontWeight: FontWeight.bold,
+      ),
     ),
 
     // input decoration
@@ -54,8 +60,7 @@ class AppTheme {
           borderRadius: AppDefaults.borderRadius,
         ),
         textStyle: const TextStyle(
-          fontWeight: FontWeight.bold,
-          fontSize: 20,
+          fontSize: 18,
         ),
       ),
     ),

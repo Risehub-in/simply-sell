@@ -10,4 +10,5 @@ class AppRoutes {
   static const String searchLocation = '/search-location';
   static const String setLocation = '/set-location';
   static const String outOfCoverage = '/out-of-coverage';
+  static const String addAddress = '/add-address';
 }
