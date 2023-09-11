@@ -6,12 +6,12 @@ import 'package:simply_sell/features/location/domain/entities/location_address.d
 import 'package:simply_sell/features/location/presentation/cubits/coordinates_cubit.dart';
 import 'package:simply_sell/features/location/presentation/cubits/set_location_cubit.dart';
 
-import '../../../../core/constants/app_routes.dart';
-import '../cubits/coverage_cubit.dart';
-import '../cubits/prediction_cubit.dart';
+import '../../../../../core/constants/app_routes.dart';
+import '../../cubits/coverage_cubit.dart';
+import '../../cubits/prediction_cubit.dart';
 
-class PredictionWidget extends StatelessWidget {
-  const PredictionWidget({super.key});
+class NewAddressPredictionWidget extends StatelessWidget {
+  const NewAddressPredictionWidget({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -52,7 +52,7 @@ class PredictionWidget extends StatelessWidget {
                           coordinates,
                         );
                     await context.push(
-                      AppRoutes.setLocation,
+                      AppRoutes.newAddress,
                       extra: coordinates,
                     );
                   },

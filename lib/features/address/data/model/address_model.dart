@@ -3,7 +3,8 @@ import 'package:simply_sell/features/address/domain/entity/address_entity.dart';
 class AddressModel extends AddressEntity {
   AddressModel({
     super.id,
-    required super.userUid,
+    super.userUid,
+    super.locationAddress,
     required super.areaLocality,
     required super.flatFloorBldg,
     required super.latitude,
@@ -16,6 +17,7 @@ class AddressModel extends AddressEntity {
     return AddressModel(
       id: json['id'],
       userUid: json['user_id'],
+      locationAddress: json['location_address'],
       areaLocality: json['area_locality'],
       flatFloorBldg: json['flat_floor_bldg'],
       latitude: json['latitude'],

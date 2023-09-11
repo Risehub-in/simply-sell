@@ -1,13 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:simply_sell/core/constants/app_routes.dart';
 import 'package:simply_sell/features/location/domain/entities/coordinates_entity.dart';
 import 'package:simply_sell/features/location/presentation/cubits/set_location_cubit.dart';
-import '../cubits/coverage_cubit.dart';
-import '../widgets/set_location_bottom_sheet.dart';
 
-class SetLocationPage extends StatefulWidget {
-  const SetLocationPage({
+import '../../cubits/coverage_cubit.dart';
+import '../../widgets/new_address/new_address_bottom_sheet.dart';
+
+class SetNewAddressPage extends StatefulWidget {
+  const SetNewAddressPage({
     super.key,
     required this.coordinates,
   });
@@ -15,10 +18,10 @@ class SetLocationPage extends StatefulWidget {
   final CoordinatesEntity coordinates;
 
   @override
-  State<SetLocationPage> createState() => _SetLocationPageState();
+  State<SetNewAddressPage> createState() => _SetNewAddressPageState();
 }
 
-class _SetLocationPageState extends State<SetLocationPage> {
+class _SetNewAddressPageState extends State<SetNewAddressPage> {
   late LatLng currentPosition;
 
   final Set<Marker> _markers = {};
@@ -64,7 +67,17 @@ class _SetLocationPageState extends State<SetLocationPage> {
       extendBodyBehindAppBar: true,
       appBar: AppBar(
         elevation: 0,
-        title: Text('Choose delivery location'),
+        title: GestureDetector(
+          onTap: () => context.pushReplacement(AppRoutes.newAddressSearch),
+          child: AbsorbPointer(
+            child: SizedBox(
+              height: 40,
+              child: TextFormField(
+                decoration: InputDecoration(hintText: 'Search for locaiton'),
+              ),
+            ),
+          ),
+        ),
       ),
       body: Stack(
         children: [
@@ -82,7 +95,7 @@ class _SetLocationPageState extends State<SetLocationPage> {
             onCameraIdle: _onCameraIdle,
             markers: _markers,
           ),
-          SetLocationBottomSheet(
+          NewAddressBottomSheet(
             coordinates: CoordinatesEntity(
               latitude: currentPosition.latitude,
               longitude: currentPosition.longitude,

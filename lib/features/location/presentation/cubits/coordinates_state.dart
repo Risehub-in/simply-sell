@@ -4,11 +4,6 @@ abstract class CoordinatesState extends Equatable {
   const CoordinatesState();
 }
 
-class NewAddressInitial extends CoordinatesState {
-  @override
-  List<Object> get props => [];
-}
-
 class CoordinatesStateLoading extends CoordinatesState {
   CoordinatesStateLoading();
 
@@ -17,12 +12,12 @@ class CoordinatesStateLoading extends CoordinatesState {
 }
 
 class CoordinatesStateError extends CoordinatesState {
-  final String? message;
+  final String message;
 
-  CoordinatesStateError({this.message});
+  CoordinatesStateError({required this.message});
 
   @override
-  List<Object> get props => [message!];
+  List<Object> get props => [message];
 }
 
 class CoordinatesStateDone extends CoordinatesState {

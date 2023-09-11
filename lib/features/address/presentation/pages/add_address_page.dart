@@ -1,5 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:simply_sell/core/constants/app_colors.dart';
+import 'package:form_field_validator/form_field_validator.dart';
+import 'package:simply_sell/features/address/domain/entity/address_entity.dart';
+import 'package:simply_sell/features/address/presentation/cubit/address_cubit.dart';
+import 'package:simply_sell/features/location/presentation/cubits/get_location_cubit.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
 import '../widgets/address_page_google_map.dart';
 import '../widgets/address_page_location_info.dart';
@@ -52,6 +58,18 @@ class _AddressPageFormState extends State<AddressPageForm> {
   TextEditingController _landmarkController = TextEditingController();
   TextEditingController _otherAddressTypeController = TextEditingController();
 
+  final requiredValidator =
+      RequiredValidator(errorText: 'this field is required');
+
+  @override
+  void dispose() {
+    super.dispose();
+    _flatFloorBldgController.dispose();
+    _areaLocalityController.dispose();
+    _landmarkController.dispose();
+    _otherAddressTypeController.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -62,11 +80,13 @@ class _AddressPageFormState extends State<AddressPageForm> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             AddAddressPageTextFormField(
+              validator: requiredValidator,
               controller: _flatFloorBldgController,
               labelText: 'Flat / Floor / Building Name*',
             ),
             SizedBox(height: 18),
             AddAddressPageTextFormField(
+              validator: requiredValidator,
               controller: _areaLocalityController,
               labelText: 'Area / Locality*',
             ),
@@ -95,7 +115,7 @@ class _AddressPageFormState extends State<AddressPageForm> {
               height: 46,
               width: double.infinity,
               child: ElevatedButton(
-                onPressed: () {},
+                onPressed: _addAddress,
                 child: Text(
                   'Save Address',
                 ),
@@ -105,6 +125,32 @@ class _AddressPageFormState extends State<AddressPageForm> {
         ),
       ),
     );
+  }
+
+  Future<void> _addAddress() async {
+    final addressCubit = context.read<AddressCubit>();
+    final getLocationCubitState = context.read<GetLocationCubit>().state;
+    if (_formKey.currentState!.validate()) {
+      if (addressType == null) {
+        Fluttertoast.showToast(msg: 'Select address type');
+      } else {
+        if (getLocationCubitState is GetLocationStateDone) {
+          print(getLocationCubitState.locationAddress.addressSubtitle);
+          addressCubit.addAddress(
+            AddressEntity(
+              locationAddress:
+                  getLocationCubitState.locationAddress.addressSubtitle,
+              areaLocality: _areaLocalityController.text,
+              flatFloorBldg: _flatFloorBldgController.text,
+              latitude: getLocationCubitState.coordinates.latitude,
+              longitude: getLocationCubitState.coordinates.longitude,
+              landmark: _landmarkController.text,
+              addressType: addressType!,
+            ),
+          );
+        }
+      }
+    }
   }
 
   Row buildChoiceChips() {

@@ -1,14 +1,18 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:simply_sell/features/address/domain/entity/address_entity.dart';
+import 'package:simply_sell/features/address/domain/usecases/add_address_usecase.dart';
 import 'package:simply_sell/features/address/domain/usecases/stream_address_list_usecase.dart';
 
 part 'address_state.dart';
 
 class AddressCubit extends Cubit<AddressState> {
   final StreamAddressesUsecase streamAddressesUsecase;
-  AddressCubit({required this.streamAddressesUsecase})
-      : super(AddressInitial()) {
+  final AddAddressUsecase addAddressUsecase;
+  AddressCubit({
+    required this.streamAddressesUsecase,
+    required this.addAddressUsecase,
+  }) : super(AddressInitial()) {
     streamAddresses();
   }
 
@@ -17,5 +21,13 @@ class AddressCubit extends Cubit<AddressState> {
       emit(AddressStateLoading());
       emit(AddressStateDone(addresses: addresses));
     });
+  }
+
+  addAddress(AddressEntity addressEntity) async {
+    try {
+      await addAddressUsecase.call(addressEntity);
+    } catch (e) {
+      print(e.toString());
+    }
   }
 }

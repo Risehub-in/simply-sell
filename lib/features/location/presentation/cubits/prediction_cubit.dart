@@ -21,4 +21,9 @@ class PredictionCubit extends Cubit<PredictionState> {
       emit(PredictionStateError(message: e.toString()));
     }
   }
+
+  clearPredictions() {
+    List<PredictionEntity> predictions = [];
+    emit(PredictionStateDone(predictions: predictions));
+  }
 }

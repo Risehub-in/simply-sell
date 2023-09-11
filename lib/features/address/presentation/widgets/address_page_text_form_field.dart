@@ -6,6 +6,7 @@ class AddAddressPageTextFormField extends StatelessWidget {
     required this.controller,
     this.textInputAction = TextInputAction.next,
     this.onChanged,
+    this.validator,
     super.key,
   });
 
@@ -13,10 +14,13 @@ class AddAddressPageTextFormField extends StatelessWidget {
   final TextInputAction? textInputAction;
   final TextEditingController controller;
   final Function(String)? onChanged;
+  final String? Function(String?)? validator;
 
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      textCapitalization: TextCapitalization.words,
+      validator: validator,
       onChanged: onChanged,
       controller: controller,
       textInputAction: textInputAction,

@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
+import 'package:simply_sell/core/constants/app_routes.dart';
+import 'package:simply_sell/features/location/presentation/cubits/set_location_cubit.dart';
 
 import '../../../../core/constants/app_colors.dart';
-import '../../../location/presentation/cubits/get_location_cubit.dart';
 
 class AddressPageLocationInfoWidget extends StatelessWidget {
   const AddressPageLocationInfoWidget({
@@ -19,24 +21,29 @@ class AddressPageLocationInfoWidget extends StatelessWidget {
           Row(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              BlocBuilder<GetLocationCubit, GetLocationState>(
+              BlocBuilder<SetLocationCubit, SetLocationState>(
                 builder: (context, state) {
-                  if (state is GetLocationStateDone) {
-                    return Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          state.locationAddress.addressTitle,
-                          style: Theme.of(context).textTheme.titleMedium,
-                        ),
-                        Text(state.locationAddress.addressSubtitle)
-                      ],
+                  if (state is SetLocationStateDone) {
+                    return Flexible(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            state.locationAddress.addressTitle,
+                            style: Theme.of(context).textTheme.titleMedium,
+                          ),
+                          Text(
+                            state.locationAddress.addressSubtitle,
+                            maxLines: 2,
+                            overflow: TextOverflow.ellipsis,
+                          )
+                        ],
+                      ),
                     );
                   }
                   return SizedBox();
                 },
               ),
-              Spacer(),
               SizedBox(
                 height: 28,
                 width: 70,
@@ -47,7 +54,9 @@ class AddressPageLocationInfoWidget extends StatelessWidget {
                         borderRadius: BorderRadius.circular(0),
                       ),
                       side: BorderSide(color: AppColors.borderColor)),
-                  onPressed: () {},
+                  onPressed: () {
+                    context.pushReplacement(AppRoutes.newAddressSearch);
+                  },
                   child: Text(
                     'Change',
                     style: Theme.of(context).textTheme.labelMedium?.copyWith(

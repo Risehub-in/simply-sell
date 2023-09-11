@@ -4,15 +4,14 @@ import 'package:go_router/go_router.dart';
 import 'package:simply_sell/core/constants/app_routes.dart';
 import 'package:simply_sell/features/location/domain/entities/coordinates_entity.dart';
 
-import '../../../../core/constants/app_colors.dart';
-import '../cubits/coverage_cubit.dart';
-import '../cubits/get_location_cubit.dart';
-import '../cubits/set_location_cubit.dart';
+import '../../../../../core/constants/app_colors.dart';
+import '../../cubits/coverage_cubit.dart';
+import '../../cubits/set_location_cubit.dart';
 
-class SetLocationBottomSheet extends StatelessWidget {
+class NewAddressBottomSheet extends StatelessWidget {
   final CoordinatesEntity coordinates;
 
-  const SetLocationBottomSheet({
+  const NewAddressBottomSheet({
     super.key,
     required this.coordinates,
   });
@@ -89,29 +88,18 @@ class SetLocationBottomSheet extends StatelessWidget {
                       child: ElevatedButton(
                         child: Text(
                           state.isUserInDeliveryRadius
-                              ? 'Confirm location'
+                              ? 'Confirm & Continue'
                               : 'Out of coverage Area',
                         ),
                         onPressed: state.isUserInDeliveryRadius
                             ? () {
-                                final setLocationState =
-                                    context.read<SetLocationCubit>().state;
-                                if (setLocationState is SetLocationStateDone) {
-                                  context
-                                      .read<GetLocationCubit>()
-                                      .getLocationFromSetLocation(
-                                        setLocationState.locationAddress,
-                                        coordinates,
-                                        true,
-                                      );
-                                  context.go(AppRoutes.home);
-                                }
+                                context.pushReplacement(AppRoutes.addAddress);
                               }
                             : null,
                       ),
                     );
                   }
-                  return Text('Evershine Global City');
+                  return SizedBox();
                 },
               ),
             ],

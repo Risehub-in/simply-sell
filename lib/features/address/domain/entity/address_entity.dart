@@ -2,7 +2,8 @@ import 'package:equatable/equatable.dart';
 
 class AddressEntity extends Equatable {
   final int? id;
-  final String userUid;
+  final String? userUid;
+  final String? locationAddress;
   final String areaLocality;
   final String flatFloorBldg;
   final double latitude;
@@ -12,7 +13,8 @@ class AddressEntity extends Equatable {
 
   AddressEntity({
     this.id,
-    required this.userUid,
+    this.userUid,
+    this.locationAddress,
     required this.areaLocality,
     required this.flatFloorBldg,
     required this.latitude,

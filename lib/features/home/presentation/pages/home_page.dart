@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:simply_sell/core/constants/app_routes.dart';
 import 'package:simply_sell/features/location/presentation/cubits/coverage_cubit.dart';
+import 'package:simply_sell/features/location/presentation/cubits/get_location_cubit.dart';
 import '../widgets/home_app_bar.dart';
 
 class HomePage extends StatefulWidget {
@@ -32,14 +33,14 @@ class _HomePageState extends State<HomePage> {
           )
         ],
       ),
-      body: BlocBuilder<CoverageCubit, CoverageState>(
+      body: BlocBuilder<GetLocationCubit, GetLocationState>(
         builder: (context, state) {
           if (state is CoverageStateLoading) {
             return Center(
               child: CircularProgressIndicator(),
             );
           }
-          if (state is CoverageStateDone) {
+          if (state is GetLocationStateDone) {
             return Center(
               child: Text(
                 state.isUserInDeliveryRadius

@@ -24,16 +24,30 @@ class HomeAppBar extends StatelessWidget {
           return GestureDetector(
             onTap: () => context.push(AppRoutes.searchLocation),
             child: Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Icon(Icons.location_on_outlined),
                 SizedBox(width: 4),
                 Flexible(
-                  child: Text(
-                    state.locationAddress.addressTitle,
-                    style: Theme.of(context).textTheme.titleMedium,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Row(
+                        children: [
+                          Text(
+                            state.locationAddress.addressTitle,
+                            style: Theme.of(context).textTheme.titleMedium,
+                          ),
+                          Icon(Icons.keyboard_arrow_down)
+                        ],
+                      ),
+                      Text(
+                        state.locationAddress.addressSubtitle,
+                        style: Theme.of(context).textTheme.bodySmall,
+                      ),
+                    ],
                   ),
                 ),
-                Icon(Icons.keyboard_arrow_down)
               ],
             ),
           );
