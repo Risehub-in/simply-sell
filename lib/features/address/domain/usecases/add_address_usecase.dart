@@ -6,6 +6,6 @@ class AddAddressUsecase {
 
   AddAddressUsecase({required this.addressRepository});
 
-  Future<void> call(AddressEntity addressEntity) =>
+  Future<int> call(AddressEntity addressEntity) =>
       addressRepository.addAddress(addressEntity);
 }

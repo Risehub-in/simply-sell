@@ -65,17 +65,19 @@ class GetLocationCubit extends Cubit<GetLocationState> {
     ));
   }
 
-  void getLocationFromSearchLocationPage(
+  void getLocationFromAddressList(
     LocationAddressEntity locationAddress,
     CoordinatesEntity coordinates,
     bool isUserInDeliveryRadius,
     int addressId,
+    String addressType,
   ) {
     emit(GetLocationStateDone(
       locationAddress: locationAddress,
       coordinates: coordinates,
       isUserInDeliveryRadius: isUserInDeliveryRadius,
       addressId: addressId,
+      addressType: addressType,
     ));
   }
 }

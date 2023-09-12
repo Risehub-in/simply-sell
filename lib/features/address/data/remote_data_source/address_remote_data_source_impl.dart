@@ -11,7 +11,7 @@ class AddressRemoteDataSourceImpl extends AddressRemoteDataSource {
   AddressRemoteDataSourceImpl(
       {required this.hasuraService, required this.supabase});
   @override
-  Future<void> addAddress(AddressModel addressEntity) async {
+  Future<int> addAddress(AddressModel addressEntity) async {
     try {
       final result = await hasuraService.client.mutate(
         MutationOptions(
@@ -27,11 +27,9 @@ class AddressRemoteDataSourceImpl extends AddressRemoteDataSource {
               'user_id': supabase.client.auth.currentSession?.user.id,
             }),
       );
-      if (!result.hasException) {
-        print(result.data);
-      } else {
-        print(result.exception.toString());
-      }
+
+      final addressId = (result.data?['insert_address_one']['id']) as int;
+      return addressId;
     } catch (e) {
       print(e.toString());
       rethrow;

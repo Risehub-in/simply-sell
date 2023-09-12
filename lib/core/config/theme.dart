@@ -49,7 +49,6 @@ class AppTheme {
         borderRadius: BorderRadius.all(Radius.circular(4)),
       ),
     ),
-
     elevatedButtonTheme: ElevatedButtonThemeData(
       style: ElevatedButton.styleFrom(
         backgroundColor: AppColors.primary,
@@ -62,6 +61,28 @@ class AppTheme {
         textStyle: const TextStyle(
           fontSize: 18,
         ),
+      ),
+    ),
+    outlinedButtonTheme: OutlinedButtonThemeData(
+      style: OutlinedButton.styleFrom(
+        shape: RoundedRectangleBorder(
+          borderRadius: AppDefaults.borderRadius,
+        ),
+        textStyle: const TextStyle(
+          fontSize: 18,
+        ),
+      ),
+    ),
+
+    textButtonTheme: TextButtonThemeData(
+      style: TextButton.styleFrom(
+        textStyle: TextStyle(
+          fontWeight: FontWeight.bold,
+          color: AppColors.primary,
+        ),
+        padding: EdgeInsets.zero,
+        minimumSize: Size(50, 30),
+        tapTargetSize: MaterialTapTargetSize.shrinkWrap,
       ),
     ),
   );

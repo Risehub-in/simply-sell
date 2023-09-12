@@ -4,7 +4,7 @@ class AddressModel extends AddressEntity {
   AddressModel({
     super.id,
     super.userUid,
-    super.locationAddress,
+    required super.locationAddress,
     required super.areaLocality,
     required super.flatFloorBldg,
     required super.latitude,

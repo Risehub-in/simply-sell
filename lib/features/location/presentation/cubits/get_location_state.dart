@@ -30,12 +30,14 @@ class GetLocationStateDone extends GetLocationState {
   final CoordinatesEntity coordinates;
   final bool isUserInDeliveryRadius;
   final int? addressId;
+  final String? addressType;
 
   GetLocationStateDone({
     required this.locationAddress,
     required this.coordinates,
     required this.isUserInDeliveryRadius,
     this.addressId,
+    this.addressType,
   });
 
   @override

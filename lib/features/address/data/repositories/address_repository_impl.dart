@@ -8,8 +8,8 @@ class AddressRepositoryImpl extends AddressRepository {
 
   AddressRepositoryImpl({required this.addressRemoteDataSource});
   @override
-  Future<void> addAddress(AddressEntity addressEntity) async {
-    await addressRemoteDataSource.addAddress(AddressModel(
+  Future<int> addAddress(AddressEntity addressEntity) async {
+    return addressRemoteDataSource.addAddress(AddressModel(
       userUid: addressEntity.userUid,
       areaLocality: addressEntity.areaLocality,
       flatFloorBldg: addressEntity.flatFloorBldg,

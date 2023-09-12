@@ -1,24 +1,26 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 import 'package:simply_sell/core/constants/app_colors.dart';
 import 'package:form_field_validator/form_field_validator.dart';
 import 'package:simply_sell/features/address/domain/entity/address_entity.dart';
 import 'package:simply_sell/features/address/presentation/cubit/address_cubit.dart';
 import 'package:simply_sell/features/location/presentation/cubits/get_location_cubit.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:simply_sell/features/location/presentation/cubits/set_location_cubit.dart';
 
 import '../widgets/address_page_google_map.dart';
 import '../widgets/address_page_location_info.dart';
 import '../widgets/address_page_text_form_field.dart';
 
-class AddAddressPage extends StatefulWidget {
-  const AddAddressPage({super.key});
+class SaveAddressPage extends StatefulWidget {
+  const SaveAddressPage({super.key});
 
   @override
-  State<AddAddressPage> createState() => _AddAddressPageState();
+  State<SaveAddressPage> createState() => _SaveAddressPageState();
 }
 
-class _AddAddressPageState extends State<AddAddressPage> {
+class _SaveAddressPageState extends State<SaveAddressPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -30,7 +32,7 @@ class _AddAddressPageState extends State<AddAddressPage> {
               SizedBox(height: 18),
               AddressPageLocationInfoWidget(),
               SizedBox(height: 18),
-              AddressPageForm()
+              SaveAddressPageForm()
             ],
           ),
         ),
@@ -39,14 +41,14 @@ class _AddAddressPageState extends State<AddAddressPage> {
   }
 }
 
-class AddressPageForm extends StatefulWidget {
-  const AddressPageForm({super.key});
+class SaveAddressPageForm extends StatefulWidget {
+  const SaveAddressPageForm({super.key});
 
   @override
-  State<AddressPageForm> createState() => _AddressPageFormState();
+  State<SaveAddressPageForm> createState() => _SaveAddressPageFormState();
 }
 
-class _AddressPageFormState extends State<AddressPageForm> {
+class _SaveAddressPageFormState extends State<SaveAddressPageForm> {
   int? selectedIndex;
   List<String> addressTypeChips = ['Home', 'Work', 'Other'];
   String? addressType;
@@ -110,12 +112,12 @@ class _AddressPageFormState extends State<AddressPageForm> {
                 textInputAction: TextInputAction.done,
                 labelText: 'Enter your own label',
               ),
-            SizedBox(height: 18),
+            SizedBox(height: 12),
             SizedBox(
               height: 46,
               width: double.infinity,
               child: ElevatedButton(
-                onPressed: _addAddress,
+                onPressed: _saveAddress,
                 child: Text(
                   'Save Address',
                 ),
@@ -127,29 +129,39 @@ class _AddressPageFormState extends State<AddressPageForm> {
     );
   }
 
-  Future<void> _addAddress() async {
-    final addressCubit = context.read<AddressCubit>();
-    final getLocationCubitState = context.read<GetLocationCubit>().state;
-    if (_formKey.currentState!.validate()) {
-      if (addressType == null) {
-        Fluttertoast.showToast(msg: 'Select address type');
-      } else {
-        if (getLocationCubitState is GetLocationStateDone) {
-          print(getLocationCubitState.locationAddress.addressSubtitle);
-          addressCubit.addAddress(
-            AddressEntity(
-              locationAddress:
-                  getLocationCubitState.locationAddress.addressSubtitle,
-              areaLocality: _areaLocalityController.text,
-              flatFloorBldg: _flatFloorBldgController.text,
-              latitude: getLocationCubitState.coordinates.latitude,
-              longitude: getLocationCubitState.coordinates.longitude,
-              landmark: _landmarkController.text,
-              addressType: addressType!,
-            ),
-          );
+  Future<void> _saveAddress() async {
+    try {
+      final setLocationState = context.read<SetLocationCubit>().state;
+      if (_formKey.currentState!.validate()) {
+        if (addressType == null) {
+          Fluttertoast.showToast(msg: 'Select address type');
+        } else {
+          if (setLocationState is SetLocationStateDone) {
+            print(setLocationState.locationAddress.addressSubtitle);
+            int addressId = await context.read<AddressCubit>().addAddress(
+                  AddressEntity(
+                    locationAddress:
+                        setLocationState.locationAddress.addressSubtitle,
+                    areaLocality: _areaLocalityController.text,
+                    flatFloorBldg: _flatFloorBldgController.text,
+                    latitude: setLocationState.coordinates.latitude,
+                    longitude: setLocationState.coordinates.longitude,
+                    landmark: _landmarkController.text,
+                    addressType: addressType!,
+                  ),
+                );
+            context.read<GetLocationCubit>().getLocationFromAddressList(
+                setLocationState.locationAddress,
+                setLocationState.coordinates,
+                true,
+                addressId,
+                addressType!);
+            context.pop();
+          }
         }
       }
+    } catch (e) {
+      print(e.toString());
     }
   }
 

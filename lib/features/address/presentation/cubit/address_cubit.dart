@@ -23,11 +23,13 @@ class AddressCubit extends Cubit<AddressState> {
     });
   }
 
-  addAddress(AddressEntity addressEntity) async {
+  Future<int> addAddress(AddressEntity addressEntity) async {
     try {
-      await addAddressUsecase.call(addressEntity);
+      final addressId = await addAddressUsecase.call(addressEntity);
+      return addressId;
     } catch (e) {
       print(e.toString());
+      rethrow;
     }
   }
 }

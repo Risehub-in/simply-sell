@@ -51,8 +51,9 @@ class PredictionWidget extends StatelessWidget {
                           ),
                           coordinates,
                         );
-                    await context.push(
-                      AppRoutes.setLocation,
+                    context.read<PredictionCubit>().clearPredictions();
+                    context.pushReplacement(
+                      AppRoutes.newAddress,
                       extra: coordinates,
                     );
                   },

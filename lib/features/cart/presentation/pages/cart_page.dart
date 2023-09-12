@@ -4,7 +4,7 @@ import 'package:simply_sell/core/constants/app_colors.dart';
 import 'package:simply_sell/features/cart/presentation/cubit/cart_cubit.dart';
 import '../../domain/entity/cart_entity.dart';
 import '../widgets/bill_details.dart';
-import '../widgets/cart_bottom_sheet.dart';
+import '../widgets/cart_bottom_sheet/cart_bottom_sheet.dart';
 import '../widgets/cart_items.dart';
 
 class CartPage extends StatelessWidget {

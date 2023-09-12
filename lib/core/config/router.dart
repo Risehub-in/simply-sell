@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:simply_sell/core/constants/app_routes.dart';
-import 'package:simply_sell/features/address/presentation/pages/add_address_page.dart';
+import 'package:simply_sell/features/address/presentation/pages/save_address_page.dart';
 import 'package:simply_sell/features/auth/presentation/pages/login_page.dart';
 import 'package:simply_sell/features/auth/presentation/pages/otp_page.dart';
 import 'package:simply_sell/features/cart/presentation/pages/cart_page.dart';
@@ -84,7 +84,7 @@ class AppRouter {
       GoRoute(
         parentNavigatorKey: _rootNavigatorKey,
         path: AppRoutes.addAddress,
-        builder: (context, state) => AddAddressPage(),
+        builder: (context, state) => SaveAddressPage(),
       ),
       GoRoute(
         parentNavigatorKey: _rootNavigatorKey,
