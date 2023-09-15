@@ -52,14 +52,18 @@ class LoggingLink extends Link {
   Stream<Response> request(Request request, [NextLink? forward]) {
     final stream = _innerLink.request(request, forward);
 
-    final query = request.toString();
-    final operationName = request.operation.operationName.toString();
+    // final query = request.toString();
+    // final operationName = request.operation.operationName.toString();
     final variables = request.variables.toString();
 
+    // final requestString = '''
+    //   GraphQL Request: $query
+    //   Operation Name: $operationName
+    //   Query: $query
+    //   Variables: $variables
+    // ''';
+
     final requestString = '''
-      GraphQL Request: $query
-      Operation Name: $operationName
-      Query: $query
       Variables: $variables
     ''';
 

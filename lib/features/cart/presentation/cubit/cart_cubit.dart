@@ -4,8 +4,8 @@ import 'package:equatable/equatable.dart';
 import 'package:simply_sell/features/cart/domain/usecases/add_to_cart_usercase.dart';
 import 'package:simply_sell/features/cart/domain/usecases/stream_cart_usecase.dart';
 import 'package:simply_sell/features/cart/domain/usecases/update_cart_quantity_usecase.dart';
-import '../../../domain/entity/cart_entity.dart';
-import '../../../domain/usecases/delete_cart_item_usecase.dart';
+import '../../domain/entity/cart_entity.dart';
+import '../../domain/usecases/delete_cart_item_usecase.dart';
 part 'cart_state.dart';
 
 class CartCubit extends Cubit<CartState> {

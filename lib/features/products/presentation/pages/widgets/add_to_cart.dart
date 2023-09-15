@@ -4,7 +4,7 @@ import 'package:simply_sell/features/products/presentation/pages/widgets/variant
 import '../../../../../core/widgets/add_to_cart_button.dart';
 import '../../../../../core/widgets/increment_decrement_cart_quantity.dart';
 import '../../../../cart/domain/entity/cart_entity.dart';
-import '../../../../cart/presentation/cubit/cart_cubit/cart_cubit.dart';
+import '../../../../cart/presentation/cubit/cart_cubit.dart';
 import '../../../domain/entities/product_entity.dart';
 
 class AddToCart extends StatelessWidget {

@@ -82,7 +82,12 @@ class _SetLocationPageState extends State<SetLocationPage> {
             onCameraIdle: _onCameraIdle,
             markers: _markers,
           ),
-          SetLocationBottomSheet()
+          SetLocationBottomSheet(
+            coordinates: CoordinatesEntity(
+              latitude: currentPosition.latitude,
+              longitude: currentPosition.longitude,
+            ),
+          )
         ],
       ),
     );

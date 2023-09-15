@@ -8,6 +8,7 @@ class CartPageCommonCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
+      elevation: 0.5,
       margin: EdgeInsets.all(0),
       surfaceTintColor: Colors.white,
       color: Colors.white,

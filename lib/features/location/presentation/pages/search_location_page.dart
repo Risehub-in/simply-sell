@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-
-import '../../../../core/constants/app_colors.dart';
+import '../widgets/address_list_widget.dart';
+import '../widgets/get_current_location_widget.dart';
 import '../widgets/prediction_widget.dart';
 import '../widgets/search_location_widget.dart';
 
@@ -27,32 +27,11 @@ class SearchLocationPage extends StatelessWidget {
             children: [
               SearchLocation(),
               SizedBox(height: 14),
-              GestureDetector(
-                onTap: () {
-                  print('New Address');
-                },
-                child: Row(
-                  children: [
-                    Icon(
-                      Icons.near_me,
-                      size: 18,
-                    ),
-                    SizedBox(width: 6),
-                    Text(
-                      'Use my current location',
-                      style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                            fontWeight: FontWeight.bold,
-                            color: AppColors.primary,
-                          ),
-                    ),
-                  ],
-                ),
-              ),
-              Divider(
-                height: 28,
-                thickness: 0.3,
-              ),
+              GetCurrentLocation(),
+              Divider(height: 20, thickness: 0.3),
               PredictionWidget(),
+              Divider(height: 20, thickness: 0.3),
+              AddressListWidget(),
             ],
           ),
         ),
