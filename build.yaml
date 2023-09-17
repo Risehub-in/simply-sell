@@ -3,6 +3,8 @@ targets:
     builders:
       graphql_codegen:
         options:
+          addTypenameExcludedPaths:
+            - subscription
           scalars:
             numeric:
               type: double
@@ -12,5 +14,7 @@ targets:
               type: int
             uuid:
               type: String
+            float8:
+              type: double
           clients:
             - graphql_flutter

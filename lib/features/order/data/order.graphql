@@ -1,0 +1,14 @@
+query GetOrders {
+    orders {
+    createAt: created_at
+    customerLatitude: customer_latitude
+    customerLongitude: customer_longitude
+    deliveryAddress: delivery_address
+    deliveryFee: delivery_fee
+    id: id
+    orderStatus: order_status
+    paymentAmount: payment_amount
+    userId: user_id
+    paymentId: payment_id
+  }
+}

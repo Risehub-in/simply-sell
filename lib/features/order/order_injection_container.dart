@@ -9,7 +9,11 @@ import 'domain/repository/order_repository.dart';
 
 Future<void> orderInjectionContainer() async {
   // Cubit
-  sl.registerFactory(() => OrderCubit(createOrderUsecase: sl.call()));
+  sl.registerFactory(
+    () => OrderCubit(
+      createOrderUsecase: sl.call(),
+    ),
+  );
 
   // Usecases
   sl.registerLazySingleton<CreateOrderUsecase>(
@@ -17,9 +21,17 @@ Future<void> orderInjectionContainer() async {
 
   // Repository
   sl.registerLazySingleton<OrderRepository>(
-      () => OrderRepositoryImpl(orderRemoteDataSource: sl.call()));
+    () => OrderRepositoryImpl(
+      orderRemoteDataSource: sl.call(),
+    ),
+  );
 
   // Remote Data Source Impl
   sl.registerLazySingleton<OrderRemoteDataSource>(
-      () => OrderRemoteDataSourceImpl(razorpay: sl.call()));
+    () => OrderRemoteDataSourceImpl(
+      razorpay: sl.call(),
+      hasuraService: sl.call(),
+      supabase: sl.call(),
+    ),
+  );
 }

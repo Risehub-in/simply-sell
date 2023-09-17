@@ -5,7 +5,7 @@ import 'package:simply_sell/features/cart/data/models/cart_model.dart';
 import 'package:simply_sell/features/cart/data/remote_data_source/cart_remote_data_source.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 import '../../../../core/config/hasura_service.dart';
-import '../models/cart.graphql.dart';
+import '../cart.graphql.dart';
 
 class CartRemoteDataSourceImpl implements CartRemoteDataSource {
   final Supabase supabase;
@@ -45,18 +45,14 @@ class CartRemoteDataSourceImpl implements CartRemoteDataSource {
   @override
   Stream<List<CartModel>> streamCart() {
     final resultStream = hasuraService.client
-        .subscribe(
-      SubscriptionOptions(
-        document: gql(
-          GqlQueries.cartSubscription,
-        ),
-      ),
-    )
+        .subscribe$getCartSubscription(
+            Options$Subscription$getCartSubscription())
         .asyncExpand((result) {
-      final cartData = result.data?['cart'] as List<dynamic>;
+      // print(result);
+      final cartData = result.data?['cart_items'] as List<dynamic>;
       final List<CartModel> cartItems =
           cartData.map((cartItem) => CartModel.fromJson(cartItem)).toList();
-      // print(cartItems);
+      print(cartItems);
       return Stream.value(cartItems);
     }).handleError((error) {
       print(error.toString());
@@ -67,12 +63,14 @@ class CartRemoteDataSourceImpl implements CartRemoteDataSource {
   @override
   Future<void> updateCartQuantity(int variantId, int cartQuantity) async {
     try {
-      await hasuraService.client.mutate(MutationOptions(
-          document: gql(GqlQueries.updateCartQuery),
-          variables: {
-            'variant_id': variantId,
-            'cart_quantity': cartQuantity,
-          }));
+      await hasuraService.client.mutate$updateCartItemQuantity(
+        Options$Mutation$updateCartItemQuantity(
+          variables: Variables$Mutation$updateCartItemQuantity(
+            variant_id: variantId,
+            cart_quantity: cartQuantity,
+          ),
+        ),
+      );
     } catch (e) {
       rethrow;
     }

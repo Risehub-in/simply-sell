@@ -1,33 +1,81 @@
+#  ---------------- Queries -----------------------
 type Query {
-    cart : cart
+  orders: Order
+  cart_items: CartItem
 }
 
+#  ---------------- Subscription -----------------------
 type Subscription {
-    cart : cart
+  cart_items(order_by: CartItemOrderByInput): CartItem
+}
+input CartItemOrderByInput {
+  created_at: OrderByDirection
+}
+enum OrderByDirection {
+  asc
+  desc
 }
 
+#  ---------------- Subscription -----------------------
 type Mutation {
-    insert_cart(objects: [cart!]!) : InsertCartResponse!
+  insert_cart_items(objects: [CartItem!]!): InsertCartItemResponse!
+  update_cart_items(
+    where: CartItemFilter # Use the input type for filtering
+    _set: CartItemUpdate # Use the input type for updating
+  ): UpdateCartQuantityResponse
 }
 
-type InsertCartResponse {
-    affected_rows: Int!
+type InsertCartItemResponse {
+  affected_rows: Int!
 }
 
-type cart {
-    product_id: bigint!
-    image: String!,
-    price: numeric!,
-    product_title: String!,
-    uom_name: String,
-    uom_value: String,
-    user_id: uuid!,
-    variant_id: bigint!
-    cart_quantity: smallint!
-    mrp: numeric
+# ---- Update Cart ----
+type UpdateCartQuantityResponse {
+  affected_rows: Int!
 }
 
+input CartItemFilter {
+  variant_id: bigint!
+}
+
+input CartItemUpdate {
+  cart_quantity: smallint!
+}
+
+## ------------------Types------------------------------
+
+# Orders
+type Order {
+  created_at: String!
+  id: bigint!
+  customer_latitude: float8!
+  customer_longitude: float8!
+  delivery_address: String!
+  delivery_fee: numeric!
+  order_status: String!
+  user_id: uuid!
+  payment_id: String!
+  payment_amount: numeric!
+}
+
+# Cart
+type CartItem {
+  id: bigint!
+  image: String!
+  mrp: numeric
+  price: numeric!
+  product_id: bigint!
+  product_title: String!
+  uom_name: String
+  uom_value: String
+  user_id: uuid!
+  variant_id: bigint!
+  cart_quantity: smallint!
+}
+
+# Scalars
 scalar numeric
 scalar bigint
 scalar uuid
 scalar smallint
+scalar float8

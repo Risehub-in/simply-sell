@@ -52,7 +52,7 @@ class LoggingLink extends Link {
   Stream<Response> request(Request request, [NextLink? forward]) {
     final stream = _innerLink.request(request, forward);
 
-    // final query = request.toString();
+    final query = request.toString();
     // final operationName = request.operation.operationName.toString();
     final variables = request.variables.toString();
 
@@ -63,7 +63,9 @@ class LoggingLink extends Link {
     //   Variables: $variables
     // ''';
 
-    final requestString = '''
+    final requestString =
+        '''
+      Query: $query
       Variables: $variables
     ''';
 
