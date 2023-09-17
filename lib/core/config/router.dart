@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:simply_sell/core/constants/app_routes.dart';
+import 'package:simply_sell/features/address/presentation/pages/save_address_page.dart';
 import 'package:simply_sell/features/auth/presentation/pages/login_page.dart';
 import 'package:simply_sell/features/auth/presentation/pages/otp_page.dart';
 import 'package:simply_sell/features/cart/presentation/pages/cart_page.dart';
@@ -8,10 +9,12 @@ import 'package:simply_sell/features/categories/presentation/pages/categories_pa
 import 'package:simply_sell/features/home/presentation/pages/home_page.dart';
 import 'package:simply_sell/features/home/presentation/widgets/home_bottom_nav_bar.dart';
 import 'package:simply_sell/features/location/domain/entities/coordinates_entity.dart';
+import 'package:simply_sell/features/location/presentation/pages/new_address/new_address_search_page.dart';
 import 'package:simply_sell/features/location/presentation/pages/search_location_page.dart';
 import 'package:simply_sell/features/products/presentation/pages/products_page.dart';
 
 import '../../features/auth/presentation/pages/splash_screen.dart';
+import '../../features/location/presentation/pages/new_address/new_address_page.dart';
 import '../../features/location/presentation/pages/set_location_page.dart';
 import '../../features/order/presentation/pages/order_details_page.dart';
 
@@ -78,6 +81,23 @@ class AppRouter {
         builder: (context, state) => SetLocationPage(
           coordinates: state.extra as CoordinatesEntity,
         ),
+      ),
+      GoRoute(
+        parentNavigatorKey: _rootNavigatorKey,
+        path: AppRoutes.addAddress,
+        builder: (context, state) => SaveAddressPage(),
+      ),
+      GoRoute(
+        parentNavigatorKey: _rootNavigatorKey,
+        path: AppRoutes.newAddress,
+        builder: (context, state) => SetNewAddressPage(
+          coordinates: state.extra as CoordinatesEntity,
+        ),
+      ),
+      GoRoute(
+        parentNavigatorKey: _rootNavigatorKey,
+        path: AppRoutes.newAddressSearch,
+        builder: (context, state) => NewAddressSearchPage(),
       ),
       GoRoute(
         parentNavigatorKey: _rootNavigatorKey,

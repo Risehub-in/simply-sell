@@ -5,7 +5,7 @@ import 'package:simply_sell/core/constants/app_colors.dart';
 import '../../../../core/constants/app_defaults.dart';
 import '../../../../core/widgets/increment_decrement_cart_quantity.dart';
 import '../../domain/entity/cart_entity.dart';
-import '../cubit/cart_cubit/cart_cubit.dart';
+import '../cubit/cart_cubit.dart';
 
 class CartItemRow extends StatelessWidget {
   const CartItemRow({super.key, required this.cartItem});
@@ -76,15 +76,12 @@ class CartItemRow extends StatelessWidget {
             if (cartItem.mrp != null)
               Text(
                 AppDefaults.currency + '${cartItem.mrp?.toStringAsFixed(0)}',
-                style: Theme.of(context).textTheme.labelSmall?.copyWith(
+                style: Theme.of(context).textTheme.bodySmall?.copyWith(
                       decoration: TextDecoration.lineThrough,
                     ),
               ),
             Text(
               AppDefaults.currency + '${cartItem.price.toStringAsFixed(0)}',
-              style: Theme.of(context).textTheme.titleSmall?.copyWith(
-                    fontWeight: FontWeight.w500,
-                  ),
             ),
           ],
         )

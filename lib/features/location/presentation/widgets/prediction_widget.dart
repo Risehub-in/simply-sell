@@ -26,7 +26,8 @@ class PredictionWidget extends StatelessWidget {
         }
         if (state is PredictionStateDone) {
           final predictions = state.predictions;
-          return ListView.builder(
+          return ListView.separated(
+            separatorBuilder: (context, index) => SizedBox(height: 20),
             shrinkWrap: true,
             physics: NeverScrollableScrollPhysics(),
             itemCount: predictions.length,
@@ -34,35 +35,46 @@ class PredictionWidget extends StatelessWidget {
               final prediction = predictions[index];
 
               return GestureDetector(
-                onTap: () async {
-                  await coordinatesCubit
-                      .getCoordinatesByPlaceID(prediction.placeId);
-                  final coordinates =
-                      coordinatesCubit.state.props.first as CoordinatesEntity;
-                  context.read<CoverageCubit>().isInDeliveryRadius(
-                      coordinates.latitude, coordinates.longitude);
-                  context.read<SetLocationCubit>().setAddressFromPrediction(
-                        LocationAddressEntity(
+                  onTap: () async {
+                    await coordinatesCubit
+                        .getCoordinatesByPlaceID(prediction.placeId);
+                    final coordinates =
+                        coordinatesCubit.state.props.first as CoordinatesEntity;
+                    context.read<CoverageCubit>().isInDeliveryRadius(
+                        coordinates.latitude, coordinates.longitude);
+                    context
+                        .read<SetLocationCubit>()
+                        .setLocationFromSearchAddressPage(
+                          LocationAddressEntity(
                             addressTitle: prediction.mainText,
-                            addressSubtitle: prediction.secondaryText),
-                      );
-                  await context.push(
-                    AppRoutes.setLocation,
-                    extra: coordinates,
-                  );
-                },
-                child: ListTile(
-                  contentPadding: EdgeInsets.symmetric(horizontal: 0),
-                  title: Text(
-                    prediction.mainText,
-                    style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold),
-                  ),
-                  subtitle: Text(
-                    prediction.secondaryText,
-                    style: TextStyle(fontSize: 12),
-                  ),
-                ),
-              );
+                            addressSubtitle: prediction.secondaryText,
+                          ),
+                          coordinates,
+                        );
+                    context.read<PredictionCubit>().clearPredictions();
+                    context.pushReplacement(
+                      AppRoutes.newAddress,
+                      extra: coordinates,
+                    );
+                  },
+                  child: Card(
+                    elevation: 0,
+                    margin: EdgeInsets.symmetric(horizontal: 0, vertical: 0),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          prediction.mainText,
+                          style: TextStyle(
+                              fontSize: 14, fontWeight: FontWeight.bold),
+                        ),
+                        Text(
+                          prediction.secondaryText,
+                          style: TextStyle(fontSize: 12),
+                        ),
+                      ],
+                    ),
+                  ));
             },
           );
         }

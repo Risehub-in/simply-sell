@@ -27,9 +27,20 @@ class GetLocationStateError extends GetLocationState {
 
 class GetLocationStateDone extends GetLocationState {
   final LocationAddressEntity locationAddress;
+  final CoordinatesEntity coordinates;
+  final bool isUserInDeliveryRadius;
+  final int? addressId;
+  final String? addressType;
 
-  GetLocationStateDone({required this.locationAddress});
+  GetLocationStateDone({
+    required this.locationAddress,
+    required this.coordinates,
+    required this.isUserInDeliveryRadius,
+    this.addressId,
+    this.addressType,
+  });
 
   @override
-  List<Object> get props => [locationAddress];
+  List<Object> get props =>
+      [locationAddress, coordinates, isUserInDeliveryRadius];
 }

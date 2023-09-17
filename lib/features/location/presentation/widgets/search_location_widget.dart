@@ -45,10 +45,15 @@ class _SearchLocationState extends State<SearchLocation> {
       onChanged: (value) async {
         if (value.length > 3) {
           await getSearchPrediction(value);
+          setState(() {});
         }
       },
       decoration: InputDecoration(
         hintText: 'Try Agarwal Market, Lokhandwala',
+        hintStyle: Theme.of(context)
+            .textTheme
+            .bodyMedium
+            ?.copyWith(color: Colors.black45),
         suffixIcon: IconButton(
           color: AppColors.textColor,
           iconSize: 20,

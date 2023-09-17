@@ -18,8 +18,12 @@ import 'presentation/cubits/set_location_cubit.dart';
 
 Future<void> locationInjenctionContainer() async {
   // Cubit
-  sl.registerFactory(
-      () => GetLocationCubit(getAddressByCoordinatesUsecase: sl.call()));
+  sl.registerFactory(() => GetLocationCubit(
+        getAddressByCoordinatesUsecase: sl.call(),
+        getCoordinatesUsecase: sl.call(),
+        getBranchDetailsUsecase: sl.call(),
+        checkDeliveryRadiusUsecase: sl.call(),
+      ));
   sl.registerFactory(
       () => SetLocationCubit(getAddressByCoordinatesUsecase: sl.call()));
 

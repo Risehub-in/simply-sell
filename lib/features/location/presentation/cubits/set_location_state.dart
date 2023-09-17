@@ -13,11 +13,13 @@ final class SetLocationStateLoading extends SetLocationState {}
 
 final class SetLocationStateDone extends SetLocationState {
   final LocationAddressEntity locationAddress;
+  final CoordinatesEntity coordinates;
 
-  SetLocationStateDone({required this.locationAddress});
+  SetLocationStateDone(
+      {required this.locationAddress, required this.coordinates});
 
   @override
-  List<Object> get props => [locationAddress];
+  List<Object> get props => [locationAddress, coordinates];
 }
 
 final class SetLocationStateError extends SetLocationState {

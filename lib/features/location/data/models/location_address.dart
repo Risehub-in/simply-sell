@@ -6,11 +6,7 @@ class LocationAddressModel extends LocationAddressEntity {
 
   factory LocationAddressModel.fromJson(Map<String, dynamic> json) {
     return LocationAddressModel(
-      addressTitle: json['results'][0]['address_components'][0]['long_name'],
-      addressSubtitle: json['results'][0]['address_components'][1]
-              ['long_name'] +
-          ', ' +
-          json['results'][0]['address_components'][2]['long_name'],
-    );
+        addressTitle: json['results'][0]['address_components'][1]['long_name'],
+        addressSubtitle: json['results'][0]['formatted_address']);
   }
 }

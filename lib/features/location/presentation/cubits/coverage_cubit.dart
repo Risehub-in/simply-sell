@@ -24,15 +24,12 @@ class CoverageCubit extends Cubit<CoverageState> {
           userLat,
           userLng,
           branchDetails.branchRadius);
+      print(isUserInDeliveryRadius);
       emit(CoverageStateDone(isUserInDeliveryRadius: isUserInDeliveryRadius));
     } catch (e) {
       emit(
         CoverageStateError(message: e.toString()),
       );
     }
-  }
-
-  void setCoverageFromSetLocation() {
-    emit(CoverageStateDone(isUserInDeliveryRadius: true));
   }
 }

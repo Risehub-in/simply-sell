@@ -30,10 +30,10 @@ class BillDetals extends StatelessWidget {
                 children: [
                   Text('Total Amount'),
                   Text(
-                    '${AppDefaults.currency} ${cartItemTotal.toStringAsFixed(0)}',
+                    '${AppDefaults.currency}${cartItemTotal.toStringAsFixed(0)}',
                     style: Theme.of(context)
                         .textTheme
-                        .titleSmall
+                        .bodyMedium
                         ?.copyWith(fontWeight: FontWeight.bold),
                   ),
                 ],

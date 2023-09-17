@@ -13,7 +13,9 @@ class CoordinatesCubit extends Cubit<CoordinatesState> {
   CoordinatesCubit({
     required this.getCoordinatesByPlaceId,
     required this.getCoordinatesUsecase,
-  }) : super(NewAddressInitial());
+  }) : super(CoordinatesStateLoading()) {
+    getCoordintes();
+  }
 
   Future<void> getCoordintes() async {
     try {
