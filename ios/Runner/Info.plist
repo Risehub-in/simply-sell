@@ -51,5 +51,11 @@
 		<string>This app needs access to user location to determine if service is avialable in user location.</string>
 	<key>NSLocationAlwaysUsageDescription</key>
 		<string>This app needs access to location when in the background.</string>
+	<key>LSApplicationQueriesSchemes</key>
+	<array>
+		<string>tez</string>
+    	<string>phonepe</string>
+    	<string>paytmmp</string>
+	</array>
 </dict>
 </plist>

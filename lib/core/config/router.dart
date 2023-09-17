@@ -13,6 +13,7 @@ import 'package:simply_sell/features/products/presentation/pages/products_page.d
 
 import '../../features/auth/presentation/pages/splash_screen.dart';
 import '../../features/location/presentation/pages/set_location_page.dart';
+import '../../features/order/presentation/pages/order_details_page.dart';
 
 final _rootNavigatorKey = GlobalKey<NavigatorState>();
 final _shellNavigatorKey = GlobalKey<NavigatorState>(debugLabel: 'shellA');
@@ -77,6 +78,11 @@ class AppRouter {
         builder: (context, state) => SetLocationPage(
           coordinates: state.extra as CoordinatesEntity,
         ),
+      ),
+      GoRoute(
+        parentNavigatorKey: _rootNavigatorKey,
+        path: AppRoutes.orderDetails,
+        builder: (context, state) => OrderDetailsPage(),
       ),
     ],
   );

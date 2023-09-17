@@ -13,6 +13,7 @@ import 'features/location/presentation/cubits/get_location_cubit.dart';
 import 'features/location/presentation/cubits/coordinates_cubit.dart';
 import 'features/location/presentation/cubits/prediction_cubit.dart';
 import 'features/location/presentation/cubits/set_location_cubit.dart';
+import 'features/order/presentation/cubit/order_cubit.dart';
 import 'features/products/presentation/cubit/product_cubit.dart';
 import 'keys.dart';
 
@@ -65,6 +66,9 @@ class MyApp extends StatelessWidget {
         ),
         BlocProvider(
           create: (_) => di.sl<BranchCubit>()..getBranchDetails(),
+        ),
+        BlocProvider(
+          create: (_) => di.sl<OrderCubit>(),
         ),
       ],
       child: MaterialApp.router(

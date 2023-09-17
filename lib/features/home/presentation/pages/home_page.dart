@@ -25,7 +25,9 @@ class _HomePageState extends State<HomePage> {
         title: HomeAppBar(),
         actions: [
           IconButton(
-            onPressed: () {},
+            onPressed: () {
+              context.push(AppRoutes.orderDetails);
+            },
             icon: Icon(Icons.person),
           )
         ],
