@@ -1,14 +1,47 @@
 query GetOrders {
-    orders {
-    createAt: created_at
-    customerLatitude: customer_latitude
-    customerLongitude: customer_longitude
-    deliveryAddress: delivery_address
-    deliveryFee: delivery_fee
-    id: id
-    orderStatus: order_status
-    paymentAmount: payment_amount
-    userId: user_id
-    paymentId: payment_id
+  orders {
+    created_at
+    customer_latitude
+    customer_longitude
+    delivery_address
+    delivery_fee
+    id
+    order_status
+    payment_amount
+    user_id
+    payment_id
+  }
+}
+
+
+mutation CreateOrder(
+  $customer_latitude: float8!
+  $customer_longitude: float8!
+  $delivery_address: String!
+  $id: bigint!
+  $delivery_fee: numeric!
+  $order_status: String!
+  $user_id: uuid!
+  $payment_id: String!
+  $payment_amount: numeric!
+  $order_items: [order_items_insert_input!]!
+) {
+  insert_orders(
+    objects: {
+      customer_latitude: $customer_latitude
+      customer_longitude: $customer_longitude
+      delivery_address: $delivery_address
+      delivery_fee: $delivery_fee
+      id: $id
+      order_status: $order_status
+      user_id: $user_id
+      payment_id: $payment_id
+      payment_amount: $payment_amount
+    }
+  ) {
+    affected_rows
+  }
+  insert_order_items(objects: $order_items) {
+    affected_rows
   }
 }

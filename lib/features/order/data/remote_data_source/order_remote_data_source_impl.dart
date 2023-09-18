@@ -1,12 +1,13 @@
 import 'dart:math';
 
-import 'package:graphql_flutter/graphql_flutter.dart';
 import 'package:razorpay_flutter/razorpay_flutter.dart';
 import 'package:simply_sell/core/config/hasura_service.dart';
 import 'package:simply_sell/features/order/data/models/order_model.dart';
-import 'package:simply_sell/features/order/data/order_graphql_queries.dart';
+import 'package:simply_sell/features/order/data/order.graphql.dart';
 import 'package:simply_sell/features/order/data/remote_data_source/order_remote_data_source.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
+
+import '../../../../schema.graphql.dart';
 
 class OrderRemoteDataSourceImpl implements OrderRemoteDataSource {
   final Razorpay razorpay;
@@ -18,12 +19,12 @@ class OrderRemoteDataSourceImpl implements OrderRemoteDataSource {
       required this.hasuraService,
       required this.supabase});
 
-  String generateRandom10DigitNumber() {
+  int generateRandom10DigitNumber() {
     Random random = Random();
-    String randomDigits = '';
+    int randomDigits = 0;
 
     for (int i = 0; i < 10; i++) {
-      randomDigits += random.nextInt(10).toString();
+      randomDigits += random.nextInt(10);
     }
 
     return randomDigits;
@@ -31,9 +32,23 @@ class OrderRemoteDataSourceImpl implements OrderRemoteDataSource {
 
   @override
   Future<void> createOrder(OrderModel order) async {
-    //TODO Implement orderId Check in database
-    String random10DigitNumber = generateRandom10DigitNumber();
-    final orderId = random10DigitNumber;
+    final random = Random();
+    final randomDigits = List.generate(10, (index) => random.nextInt(10));
+    final randomString = randomDigits.join();
+
+    final orderId = int.parse(randomString);
+    print(orderId);
+
+    List<Input$order_items_insert_input> orderItems =
+        order.orderItems.map((orderItem) {
+      return Input$order_items_insert_input(
+        user_id: supabase.client.auth.currentSession!.user.id,
+        item_quantity: orderItem.itemQuantity,
+        order_id: orderId,
+        variant_id: orderItem.variantId,
+        price: orderItem.price,
+      );
+    }).toList();
 
     var razorpayOptions = {
       'key': 'rzp_test_3gVcn5TnJql0pg',
@@ -55,29 +70,29 @@ class OrderRemoteDataSourceImpl implements OrderRemoteDataSource {
       Razorpay.EVENT_PAYMENT_SUCCESS,
       (PaymentSuccessResponse response) async {
         print('Payment Success ${response.paymentId}');
-        final results = await hasuraService.client.mutate(
-          MutationOptions(
-              document: gql(OrderGraphQLQueries.createOrderMutation),
-              variables: {
-                'customer_latitude': order.customerLatitude,
-                'customer_longitude': order.customerLongitude,
-                'delivery_address': order.deliveryAddress,
-                'delivery_fee': order.deliveryFee,
-                'id': orderId,
-                'order_status': order.orderStatus,
-                'user_id': supabase.client.auth.currentSession?.user.id,
-                'payment_id': response.paymentId,
-                'payment_amount': order.paymentAmount,
-              }),
+        final results = await hasuraService.client.mutate$CreateOrder(
+          Options$Mutation$CreateOrder(
+            variables: Variables$Mutation$CreateOrder(
+              customer_latitude: order.customerLatitude,
+              customer_longitude: order.customerLongitude,
+              delivery_address: order.deliveryAddress,
+              id: orderId,
+              delivery_fee: order.deliveryFee,
+              order_status: order.orderStatus,
+              user_id: supabase.client.auth.currentSession!.user.id,
+              payment_id: response.paymentId!,
+              payment_amount: order.paymentAmount,
+              order_items: orderItems,
+            ),
+          ),
         );
         if (!results.hasException) {
-          print(results.data);
+          print('affected row ${results.data}');
         } else {
           print(
             results.exception.toString(),
           );
         }
-
         razorpay.clear();
       },
     );

@@ -9,10 +9,10 @@ class OrderEntity extends Equatable {
   final double deliveryFee;
   final double customerLatitude;
   final double customerLongitude;
-  final String? orderStatus;
+  final String orderStatus;
   final String? paymentId;
   final double paymentAmount;
-  final List<OrderItemEntity>? orderItems;
+  final List<OrderItemEntity> orderItems;
 
   OrderEntity({
     this.id,
@@ -25,7 +25,7 @@ class OrderEntity extends Equatable {
     required this.orderStatus,
     this.paymentId,
     required this.paymentAmount,
-    this.orderItems,
+    required this.orderItems,
   });
 
   @override

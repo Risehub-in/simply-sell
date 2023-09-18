@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:simply_sell/features/cart/presentation/cubit/cart_cubit.dart';
 import 'package:simply_sell/features/location/presentation/cubits/get_location_cubit.dart';
 import 'package:simply_sell/features/order/domain/entities/order_entity.dart';
+import 'package:simply_sell/features/order/domain/entities/order_item_entity.dart';
 
 import '../../../../../core/constants/app_colors.dart';
 import '../../../../../core/constants/app_defaults.dart';
@@ -102,11 +103,19 @@ class UserAddressSelected extends StatelessWidget {
     double? paymentAmount;
     double? customerLatitude;
     double? customerLongitude;
+    List<OrderItemEntity> orderItems = [];
 
     if (cartState is CartStateDone) {
       if (cartState.cartItems.length > 0) {
         double cartItemTotal = 0;
         cartState.cartItems.forEach((cartItem) {
+          orderItems.add(
+            OrderItemEntity(
+              itemQuantity: cartItem.cartQuantity,
+              variantId: cartItem.variantId,
+              price: cartItem.price,
+            ),
+          );
           cartItemTotal += cartItem.price * cartItem.cartQuantity;
           paymentAmount = cartItemTotal;
         });
@@ -118,14 +127,20 @@ class UserAddressSelected extends StatelessWidget {
       customerLatitude = getLocationState.coordinates.latitude;
       customerLongitude = getLocationState.coordinates.longitude;
     }
-    context.read<OrderCubit>().createOrder(OrderEntity(
-          deliveryAddress: deliveryAddress!,
-          deliveryFee: 50,
-          customerLatitude: customerLatitude!,
-          customerLongitude: customerLongitude!,
-          orderStatus: 'pending',
-          paymentAmount: paymentAmount!,
-        ));
+    print(orderItems);
+    if (orderItems.length > 0) {
+      context.read<OrderCubit>().createOrder(
+            OrderEntity(
+              deliveryAddress: deliveryAddress!,
+              deliveryFee: 50,
+              customerLatitude: customerLatitude!,
+              customerLongitude: customerLongitude!,
+              orderStatus: 'pending',
+              paymentAmount: paymentAmount!,
+              orderItems: orderItems,
+            ),
+          );
+    }
   }
 
   Future _displaySelectAddressBottomSheet(BuildContext context) async {

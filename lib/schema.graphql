@@ -18,15 +18,37 @@ enum OrderByDirection {
 
 #  ---------------- Subscription -----------------------
 type Mutation {
+  # ---- Add To Cart ----
   insert_cart_items(objects: [CartItem!]!): InsertCartItemResponse!
+  # ---- Update Cart Quantity ----
   update_cart_items(
     where: CartItemFilter # Use the input type for filtering
     _set: CartItemUpdate # Use the input type for updating
   ): UpdateCartQuantityResponse
+
+  insert_orders(objects: [Order!]!): OrderMutationResponse!
+
+  insert_order_items(objects: [OrderItem!]!): OrderItemsMutationResponse!
+}
+
+type OrderMutationResponse {
+  affected_rows: Int!
+}
+
+type OrderItemsMutationResponse {
+  affected_rows: Int!
 }
 
 type InsertCartItemResponse {
   affected_rows: Int!
+}
+
+input order_items_insert_input {
+  item_quantity: smallint!
+  order_id: bigint!
+  variant_id: bigint!
+  price: numeric!
+  user_id: uuid!
 }
 
 # ---- Update Cart ----
@@ -46,7 +68,7 @@ input CartItemUpdate {
 
 # Orders
 type Order {
-  created_at: String!
+  created_at: String
   id: bigint!
   customer_latitude: float8!
   customer_longitude: float8!
@@ -56,6 +78,17 @@ type Order {
   user_id: uuid!
   payment_id: String!
   payment_amount: numeric!
+  order_items: [OrderItem]!
+}
+
+type OrderItem {
+  created_at: String
+  user_id: uuid
+  id: bigint
+  item_quantity: smallint!
+  order_id: bigint!
+  variant_id: bigint!
+  price: numeric!
 }
 
 # Cart
