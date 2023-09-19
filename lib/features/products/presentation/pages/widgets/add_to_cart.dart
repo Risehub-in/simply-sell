@@ -43,10 +43,10 @@ class AddToCart extends StatelessWidget {
                     _displayVariantOptionBottomSheet(context);
                   } else {
                     if (cartItem.cartQuantity == 1) {
-                      cartCubit.deleteCartItem(product.variants.first.id);
+                      cartCubit.deleteCartItem(cartItem.id!);
                     } else {
                       cartCubit.updateCartQuantity(
-                        product.variants.first.id,
+                        cartItem.id!,
                         cartItem.cartQuantity - 1,
                       );
                     }
@@ -57,7 +57,7 @@ class AddToCart extends StatelessWidget {
                     _displayVariantOptionBottomSheet(context);
                   } else {
                     cartCubit.updateCartQuantity(
-                      product.variants.first.id,
+                      cartItem.id!,
                       cartItem.cartQuantity + 1,
                     );
                   }

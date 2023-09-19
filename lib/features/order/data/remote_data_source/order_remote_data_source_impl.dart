@@ -19,17 +19,6 @@ class OrderRemoteDataSourceImpl implements OrderRemoteDataSource {
       required this.hasuraService,
       required this.supabase});
 
-  int generateRandom10DigitNumber() {
-    Random random = Random();
-    int randomDigits = 0;
-
-    for (int i = 0; i < 10; i++) {
-      randomDigits += random.nextInt(10);
-    }
-
-    return randomDigits;
-  }
-
   @override
   Future<void> createOrder(OrderModel order) async {
     final random = Random();

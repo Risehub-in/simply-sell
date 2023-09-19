@@ -5,7 +5,9 @@ abstract class CartRemoteDataSource {
 
   Stream<List<CartModel>> streamCart();
 
-  Future<void> updateCartQuantity(int variantId, int cartQuantity);
+  Future<void> updateCartQuantity(int cartId, int cartQuantity);
 
-  Future<void> deleteCartItem(int variantId);
+  Future<void> deleteCartItem(int cartId);
+
+  Future<void> clearCart();
 }

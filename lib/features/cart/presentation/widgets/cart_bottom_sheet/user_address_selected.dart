@@ -129,7 +129,7 @@ class UserAddressSelected extends StatelessWidget {
     }
     print(orderItems);
     if (orderItems.length > 0) {
-      context.read<OrderCubit>().createOrder(
+      await context.read<OrderCubit>().createOrder(
             OrderEntity(
               deliveryAddress: deliveryAddress!,
               deliveryFee: 50,
@@ -140,6 +140,7 @@ class UserAddressSelected extends StatelessWidget {
               orderItems: orderItems,
             ),
           );
+      await context.read<CartCubit>().clearCart();
     }
   }
 

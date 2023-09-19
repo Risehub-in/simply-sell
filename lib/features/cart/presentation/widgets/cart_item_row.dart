@@ -58,17 +58,17 @@ class CartItemRow extends StatelessWidget {
         IncrementDecrementCartQuantity(
           minusQuantityOnpress: () async {
             if (cartItem.cartQuantity == 1) {
+              await context.read<CartCubit>().deleteCartItem(cartItem.id!);
+            } else {
               await context
                   .read<CartCubit>()
-                  .deleteCartItem(cartItem.variantId);
-            } else {
-              await context.read<CartCubit>().updateCartQuantity(
-                  cartItem.variantId, cartItem.cartQuantity - 1);
+                  .updateCartQuantity(cartItem.id!, cartItem.cartQuantity - 1);
             }
           },
           addQuantityOnpress: () async {
-            await context.read<CartCubit>().updateCartQuantity(
-                cartItem.variantId, cartItem.cartQuantity + 1);
+            await context
+                .read<CartCubit>()
+                .updateCartQuantity(cartItem.id!, cartItem.cartQuantity + 1);
           },
           cartQuantity: cartItem.cartQuantity,
         ),
@@ -77,13 +77,14 @@ class CartItemRow extends StatelessWidget {
           children: [
             if (cartItem.mrp != null)
               Text(
-                AppDefaults.currency + '${totalMrp.toStringAsFixed(0)}',
-                style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                      decoration: TextDecoration.lineThrough,
-                    ),
+                AppDefaults.currency + '${totalPrice.toStringAsFixed(0)}',
               ),
             Text(
-              AppDefaults.currency + '${totalPrice.toStringAsFixed(0)}',
+              AppDefaults.currency + '${totalMrp.toStringAsFixed(0)}',
+              style: Theme.of(context).textTheme.labelSmall?.copyWith(
+                    decoration: TextDecoration.lineThrough,
+                    height: 0.6,
+                  ),
             ),
           ],
         )

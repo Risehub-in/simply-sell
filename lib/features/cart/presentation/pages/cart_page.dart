@@ -7,9 +7,14 @@ import '../widgets/bill_details.dart';
 import '../widgets/cart_bottom_sheet/cart_bottom_sheet.dart';
 import '../widgets/cart_items.dart';
 
-class CartPage extends StatelessWidget {
+class CartPage extends StatefulWidget {
   const CartPage({super.key});
 
+  @override
+  State<CartPage> createState() => _CartPageState();
+}
+
+class _CartPageState extends State<CartPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(

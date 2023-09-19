@@ -23,7 +23,7 @@ class _HomeBottomNavBarState extends State<HomeBottomNavBar> {
       body: widget.child,
       bottomNavigationBar: ConvexAppBar(
         top: -14,
-        height: 58,
+        height: 56,
         curveSize: 80,
         backgroundColor: AppColors.primary,
         color: Colors.white,

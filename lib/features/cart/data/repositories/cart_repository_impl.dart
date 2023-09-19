@@ -31,12 +31,17 @@ class CartRepositoryImpl implements CartRepository {
   }
 
   @override
-  Future<void> updateCartQuantity(int variantId, int cartQuantity) async {
-    await cartRemoteDataSource.updateCartQuantity(variantId, cartQuantity);
+  Future<void> updateCartQuantity(int cartId, int cartQuantity) async {
+    await cartRemoteDataSource.updateCartQuantity(cartId, cartQuantity);
   }
 
   @override
-  Future<void> deleteCartItem(int variantId) async {
-    await cartRemoteDataSource.deleteCartItem(variantId);
+  Future<void> deleteCartItem(int cartId) async {
+    await cartRemoteDataSource.deleteCartItem(cartId);
+  }
+
+  @override
+  Future<void> clearCart() async {
+    await cartRemoteDataSource.clearCart();
   }
 }

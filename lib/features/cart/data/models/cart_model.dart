@@ -2,6 +2,7 @@ import 'package:simply_sell/features/cart/domain/entity/cart_entity.dart';
 
 class CartModel extends CartEntity {
   CartModel({
+    super.id,
     required super.productId,
     required super.image,
     required super.price,
@@ -16,16 +17,17 @@ class CartModel extends CartEntity {
 
   factory CartModel.fromJson(Map<String, dynamic> json) {
     return CartModel(
-      productId: json['product_id'],
-      image: json['image'],
-      price: json['price'],
-      productTitle: json['product_title'],
-      uomName: json['uom_name'],
-      uomValue: json['uom_value'],
-      userId: json['user_d'],
-      variantId: json['variant_id'],
+      id: json['id'],
       cartQuantity: json['cart_quantity'],
-      mrp: json['mrp'],
+      userId: json['user_id'],
+      variantId: json['variant']['id'],
+      mrp: json['variant']['mrp'].toDouble(),
+      price: json['variant']['price'].toDouble(),
+      uomValue: json['variant']['uom_value'],
+      uomName: json['variant']['uom']['uom_name'],
+      productId: json['variant']['product']['id'],
+      image: json['variant']['product']['featured_image'],
+      productTitle: json['variant']['product']['product_title'],
     );
   }
 }

@@ -79,15 +79,15 @@ class VariantBottomSheetVariantCard extends StatelessWidget {
                         cartQuantity: cartItem.cartQuantity,
                         minusQuantityOnpress: () {
                           if (cartItem.cartQuantity == 1) {
-                            cartCubit.deleteCartItem(variant.id);
+                            cartCubit.deleteCartItem(cartItem.id!);
                           } else {
                             cartCubit.updateCartQuantity(
-                                variant.id, cartItem.cartQuantity - 1);
+                                cartItem.id!, cartItem.cartQuantity - 1);
                           }
                         },
                         addQuantityOnpress: () {
                           cartCubit.updateCartQuantity(
-                              variant.id, cartItem.cartQuantity + 1);
+                              cartItem.id!, cartItem.cartQuantity + 1);
                         },
                       );
                     }

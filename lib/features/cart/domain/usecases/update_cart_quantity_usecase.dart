@@ -4,6 +4,6 @@ class UpdateCartQuantityUsecase {
   final CartRepository cartRepository;
 
   UpdateCartQuantityUsecase({required this.cartRepository});
-  Future<void> call(int variantId, int cartQuantity) =>
-      cartRepository.updateCartQuantity(variantId, cartQuantity);
+  Future<void> call(int cartId, int cartQuantity) =>
+      cartRepository.updateCartQuantity(cartId, cartQuantity);
 }

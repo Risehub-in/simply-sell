@@ -1,72 +1,60 @@
+
 subscription getCartSubscription {
-  cart_items(order_by: {created_at: asc})  {
-    id
-    image
-    mrp
-    price
-    product_id
-    product_title
-    uom_name
-    uom_value
-    user_id
-    variant_id
-    cart_quantity
-  }
-}
-
-
-
-query GetCartItems {
   cart_items {
-    id: id
-    image: image
-    mrp: mrp
-    price: price
-    productId: product_id
-    productTitle: product_title
-    uomName: uom_name
-    uomValue: uom_value
-    userId: user_id
-    variantId: variant_id
-    cartQuantity: cart_quantity
+    cart_quantity
+    id
+    user_id
+    variant {
+      id
+      mrp
+      price
+      uom_value
+      uom {
+        uom_name
+      }
+      product {
+        id
+        product_title
+        featured_image
+      }
+    }
   }
 }
 
 
 mutation updateCartItemQuantity(
-  $variant_id: bigint!,
+  $id: bigint!,
   $cart_quantity: smallint!
   ) {
-    update_cart_items(where: {variant_id: {_eq: $variant_id}},
+    update_cart_items(where: {id: {_eq: $id}},
     _set: {cart_quantity: $cart_quantity}) {
       affected_rows
     }
   }
 
+  mutation ClearCart($user_id: uuid!) {
+  delete_cart_items(where: {user_id: {_eq: $user_id}}) {
+    affected_rows
+  }
+}
+
+mutation DeleteSingleCartItem($id: bigint!) {
+  delete_cart_items_by_pk(id: $id) {
+    id
+  }
+}
+
+
 
 mutation AddToCart(
-  $product_id: bigint!
-  $price: numeric!
-  $product_title: String!
   $user_id: uuid!
   $variant_id: bigint!
-  $uom_value: String
-  $uom_name: String
-  $image: String!
-  $mrp: numeric,
   $cart_quantity: smallint,
 ) {
   insert_cart_items(
     objects: {
-      product_id: $product_id
-      price: $price
-      product_title: $product_title
       user_id: $user_id
       variant_id: $variant_id
-      uom_value: $uom_value
-      uom_name: $uom_name
-      image: $image
-      mrp: $mrp
       cart_quantity: $cart_quantity
     }
   ) {

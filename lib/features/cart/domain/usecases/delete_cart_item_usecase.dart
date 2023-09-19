@@ -5,5 +5,5 @@ class DeleteCartItemUsecase {
 
   DeleteCartItemUsecase({required this.cartRepository});
 
-  Future<void> call(int variantId) => cartRepository.deleteCartItem(variantId);
+  Future<void> call(int cartId) => cartRepository.deleteCartItem(cartId);
 }

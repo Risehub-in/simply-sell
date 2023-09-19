@@ -1,6 +1,4 @@
 import 'dart:async';
-import 'package:graphql_flutter/graphql_flutter.dart';
-import 'package:simply_sell/core/constants/queries.dart';
 import 'package:simply_sell/features/cart/data/models/cart_model.dart';
 import 'package:simply_sell/features/cart/data/remote_data_source/cart_remote_data_source.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
@@ -22,20 +20,17 @@ class CartRemoteDataSourceImpl implements CartRemoteDataSource {
       final result = await hasuraService.client.mutate$AddToCart(
         Options$Mutation$AddToCart(
           variables: Variables$Mutation$AddToCart(
-            product_id: cart.productId,
-            image: cart.image,
-            price: cart.price,
-            product_title: cart.productTitle,
             user_id: supabase.client.auth.currentSession!.user.id,
             variant_id: cart.variantId,
-            uom_name: cart.uomName,
-            uom_value: cart.uomValue,
             cart_quantity: cart.cartQuantity,
-            mrp: cart.mrp,
           ),
         ),
       );
-      print(result);
+      if (!result.hasException) {
+        print(result.data);
+      } else
+        (result.exception.toString());
+      ;
     } catch (e) {
       e.toString();
       rethrow;
@@ -48,8 +43,8 @@ class CartRemoteDataSourceImpl implements CartRemoteDataSource {
         .subscribe$getCartSubscription(
             Options$Subscription$getCartSubscription())
         .asyncExpand((result) {
-      // print(result);
       final cartData = result.data?['cart_items'] as List<dynamic>;
+      print(cartData);
       final List<CartModel> cartItems =
           cartData.map((cartItem) => CartModel.fromJson(cartItem)).toList();
       print(cartItems);
@@ -61,12 +56,12 @@ class CartRemoteDataSourceImpl implements CartRemoteDataSource {
   }
 
   @override
-  Future<void> updateCartQuantity(int variantId, int cartQuantity) async {
+  Future<void> updateCartQuantity(int cartId, int cartQuantity) async {
     try {
       await hasuraService.client.mutate$updateCartItemQuantity(
         Options$Mutation$updateCartItemQuantity(
           variables: Variables$Mutation$updateCartItemQuantity(
-            variant_id: variantId,
+            id: cartId,
             cart_quantity: cartQuantity,
           ),
         ),
@@ -77,16 +72,38 @@ class CartRemoteDataSourceImpl implements CartRemoteDataSource {
   }
 
   @override
-  Future<void> deleteCartItem(int variantId) async {
+  Future<void> deleteCartItem(int cartId) async {
     try {
-      hasuraService.client.mutate(
-        MutationOptions(
-          document: gql(
-            GqlQueries.deleteCartItem,
-          ),
-          variables: {'variant_id': variantId},
+      final result = await hasuraService.client.mutate$DeleteSingleCartItem(
+        Options$Mutation$DeleteSingleCartItem(
+          variables: Variables$Mutation$DeleteSingleCartItem(id: cartId),
         ),
       );
+      if (!result.hasException) {
+        print(result.data);
+      } else {
+        print(result.exception);
+      }
+    } catch (e) {
+      print(e.toString());
+      rethrow;
+    }
+  }
+
+  @override
+  Future<void> clearCart() async {
+    try {
+      var result = await hasuraService.client.mutate$ClearCart(
+        Options$Mutation$ClearCart(
+          variables: Variables$Mutation$ClearCart(
+              user_id: supabase.client.auth.currentUser!.id),
+        ),
+      );
+      if (!result.hasException) {
+        print(result.data);
+      } else {
+        print(result.exception.toString());
+      }
     } catch (e) {
       print(e.toString());
       rethrow;

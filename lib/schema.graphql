@@ -1,10 +1,9 @@
-#  ---------------- Queries -----------------------
+#  ---------------- Queries ----------------------- #
 type Query {
   orders: Order
-  cart_items: CartItem
 }
 
-#  ---------------- Subscription -----------------------
+#  ---------------- Subscription ----------------------- #
 type Subscription {
   cart_items(order_by: CartItemOrderByInput): CartItem
 }
@@ -16,30 +15,45 @@ enum OrderByDirection {
   desc
 }
 
-#  ---------------- Subscription -----------------------
+#  ---------------- Subscription ----------------------- #
 type Mutation {
   # ---- Add To Cart ----
-  insert_cart_items(objects: [CartItem!]!): InsertCartItemResponse!
+  insert_cart_items(objects: [InsertCartItemInput!]!): CartItemResponse!
   # ---- Update Cart Quantity ----
   update_cart_items(
     where: CartItemFilter # Use the input type for filtering
     _set: CartItemUpdate # Use the input type for updating
   ): UpdateCartQuantityResponse
 
+
+
   insert_orders(objects: [Order!]!): OrderMutationResponse!
 
   insert_order_items(objects: [OrderItem!]!): OrderItemsMutationResponse!
+
+  delete_cart_items(where: CartUserIdFilter): CartItemResponse!
+
+  delete_cart_items_by_pk(id: CartItemFilter) : CartItemDeletedResponse
 }
 
+# ---- Mutation Response ---- #
 type OrderMutationResponse {
   affected_rows: Int!
+}
+
+type CartItemDeletedResponse {
+  id: bigint!
 }
 
 type OrderItemsMutationResponse {
   affected_rows: Int!
 }
 
-type InsertCartItemResponse {
+type CartItemResponse {
+  affected_rows: Int!
+}
+
+type UpdateCartQuantityResponse {
   affected_rows: Int!
 }
 
@@ -51,20 +65,27 @@ input order_items_insert_input {
   user_id: uuid!
 }
 
-# ---- Update Cart ----
-type UpdateCartQuantityResponse {
-  affected_rows: Int!
-}
 
 input CartItemFilter {
-  variant_id: bigint!
+  id: bigint!
 }
 
 input CartItemUpdate {
   cart_quantity: smallint!
 }
 
-## ------------------Types------------------------------
+
+input CartUserIdFilter {
+  user_id: uuid!
+}
+
+input InsertCartItemInput {
+  user_id: uuid!
+  variant_id: bigint!
+  cart_quantity: smallint!
+}
+
+## ------------------Types------------------------------ ##
 
 # Orders
 type Order {
@@ -93,7 +114,7 @@ type OrderItem {
 
 # Cart
 type CartItem {
-  id: bigint!
+  id: bigint
   image: String!
   mrp: numeric
   price: numeric!
@@ -104,7 +125,30 @@ type CartItem {
   user_id: uuid!
   variant_id: bigint!
   cart_quantity: smallint!
+  variant: Variant
 }
+
+type Product {
+  id: bigint
+  product_title: String
+  featured_image: String
+}
+
+type Variant {
+  id: bigint
+  mrp: numeric
+  price: numeric
+  uom_value: String
+  uom: UOM
+  product: Product
+}
+
+type UOM {
+  uom_name: String
+}
+
+
+
 
 # Scalars
 scalar numeric

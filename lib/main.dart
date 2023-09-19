@@ -49,6 +49,7 @@ class MyApp extends StatelessWidget {
         ),
         BlocProvider(
           create: (_) => di.sl<CartCubit>(),
+          lazy: false,
         ),
         BlocProvider(
           create: (_) => di.sl<GetLocationCubit>(),
