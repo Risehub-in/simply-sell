@@ -13,35 +13,31 @@ query GetOrders {
   }
 }
 
-
 mutation CreateOrder(
-  $customer_latitude: float8!
-  $customer_longitude: float8!
-  $delivery_address: String!
   $id: bigint!
-  $delivery_fee: numeric!
-  $order_status: String!
   $user_id: uuid!
-  $payment_id: String!
+  $delivery_fee: numeric!
+  $address_id: bigint!
+  $payment_response_id: String!
   $payment_amount: numeric!
   $order_items: [order_items_insert_input!]!
 ) {
   insert_orders(
     objects: {
-      customer_latitude: $customer_latitude
-      customer_longitude: $customer_longitude
-      delivery_address: $delivery_address
-      delivery_fee: $delivery_fee
       id: $id
-      order_status: $order_status
       user_id: $user_id
-      payment_id: $payment_id
+      delivery_fee: $delivery_fee
+      address_id: $address_id
+      payment_response_id: $payment_response_id
       payment_amount: $payment_amount
     }
   ) {
     affected_rows
   }
   insert_order_items(objects: $order_items) {
+    affected_rows
+  }
+  delete_cart_items(where: { user_id: { _eq: $user_id } }) {
     affected_rows
   }
 }

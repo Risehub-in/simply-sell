@@ -11,7 +11,6 @@ class OrderItemEntity extends Equatable {
     this.orderId,
     required this.variantId,
     required this.price,
-    required,
   });
 
   @override

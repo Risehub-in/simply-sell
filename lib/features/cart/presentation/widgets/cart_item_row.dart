@@ -15,7 +15,8 @@ class CartItemRow extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     double totalPrice = cartItem.price * cartItem.cartQuantity;
-    double totalMrp = cartItem.mrp! * cartItem.cartQuantity;
+    double totalMrp =
+        cartItem.mrp != null ? cartItem.mrp! * cartItem.cartQuantity : 0;
     return Row(
       children: [
         Row(
@@ -75,17 +76,17 @@ class CartItemRow extends StatelessWidget {
         Spacer(),
         Column(
           children: [
+            Text(
+              AppDefaults.currency + '${totalPrice.toStringAsFixed(0)}',
+            ),
             if (cartItem.mrp != null)
               Text(
-                AppDefaults.currency + '${totalPrice.toStringAsFixed(0)}',
+                AppDefaults.currency + '${totalMrp.toStringAsFixed(0)}',
+                style: Theme.of(context).textTheme.labelSmall?.copyWith(
+                      decoration: TextDecoration.lineThrough,
+                      height: 0.6,
+                    ),
               ),
-            Text(
-              AppDefaults.currency + '${totalMrp.toStringAsFixed(0)}',
-              style: Theme.of(context).textTheme.labelSmall?.copyWith(
-                    decoration: TextDecoration.lineThrough,
-                    height: 0.6,
-                  ),
-            ),
           ],
         )
       ],

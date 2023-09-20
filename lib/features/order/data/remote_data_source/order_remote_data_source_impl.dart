@@ -25,20 +25,6 @@ class OrderRemoteDataSourceImpl implements OrderRemoteDataSource {
     final randomDigits = List.generate(10, (index) => random.nextInt(10));
     final randomString = randomDigits.join();
 
-    final orderId = int.parse(randomString);
-    print(orderId);
-
-    List<Input$order_items_insert_input> orderItems =
-        order.orderItems.map((orderItem) {
-      return Input$order_items_insert_input(
-        user_id: supabase.client.auth.currentSession!.user.id,
-        item_quantity: orderItem.itemQuantity,
-        order_id: orderId,
-        variant_id: orderItem.variantId,
-        price: orderItem.price,
-      );
-    }).toList();
-
     var razorpayOptions = {
       'key': 'rzp_test_3gVcn5TnJql0pg',
       'amount': order.paymentAmount * 100,
@@ -55,6 +41,18 @@ class OrderRemoteDataSourceImpl implements OrderRemoteDataSource {
       }
     };
 
+    final orderId = int.parse(randomString);
+
+    List<Input$order_items_insert_input> orderItems =
+        order.orderItems.map((orderItem) {
+      return Input$order_items_insert_input(
+        item_quantity: orderItem.itemQuantity,
+        order_id: orderId,
+        variant_id: orderItem.variantId,
+        price: orderItem.price,
+      );
+    }).toList();
+
     razorpay.on(
       Razorpay.EVENT_PAYMENT_SUCCESS,
       (PaymentSuccessResponse response) async {
@@ -62,15 +60,12 @@ class OrderRemoteDataSourceImpl implements OrderRemoteDataSource {
         final results = await hasuraService.client.mutate$CreateOrder(
           Options$Mutation$CreateOrder(
             variables: Variables$Mutation$CreateOrder(
-              customer_latitude: order.customerLatitude,
-              customer_longitude: order.customerLongitude,
-              delivery_address: order.deliveryAddress,
               id: orderId,
               delivery_fee: order.deliveryFee,
-              order_status: order.orderStatus,
               user_id: supabase.client.auth.currentSession!.user.id,
-              payment_id: response.paymentId!,
+              address_id: order.addressId,
               payment_amount: order.paymentAmount,
+              payment_response_id: response.paymentId!,
               order_items: orderItems,
             ),
           ),

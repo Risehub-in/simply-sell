@@ -13,10 +13,9 @@ class OrderRepositoryImpl implements OrderRepository {
   Future<void> createOrder(OrderEntity orderEntity) async {
     await orderRemoteDataSource.createOrder(
       OrderModel(
-        deliveryAddress: orderEntity.deliveryAddress,
+        paymentResponseId: orderEntity.paymentResponseId,
+        addressId: orderEntity.addressId,
         deliveryFee: orderEntity.deliveryFee,
-        customerLatitude: orderEntity.customerLatitude,
-        customerLongitude: orderEntity.customerLongitude,
         orderStatus: orderEntity.orderStatus,
         paymentAmount: orderEntity.paymentAmount,
         orderItems: orderEntity.orderItems

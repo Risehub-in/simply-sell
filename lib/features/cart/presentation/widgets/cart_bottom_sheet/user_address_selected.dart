@@ -99,10 +99,8 @@ class UserAddressSelected extends StatelessWidget {
   Future<void> _createOrder(BuildContext context) async {
     final getLocationState = context.read<GetLocationCubit>().state;
     final cartState = context.read<CartCubit>().state;
-    String? deliveryAddress;
     double? paymentAmount;
-    double? customerLatitude;
-    double? customerLongitude;
+    int? addressId;
     List<OrderItemEntity> orderItems = [];
 
     if (cartState is CartStateDone) {
@@ -123,24 +121,18 @@ class UserAddressSelected extends StatelessWidget {
     }
 
     if (getLocationState is GetLocationStateDone) {
-      deliveryAddress = '${getLocationState.locationAddress.addressSubtitle}';
-      customerLatitude = getLocationState.coordinates.latitude;
-      customerLongitude = getLocationState.coordinates.longitude;
+      addressId = getLocationState.addressId!;
     }
     print(orderItems);
     if (orderItems.length > 0) {
       await context.read<OrderCubit>().createOrder(
             OrderEntity(
-              deliveryAddress: deliveryAddress!,
+              addressId: addressId!,
               deliveryFee: 50,
-              customerLatitude: customerLatitude!,
-              customerLongitude: customerLongitude!,
-              orderStatus: 'pending',
               paymentAmount: paymentAmount!,
               orderItems: orderItems,
             ),
           );
-      await context.read<CartCubit>().clearCart();
     }
   }
 

@@ -21,7 +21,7 @@ class CartModel extends CartEntity {
       cartQuantity: json['cart_quantity'],
       userId: json['user_id'],
       variantId: json['variant']['id'],
-      mrp: json['variant']['mrp'].toDouble(),
+      mrp: json['variant']['mrp']?.toDouble(),
       price: json['variant']['price'].toDouble(),
       uomValue: json['variant']['uom_value'],
       uomName: json['variant']['uom']['uom_name'],

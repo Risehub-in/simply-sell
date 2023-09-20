@@ -682,26 +682,20 @@ class _CopyWithStubImpl$Query$GetOrders$orders<TRes>
 
 class Variables$Mutation$CreateOrder {
   factory Variables$Mutation$CreateOrder({
-    required double customer_latitude,
-    required double customer_longitude,
-    required String delivery_address,
     required int id,
-    required double delivery_fee,
-    required String order_status,
     required String user_id,
-    required String payment_id,
+    required double delivery_fee,
+    required int address_id,
+    required String payment_response_id,
     required double payment_amount,
     required List<Input$order_items_insert_input> order_items,
   }) =>
       Variables$Mutation$CreateOrder._({
-        r'customer_latitude': customer_latitude,
-        r'customer_longitude': customer_longitude,
-        r'delivery_address': delivery_address,
         r'id': id,
-        r'delivery_fee': delivery_fee,
-        r'order_status': order_status,
         r'user_id': user_id,
-        r'payment_id': payment_id,
+        r'delivery_fee': delivery_fee,
+        r'address_id': address_id,
+        r'payment_response_id': payment_response_id,
         r'payment_amount': payment_amount,
         r'order_items': order_items,
       });
@@ -710,23 +704,16 @@ class Variables$Mutation$CreateOrder {
 
   factory Variables$Mutation$CreateOrder.fromJson(Map<String, dynamic> data) {
     final result$data = <String, dynamic>{};
-    final l$customer_latitude = data['customer_latitude'];
-    result$data['customer_latitude'] = (l$customer_latitude as num).toDouble();
-    final l$customer_longitude = data['customer_longitude'];
-    result$data['customer_longitude'] =
-        (l$customer_longitude as num).toDouble();
-    final l$delivery_address = data['delivery_address'];
-    result$data['delivery_address'] = (l$delivery_address as String);
     final l$id = data['id'];
     result$data['id'] = (l$id as int);
-    final l$delivery_fee = data['delivery_fee'];
-    result$data['delivery_fee'] = (l$delivery_fee as num).toDouble();
-    final l$order_status = data['order_status'];
-    result$data['order_status'] = (l$order_status as String);
     final l$user_id = data['user_id'];
     result$data['user_id'] = (l$user_id as String);
-    final l$payment_id = data['payment_id'];
-    result$data['payment_id'] = (l$payment_id as String);
+    final l$delivery_fee = data['delivery_fee'];
+    result$data['delivery_fee'] = (l$delivery_fee as num).toDouble();
+    final l$address_id = data['address_id'];
+    result$data['address_id'] = (l$address_id as int);
+    final l$payment_response_id = data['payment_response_id'];
+    result$data['payment_response_id'] = (l$payment_response_id as String);
     final l$payment_amount = data['payment_amount'];
     result$data['payment_amount'] = (l$payment_amount as num).toDouble();
     final l$order_items = data['order_items'];
@@ -739,35 +726,26 @@ class Variables$Mutation$CreateOrder {
 
   Map<String, dynamic> _$data;
 
-  double get customer_latitude => (_$data['customer_latitude'] as double);
-  double get customer_longitude => (_$data['customer_longitude'] as double);
-  String get delivery_address => (_$data['delivery_address'] as String);
   int get id => (_$data['id'] as int);
-  double get delivery_fee => (_$data['delivery_fee'] as double);
-  String get order_status => (_$data['order_status'] as String);
   String get user_id => (_$data['user_id'] as String);
-  String get payment_id => (_$data['payment_id'] as String);
+  double get delivery_fee => (_$data['delivery_fee'] as double);
+  int get address_id => (_$data['address_id'] as int);
+  String get payment_response_id => (_$data['payment_response_id'] as String);
   double get payment_amount => (_$data['payment_amount'] as double);
   List<Input$order_items_insert_input> get order_items =>
       (_$data['order_items'] as List<Input$order_items_insert_input>);
   Map<String, dynamic> toJson() {
     final result$data = <String, dynamic>{};
-    final l$customer_latitude = customer_latitude;
-    result$data['customer_latitude'] = l$customer_latitude;
-    final l$customer_longitude = customer_longitude;
-    result$data['customer_longitude'] = l$customer_longitude;
-    final l$delivery_address = delivery_address;
-    result$data['delivery_address'] = l$delivery_address;
     final l$id = id;
     result$data['id'] = l$id;
-    final l$delivery_fee = delivery_fee;
-    result$data['delivery_fee'] = l$delivery_fee;
-    final l$order_status = order_status;
-    result$data['order_status'] = l$order_status;
     final l$user_id = user_id;
     result$data['user_id'] = l$user_id;
-    final l$payment_id = payment_id;
-    result$data['payment_id'] = l$payment_id;
+    final l$delivery_fee = delivery_fee;
+    result$data['delivery_fee'] = l$delivery_fee;
+    final l$address_id = address_id;
+    result$data['address_id'] = l$address_id;
+    final l$payment_response_id = payment_response_id;
+    result$data['payment_response_id'] = l$payment_response_id;
     final l$payment_amount = payment_amount;
     result$data['payment_amount'] = l$payment_amount;
     final l$order_items = order_items;
@@ -789,34 +767,9 @@ class Variables$Mutation$CreateOrder {
         runtimeType != other.runtimeType) {
       return false;
     }
-    final l$customer_latitude = customer_latitude;
-    final lOther$customer_latitude = other.customer_latitude;
-    if (l$customer_latitude != lOther$customer_latitude) {
-      return false;
-    }
-    final l$customer_longitude = customer_longitude;
-    final lOther$customer_longitude = other.customer_longitude;
-    if (l$customer_longitude != lOther$customer_longitude) {
-      return false;
-    }
-    final l$delivery_address = delivery_address;
-    final lOther$delivery_address = other.delivery_address;
-    if (l$delivery_address != lOther$delivery_address) {
-      return false;
-    }
     final l$id = id;
     final lOther$id = other.id;
     if (l$id != lOther$id) {
-      return false;
-    }
-    final l$delivery_fee = delivery_fee;
-    final lOther$delivery_fee = other.delivery_fee;
-    if (l$delivery_fee != lOther$delivery_fee) {
-      return false;
-    }
-    final l$order_status = order_status;
-    final lOther$order_status = other.order_status;
-    if (l$order_status != lOther$order_status) {
       return false;
     }
     final l$user_id = user_id;
@@ -824,9 +777,19 @@ class Variables$Mutation$CreateOrder {
     if (l$user_id != lOther$user_id) {
       return false;
     }
-    final l$payment_id = payment_id;
-    final lOther$payment_id = other.payment_id;
-    if (l$payment_id != lOther$payment_id) {
+    final l$delivery_fee = delivery_fee;
+    final lOther$delivery_fee = other.delivery_fee;
+    if (l$delivery_fee != lOther$delivery_fee) {
+      return false;
+    }
+    final l$address_id = address_id;
+    final lOther$address_id = other.address_id;
+    if (l$address_id != lOther$address_id) {
+      return false;
+    }
+    final l$payment_response_id = payment_response_id;
+    final lOther$payment_response_id = other.payment_response_id;
+    if (l$payment_response_id != lOther$payment_response_id) {
       return false;
     }
     final l$payment_amount = payment_amount;
@@ -851,25 +814,19 @@ class Variables$Mutation$CreateOrder {
 
   @override
   int get hashCode {
-    final l$customer_latitude = customer_latitude;
-    final l$customer_longitude = customer_longitude;
-    final l$delivery_address = delivery_address;
     final l$id = id;
-    final l$delivery_fee = delivery_fee;
-    final l$order_status = order_status;
     final l$user_id = user_id;
-    final l$payment_id = payment_id;
+    final l$delivery_fee = delivery_fee;
+    final l$address_id = address_id;
+    final l$payment_response_id = payment_response_id;
     final l$payment_amount = payment_amount;
     final l$order_items = order_items;
     return Object.hashAll([
-      l$customer_latitude,
-      l$customer_longitude,
-      l$delivery_address,
       l$id,
-      l$delivery_fee,
-      l$order_status,
       l$user_id,
-      l$payment_id,
+      l$delivery_fee,
+      l$address_id,
+      l$payment_response_id,
       l$payment_amount,
       Object.hashAll(l$order_items.map((v) => v)),
     ]);
@@ -886,14 +843,11 @@ abstract class CopyWith$Variables$Mutation$CreateOrder<TRes> {
       _CopyWithStubImpl$Variables$Mutation$CreateOrder;
 
   TRes call({
-    double? customer_latitude,
-    double? customer_longitude,
-    String? delivery_address,
     int? id,
-    double? delivery_fee,
-    String? order_status,
     String? user_id,
-    String? payment_id,
+    double? delivery_fee,
+    int? address_id,
+    String? payment_response_id,
     double? payment_amount,
     List<Input$order_items_insert_input>? order_items,
   });
@@ -913,34 +867,25 @@ class _CopyWithImpl$Variables$Mutation$CreateOrder<TRes>
   static const _undefined = <dynamic, dynamic>{};
 
   TRes call({
-    Object? customer_latitude = _undefined,
-    Object? customer_longitude = _undefined,
-    Object? delivery_address = _undefined,
     Object? id = _undefined,
-    Object? delivery_fee = _undefined,
-    Object? order_status = _undefined,
     Object? user_id = _undefined,
-    Object? payment_id = _undefined,
+    Object? delivery_fee = _undefined,
+    Object? address_id = _undefined,
+    Object? payment_response_id = _undefined,
     Object? payment_amount = _undefined,
     Object? order_items = _undefined,
   }) =>
       _then(Variables$Mutation$CreateOrder._({
         ..._instance._$data,
-        if (customer_latitude != _undefined && customer_latitude != null)
-          'customer_latitude': (customer_latitude as double),
-        if (customer_longitude != _undefined && customer_longitude != null)
-          'customer_longitude': (customer_longitude as double),
-        if (delivery_address != _undefined && delivery_address != null)
-          'delivery_address': (delivery_address as String),
         if (id != _undefined && id != null) 'id': (id as int),
-        if (delivery_fee != _undefined && delivery_fee != null)
-          'delivery_fee': (delivery_fee as double),
-        if (order_status != _undefined && order_status != null)
-          'order_status': (order_status as String),
         if (user_id != _undefined && user_id != null)
           'user_id': (user_id as String),
-        if (payment_id != _undefined && payment_id != null)
-          'payment_id': (payment_id as String),
+        if (delivery_fee != _undefined && delivery_fee != null)
+          'delivery_fee': (delivery_fee as double),
+        if (address_id != _undefined && address_id != null)
+          'address_id': (address_id as int),
+        if (payment_response_id != _undefined && payment_response_id != null)
+          'payment_response_id': (payment_response_id as String),
         if (payment_amount != _undefined && payment_amount != null)
           'payment_amount': (payment_amount as double),
         if (order_items != _undefined && order_items != null)
@@ -955,14 +900,11 @@ class _CopyWithStubImpl$Variables$Mutation$CreateOrder<TRes>
   TRes _res;
 
   call({
-    double? customer_latitude,
-    double? customer_longitude,
-    String? delivery_address,
     int? id,
-    double? delivery_fee,
-    String? order_status,
     String? user_id,
-    String? payment_id,
+    double? delivery_fee,
+    int? address_id,
+    String? payment_response_id,
     double? payment_amount,
     List<Input$order_items_insert_input>? order_items,
   }) =>
@@ -973,18 +915,22 @@ class Mutation$CreateOrder {
   Mutation$CreateOrder({
     required this.insert_orders,
     required this.insert_order_items,
+    required this.delete_cart_items,
     this.$__typename = 'Mutation',
   });
 
   factory Mutation$CreateOrder.fromJson(Map<String, dynamic> json) {
     final l$insert_orders = json['insert_orders'];
     final l$insert_order_items = json['insert_order_items'];
+    final l$delete_cart_items = json['delete_cart_items'];
     final l$$__typename = json['__typename'];
     return Mutation$CreateOrder(
       insert_orders: Mutation$CreateOrder$insert_orders.fromJson(
           (l$insert_orders as Map<String, dynamic>)),
       insert_order_items: Mutation$CreateOrder$insert_order_items.fromJson(
           (l$insert_order_items as Map<String, dynamic>)),
+      delete_cart_items: Mutation$CreateOrder$delete_cart_items.fromJson(
+          (l$delete_cart_items as Map<String, dynamic>)),
       $__typename: (l$$__typename as String),
     );
   }
@@ -992,6 +938,8 @@ class Mutation$CreateOrder {
   final Mutation$CreateOrder$insert_orders insert_orders;
 
   final Mutation$CreateOrder$insert_order_items insert_order_items;
+
+  final Mutation$CreateOrder$delete_cart_items delete_cart_items;
 
   final String $__typename;
 
@@ -1001,6 +949,8 @@ class Mutation$CreateOrder {
     _resultData['insert_orders'] = l$insert_orders.toJson();
     final l$insert_order_items = insert_order_items;
     _resultData['insert_order_items'] = l$insert_order_items.toJson();
+    final l$delete_cart_items = delete_cart_items;
+    _resultData['delete_cart_items'] = l$delete_cart_items.toJson();
     final l$$__typename = $__typename;
     _resultData['__typename'] = l$$__typename;
     return _resultData;
@@ -1010,10 +960,12 @@ class Mutation$CreateOrder {
   int get hashCode {
     final l$insert_orders = insert_orders;
     final l$insert_order_items = insert_order_items;
+    final l$delete_cart_items = delete_cart_items;
     final l$$__typename = $__typename;
     return Object.hashAll([
       l$insert_orders,
       l$insert_order_items,
+      l$delete_cart_items,
       l$$__typename,
     ]);
   }
@@ -1034,6 +986,11 @@ class Mutation$CreateOrder {
     final l$insert_order_items = insert_order_items;
     final lOther$insert_order_items = other.insert_order_items;
     if (l$insert_order_items != lOther$insert_order_items) {
+      return false;
+    }
+    final l$delete_cart_items = delete_cart_items;
+    final lOther$delete_cart_items = other.delete_cart_items;
+    if (l$delete_cart_items != lOther$delete_cart_items) {
       return false;
     }
     final l$$__typename = $__typename;
@@ -1065,10 +1022,12 @@ abstract class CopyWith$Mutation$CreateOrder<TRes> {
   TRes call({
     Mutation$CreateOrder$insert_orders? insert_orders,
     Mutation$CreateOrder$insert_order_items? insert_order_items,
+    Mutation$CreateOrder$delete_cart_items? delete_cart_items,
     String? $__typename,
   });
   CopyWith$Mutation$CreateOrder$insert_orders<TRes> get insert_orders;
   CopyWith$Mutation$CreateOrder$insert_order_items<TRes> get insert_order_items;
+  CopyWith$Mutation$CreateOrder$delete_cart_items<TRes> get delete_cart_items;
 }
 
 class _CopyWithImpl$Mutation$CreateOrder<TRes>
@@ -1087,6 +1046,7 @@ class _CopyWithImpl$Mutation$CreateOrder<TRes>
   TRes call({
     Object? insert_orders = _undefined,
     Object? insert_order_items = _undefined,
+    Object? delete_cart_items = _undefined,
     Object? $__typename = _undefined,
   }) =>
       _then(Mutation$CreateOrder(
@@ -1097,6 +1057,10 @@ class _CopyWithImpl$Mutation$CreateOrder<TRes>
                 insert_order_items == null
             ? _instance.insert_order_items
             : (insert_order_items as Mutation$CreateOrder$insert_order_items),
+        delete_cart_items:
+            delete_cart_items == _undefined || delete_cart_items == null
+                ? _instance.delete_cart_items
+                : (delete_cart_items as Mutation$CreateOrder$delete_cart_items),
         $__typename: $__typename == _undefined || $__typename == null
             ? _instance.$__typename
             : ($__typename as String),
@@ -1113,6 +1077,12 @@ class _CopyWithImpl$Mutation$CreateOrder<TRes>
     return CopyWith$Mutation$CreateOrder$insert_order_items(
         local$insert_order_items, (e) => call(insert_order_items: e));
   }
+
+  CopyWith$Mutation$CreateOrder$delete_cart_items<TRes> get delete_cart_items {
+    final local$delete_cart_items = _instance.delete_cart_items;
+    return CopyWith$Mutation$CreateOrder$delete_cart_items(
+        local$delete_cart_items, (e) => call(delete_cart_items: e));
+  }
 }
 
 class _CopyWithStubImpl$Mutation$CreateOrder<TRes>
@@ -1124,6 +1094,7 @@ class _CopyWithStubImpl$Mutation$CreateOrder<TRes>
   call({
     Mutation$CreateOrder$insert_orders? insert_orders,
     Mutation$CreateOrder$insert_order_items? insert_order_items,
+    Mutation$CreateOrder$delete_cart_items? delete_cart_items,
     String? $__typename,
   }) =>
       _res;
@@ -1132,6 +1103,8 @@ class _CopyWithStubImpl$Mutation$CreateOrder<TRes>
   CopyWith$Mutation$CreateOrder$insert_order_items<TRes>
       get insert_order_items =>
           CopyWith$Mutation$CreateOrder$insert_order_items.stub(_res);
+  CopyWith$Mutation$CreateOrder$delete_cart_items<TRes> get delete_cart_items =>
+      CopyWith$Mutation$CreateOrder$delete_cart_items.stub(_res);
 }
 
 const documentNodeMutationCreateOrder = DocumentNode(definitions: [
@@ -1140,54 +1113,9 @@ const documentNodeMutationCreateOrder = DocumentNode(definitions: [
     name: NameNode(value: 'CreateOrder'),
     variableDefinitions: [
       VariableDefinitionNode(
-        variable: VariableNode(name: NameNode(value: 'customer_latitude')),
-        type: NamedTypeNode(
-          name: NameNode(value: 'float8'),
-          isNonNull: true,
-        ),
-        defaultValue: DefaultValueNode(value: null),
-        directives: [],
-      ),
-      VariableDefinitionNode(
-        variable: VariableNode(name: NameNode(value: 'customer_longitude')),
-        type: NamedTypeNode(
-          name: NameNode(value: 'float8'),
-          isNonNull: true,
-        ),
-        defaultValue: DefaultValueNode(value: null),
-        directives: [],
-      ),
-      VariableDefinitionNode(
-        variable: VariableNode(name: NameNode(value: 'delivery_address')),
-        type: NamedTypeNode(
-          name: NameNode(value: 'String'),
-          isNonNull: true,
-        ),
-        defaultValue: DefaultValueNode(value: null),
-        directives: [],
-      ),
-      VariableDefinitionNode(
         variable: VariableNode(name: NameNode(value: 'id')),
         type: NamedTypeNode(
           name: NameNode(value: 'bigint'),
-          isNonNull: true,
-        ),
-        defaultValue: DefaultValueNode(value: null),
-        directives: [],
-      ),
-      VariableDefinitionNode(
-        variable: VariableNode(name: NameNode(value: 'delivery_fee')),
-        type: NamedTypeNode(
-          name: NameNode(value: 'numeric'),
-          isNonNull: true,
-        ),
-        defaultValue: DefaultValueNode(value: null),
-        directives: [],
-      ),
-      VariableDefinitionNode(
-        variable: VariableNode(name: NameNode(value: 'order_status')),
-        type: NamedTypeNode(
-          name: NameNode(value: 'String'),
           isNonNull: true,
         ),
         defaultValue: DefaultValueNode(value: null),
@@ -1203,7 +1131,25 @@ const documentNodeMutationCreateOrder = DocumentNode(definitions: [
         directives: [],
       ),
       VariableDefinitionNode(
-        variable: VariableNode(name: NameNode(value: 'payment_id')),
+        variable: VariableNode(name: NameNode(value: 'delivery_fee')),
+        type: NamedTypeNode(
+          name: NameNode(value: 'numeric'),
+          isNonNull: true,
+        ),
+        defaultValue: DefaultValueNode(value: null),
+        directives: [],
+      ),
+      VariableDefinitionNode(
+        variable: VariableNode(name: NameNode(value: 'address_id')),
+        type: NamedTypeNode(
+          name: NameNode(value: 'bigint'),
+          isNonNull: true,
+        ),
+        defaultValue: DefaultValueNode(value: null),
+        directives: [],
+      ),
+      VariableDefinitionNode(
+        variable: VariableNode(name: NameNode(value: 'payment_response_id')),
         type: NamedTypeNode(
           name: NameNode(value: 'String'),
           isNonNull: true,
@@ -1243,37 +1189,25 @@ const documentNodeMutationCreateOrder = DocumentNode(definitions: [
             name: NameNode(value: 'objects'),
             value: ObjectValueNode(fields: [
               ObjectFieldNode(
-                name: NameNode(value: 'customer_latitude'),
-                value: VariableNode(name: NameNode(value: 'customer_latitude')),
-              ),
-              ObjectFieldNode(
-                name: NameNode(value: 'customer_longitude'),
-                value:
-                    VariableNode(name: NameNode(value: 'customer_longitude')),
-              ),
-              ObjectFieldNode(
-                name: NameNode(value: 'delivery_address'),
-                value: VariableNode(name: NameNode(value: 'delivery_address')),
-              ),
-              ObjectFieldNode(
-                name: NameNode(value: 'delivery_fee'),
-                value: VariableNode(name: NameNode(value: 'delivery_fee')),
-              ),
-              ObjectFieldNode(
                 name: NameNode(value: 'id'),
                 value: VariableNode(name: NameNode(value: 'id')),
-              ),
-              ObjectFieldNode(
-                name: NameNode(value: 'order_status'),
-                value: VariableNode(name: NameNode(value: 'order_status')),
               ),
               ObjectFieldNode(
                 name: NameNode(value: 'user_id'),
                 value: VariableNode(name: NameNode(value: 'user_id')),
               ),
               ObjectFieldNode(
-                name: NameNode(value: 'payment_id'),
-                value: VariableNode(name: NameNode(value: 'payment_id')),
+                name: NameNode(value: 'delivery_fee'),
+                value: VariableNode(name: NameNode(value: 'delivery_fee')),
+              ),
+              ObjectFieldNode(
+                name: NameNode(value: 'address_id'),
+                value: VariableNode(name: NameNode(value: 'address_id')),
+              ),
+              ObjectFieldNode(
+                name: NameNode(value: 'payment_response_id'),
+                value:
+                    VariableNode(name: NameNode(value: 'payment_response_id')),
               ),
               ObjectFieldNode(
                 name: NameNode(value: 'payment_amount'),
@@ -1307,6 +1241,43 @@ const documentNodeMutationCreateOrder = DocumentNode(definitions: [
           ArgumentNode(
             name: NameNode(value: 'objects'),
             value: VariableNode(name: NameNode(value: 'order_items')),
+          )
+        ],
+        directives: [],
+        selectionSet: SelectionSetNode(selections: [
+          FieldNode(
+            name: NameNode(value: 'affected_rows'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null,
+          ),
+          FieldNode(
+            name: NameNode(value: '__typename'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null,
+          ),
+        ]),
+      ),
+      FieldNode(
+        name: NameNode(value: 'delete_cart_items'),
+        alias: null,
+        arguments: [
+          ArgumentNode(
+            name: NameNode(value: 'where'),
+            value: ObjectValueNode(fields: [
+              ObjectFieldNode(
+                name: NameNode(value: 'user_id'),
+                value: ObjectValueNode(fields: [
+                  ObjectFieldNode(
+                    name: NameNode(value: '_eq'),
+                    value: VariableNode(name: NameNode(value: 'user_id')),
+                  )
+                ]),
+              )
+            ]),
           )
         ],
         directives: [],
@@ -1789,6 +1760,133 @@ class _CopyWithImpl$Mutation$CreateOrder$insert_order_items<TRes>
 class _CopyWithStubImpl$Mutation$CreateOrder$insert_order_items<TRes>
     implements CopyWith$Mutation$CreateOrder$insert_order_items<TRes> {
   _CopyWithStubImpl$Mutation$CreateOrder$insert_order_items(this._res);
+
+  TRes _res;
+
+  call({
+    int? affected_rows,
+    String? $__typename,
+  }) =>
+      _res;
+}
+
+class Mutation$CreateOrder$delete_cart_items {
+  Mutation$CreateOrder$delete_cart_items({
+    required this.affected_rows,
+    this.$__typename = 'CartItemResponse',
+  });
+
+  factory Mutation$CreateOrder$delete_cart_items.fromJson(
+      Map<String, dynamic> json) {
+    final l$affected_rows = json['affected_rows'];
+    final l$$__typename = json['__typename'];
+    return Mutation$CreateOrder$delete_cart_items(
+      affected_rows: (l$affected_rows as int),
+      $__typename: (l$$__typename as String),
+    );
+  }
+
+  final int affected_rows;
+
+  final String $__typename;
+
+  Map<String, dynamic> toJson() {
+    final _resultData = <String, dynamic>{};
+    final l$affected_rows = affected_rows;
+    _resultData['affected_rows'] = l$affected_rows;
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
+  }
+
+  @override
+  int get hashCode {
+    final l$affected_rows = affected_rows;
+    final l$$__typename = $__typename;
+    return Object.hashAll([
+      l$affected_rows,
+      l$$__typename,
+    ]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (!(other is Mutation$CreateOrder$delete_cart_items) ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$affected_rows = affected_rows;
+    final lOther$affected_rows = other.affected_rows;
+    if (l$affected_rows != lOther$affected_rows) {
+      return false;
+    }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
+      return false;
+    }
+    return true;
+  }
+}
+
+extension UtilityExtension$Mutation$CreateOrder$delete_cart_items
+    on Mutation$CreateOrder$delete_cart_items {
+  CopyWith$Mutation$CreateOrder$delete_cart_items<
+          Mutation$CreateOrder$delete_cart_items>
+      get copyWith => CopyWith$Mutation$CreateOrder$delete_cart_items(
+            this,
+            (i) => i,
+          );
+}
+
+abstract class CopyWith$Mutation$CreateOrder$delete_cart_items<TRes> {
+  factory CopyWith$Mutation$CreateOrder$delete_cart_items(
+    Mutation$CreateOrder$delete_cart_items instance,
+    TRes Function(Mutation$CreateOrder$delete_cart_items) then,
+  ) = _CopyWithImpl$Mutation$CreateOrder$delete_cart_items;
+
+  factory CopyWith$Mutation$CreateOrder$delete_cart_items.stub(TRes res) =
+      _CopyWithStubImpl$Mutation$CreateOrder$delete_cart_items;
+
+  TRes call({
+    int? affected_rows,
+    String? $__typename,
+  });
+}
+
+class _CopyWithImpl$Mutation$CreateOrder$delete_cart_items<TRes>
+    implements CopyWith$Mutation$CreateOrder$delete_cart_items<TRes> {
+  _CopyWithImpl$Mutation$CreateOrder$delete_cart_items(
+    this._instance,
+    this._then,
+  );
+
+  final Mutation$CreateOrder$delete_cart_items _instance;
+
+  final TRes Function(Mutation$CreateOrder$delete_cart_items) _then;
+
+  static const _undefined = <dynamic, dynamic>{};
+
+  TRes call({
+    Object? affected_rows = _undefined,
+    Object? $__typename = _undefined,
+  }) =>
+      _then(Mutation$CreateOrder$delete_cart_items(
+        affected_rows: affected_rows == _undefined || affected_rows == null
+            ? _instance.affected_rows
+            : (affected_rows as int),
+        $__typename: $__typename == _undefined || $__typename == null
+            ? _instance.$__typename
+            : ($__typename as String),
+      ));
+}
+
+class _CopyWithStubImpl$Mutation$CreateOrder$delete_cart_items<TRes>
+    implements CopyWith$Mutation$CreateOrder$delete_cart_items<TRes> {
+  _CopyWithStubImpl$Mutation$CreateOrder$delete_cart_items(this._res);
 
   TRes _res;
 

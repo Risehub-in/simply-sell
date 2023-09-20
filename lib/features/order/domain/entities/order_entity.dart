@@ -5,26 +5,22 @@ class OrderEntity extends Equatable {
   final int? id;
   final DateTime? dateTime;
   final String? userId;
-  final String deliveryAddress;
+  final int addressId;
+  final int? paymentResponseId;
   final double deliveryFee;
-  final double customerLatitude;
-  final double customerLongitude;
-  final String orderStatus;
-  final String? paymentId;
   final double paymentAmount;
+  final String? orderStatus;
   final List<OrderItemEntity> orderItems;
 
   OrderEntity({
     this.id,
     this.dateTime,
     this.userId,
-    required this.deliveryAddress,
+    required this.addressId,
     required this.deliveryFee,
-    required this.customerLatitude,
-    required this.customerLongitude,
-    required this.orderStatus,
-    this.paymentId,
     required this.paymentAmount,
+    this.orderStatus,
+    this.paymentResponseId,
     required this.orderItems,
   });
 
@@ -33,13 +29,11 @@ class OrderEntity extends Equatable {
         id,
         dateTime,
         userId,
-        deliveryAddress,
+        addressId,
         deliveryFee,
-        customerLatitude,
-        customerLongitude,
-        orderStatus,
-        paymentId,
         paymentAmount,
+        orderStatus,
+        paymentResponseId,
         orderItems,
       ];
 }

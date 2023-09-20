@@ -120,7 +120,17 @@ const documentNodeSubscriptiongetCartSubscription = DocumentNode(definitions: [
       FieldNode(
         name: NameNode(value: 'cart_items'),
         alias: null,
-        arguments: [],
+        arguments: [
+          ArgumentNode(
+            name: NameNode(value: 'order_by'),
+            value: ObjectValueNode(fields: [
+              ObjectFieldNode(
+                name: NameNode(value: 'created_at'),
+                value: EnumValueNode(name: NameNode(value: 'desc')),
+              )
+            ]),
+          )
+        ],
         directives: [],
         selectionSet: SelectionSetNode(selections: [
           FieldNode(

@@ -15,6 +15,8 @@ enum OrderByDirection {
   desc
 }
 
+
+
 #  ---------------- Subscription ----------------------- #
 type Mutation {
   # ---- Add To Cart ----
@@ -57,13 +59,6 @@ type UpdateCartQuantityResponse {
   affected_rows: Int!
 }
 
-input order_items_insert_input {
-  item_quantity: smallint!
-  order_id: bigint!
-  variant_id: bigint!
-  price: numeric!
-  user_id: uuid!
-}
 
 
 input CartItemFilter {
@@ -85,6 +80,13 @@ input InsertCartItemInput {
   cart_quantity: smallint!
 }
 
+input order_items_insert_input {
+  item_quantity: smallint!
+  order_id: bigint!
+  variant_id: bigint!
+  price: numeric!
+}
+
 ## ------------------Types------------------------------ ##
 
 # Orders
@@ -101,6 +103,11 @@ type Order {
   payment_amount: numeric!
   order_items: [OrderItem]!
 }
+
+type Address {
+  id: bigint
+}
+
 
 type OrderItem {
   created_at: String
