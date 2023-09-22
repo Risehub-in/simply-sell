@@ -21,6 +21,7 @@ class OrderRemoteDataSourceImpl implements OrderRemoteDataSource {
 
   @override
   Future<void> createOrder(OrderModel order) async {
+    // implement orderid check
     final random = Random();
     final randomDigits = List.generate(10, (index) => random.nextInt(10));
     final randomString = randomDigits.join();
@@ -46,6 +47,7 @@ class OrderRemoteDataSourceImpl implements OrderRemoteDataSource {
     List<Input$order_items_insert_input> orderItems =
         order.orderItems.map((orderItem) {
       return Input$order_items_insert_input(
+        product_id: orderItem.productId,
         item_quantity: orderItem.itemQuantity,
         order_id: orderId,
         variant_id: orderItem.variantId,
@@ -88,5 +90,11 @@ class OrderRemoteDataSourceImpl implements OrderRemoteDataSource {
       razorpay.clear();
     });
     razorpay.open(razorpayOptions);
+  }
+
+  @override
+  Future<List<OrderModel>> fetchOrders() {
+    // TODO: implement fetchOrders
+    throw UnimplementedError();
   }
 }

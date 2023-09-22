@@ -21,6 +21,7 @@ class OrderRepositoryImpl implements OrderRepository {
         orderItems: orderEntity.orderItems
             .map(
               (orderItem) => OrderItemModel(
+                productId: orderItem.productId,
                 itemQuantity: orderItem.itemQuantity,
                 variantId: orderItem.variantId,
                 price: orderItem.price,
@@ -29,5 +30,11 @@ class OrderRepositoryImpl implements OrderRepository {
             .toList(),
       ),
     );
+  }
+
+  @override
+  Future<List<OrderModel>> fetchOrders() {
+    // TODO: implement fetchOrdersp
+    throw UnimplementedError();
   }
 }

@@ -1,17 +1,31 @@
-query GetOrders {
+query FetchOrders {
   orders {
     created_at
-    customer_latitude
-    customer_longitude
-    delivery_address
     delivery_fee
     id
     order_status
     payment_amount
-    user_id
-    payment_id
+    payment_response_id
+    order_items {
+      item_quantity
+      price
+      variant {
+        mrp
+        price
+        product {
+          product_title
+        }
+      }
+    }
+    address {
+      address_type
+      area_locality
+      flat_floor_bldg
+      location_address
+    }
   }
 }
+
 
 mutation CreateOrder(
   $id: bigint!

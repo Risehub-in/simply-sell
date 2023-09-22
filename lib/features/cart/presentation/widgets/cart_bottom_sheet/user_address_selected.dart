@@ -109,6 +109,7 @@ class UserAddressSelected extends StatelessWidget {
         cartState.cartItems.forEach((cartItem) {
           orderItems.add(
             OrderItemEntity(
+              productId: cartItem.productId,
               itemQuantity: cartItem.cartQuantity,
               variantId: cartItem.variantId,
               price: cartItem.price,

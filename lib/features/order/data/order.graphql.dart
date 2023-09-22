@@ -5,24 +5,25 @@ import 'package:gql/ast.dart';
 import 'package:graphql/client.dart' as graphql;
 import 'package:graphql_flutter/graphql_flutter.dart' as graphql_flutter;
 
-class Query$GetOrders {
-  Query$GetOrders({
+class Query$FetchOrders {
+  Query$FetchOrders({
     this.orders,
     this.$__typename = 'Query',
   });
 
-  factory Query$GetOrders.fromJson(Map<String, dynamic> json) {
+  factory Query$FetchOrders.fromJson(Map<String, dynamic> json) {
     final l$orders = json['orders'];
     final l$$__typename = json['__typename'];
-    return Query$GetOrders(
+    return Query$FetchOrders(
       orders: l$orders == null
           ? null
-          : Query$GetOrders$orders.fromJson((l$orders as Map<String, dynamic>)),
+          : Query$FetchOrders$orders.fromJson(
+              (l$orders as Map<String, dynamic>)),
       $__typename: (l$$__typename as String),
     );
   }
 
-  final Query$GetOrders$orders? orders;
+  final Query$FetchOrders$orders? orders;
 
   final String $__typename;
 
@@ -50,7 +51,7 @@ class Query$GetOrders {
     if (identical(this, other)) {
       return true;
     }
-    if (!(other is Query$GetOrders) || runtimeType != other.runtimeType) {
+    if (!(other is Query$FetchOrders) || runtimeType != other.runtimeType) {
       return false;
     }
     final l$orders = orders;
@@ -67,40 +68,40 @@ class Query$GetOrders {
   }
 }
 
-extension UtilityExtension$Query$GetOrders on Query$GetOrders {
-  CopyWith$Query$GetOrders<Query$GetOrders> get copyWith =>
-      CopyWith$Query$GetOrders(
+extension UtilityExtension$Query$FetchOrders on Query$FetchOrders {
+  CopyWith$Query$FetchOrders<Query$FetchOrders> get copyWith =>
+      CopyWith$Query$FetchOrders(
         this,
         (i) => i,
       );
 }
 
-abstract class CopyWith$Query$GetOrders<TRes> {
-  factory CopyWith$Query$GetOrders(
-    Query$GetOrders instance,
-    TRes Function(Query$GetOrders) then,
-  ) = _CopyWithImpl$Query$GetOrders;
+abstract class CopyWith$Query$FetchOrders<TRes> {
+  factory CopyWith$Query$FetchOrders(
+    Query$FetchOrders instance,
+    TRes Function(Query$FetchOrders) then,
+  ) = _CopyWithImpl$Query$FetchOrders;
 
-  factory CopyWith$Query$GetOrders.stub(TRes res) =
-      _CopyWithStubImpl$Query$GetOrders;
+  factory CopyWith$Query$FetchOrders.stub(TRes res) =
+      _CopyWithStubImpl$Query$FetchOrders;
 
   TRes call({
-    Query$GetOrders$orders? orders,
+    Query$FetchOrders$orders? orders,
     String? $__typename,
   });
-  CopyWith$Query$GetOrders$orders<TRes> get orders;
+  CopyWith$Query$FetchOrders$orders<TRes> get orders;
 }
 
-class _CopyWithImpl$Query$GetOrders<TRes>
-    implements CopyWith$Query$GetOrders<TRes> {
-  _CopyWithImpl$Query$GetOrders(
+class _CopyWithImpl$Query$FetchOrders<TRes>
+    implements CopyWith$Query$FetchOrders<TRes> {
+  _CopyWithImpl$Query$FetchOrders(
     this._instance,
     this._then,
   );
 
-  final Query$GetOrders _instance;
+  final Query$FetchOrders _instance;
 
-  final TRes Function(Query$GetOrders) _then;
+  final TRes Function(Query$FetchOrders) _then;
 
   static const _undefined = <dynamic, dynamic>{};
 
@@ -108,41 +109,42 @@ class _CopyWithImpl$Query$GetOrders<TRes>
     Object? orders = _undefined,
     Object? $__typename = _undefined,
   }) =>
-      _then(Query$GetOrders(
+      _then(Query$FetchOrders(
         orders: orders == _undefined
             ? _instance.orders
-            : (orders as Query$GetOrders$orders?),
+            : (orders as Query$FetchOrders$orders?),
         $__typename: $__typename == _undefined || $__typename == null
             ? _instance.$__typename
             : ($__typename as String),
       ));
-  CopyWith$Query$GetOrders$orders<TRes> get orders {
+  CopyWith$Query$FetchOrders$orders<TRes> get orders {
     final local$orders = _instance.orders;
     return local$orders == null
-        ? CopyWith$Query$GetOrders$orders.stub(_then(_instance))
-        : CopyWith$Query$GetOrders$orders(local$orders, (e) => call(orders: e));
+        ? CopyWith$Query$FetchOrders$orders.stub(_then(_instance))
+        : CopyWith$Query$FetchOrders$orders(
+            local$orders, (e) => call(orders: e));
   }
 }
 
-class _CopyWithStubImpl$Query$GetOrders<TRes>
-    implements CopyWith$Query$GetOrders<TRes> {
-  _CopyWithStubImpl$Query$GetOrders(this._res);
+class _CopyWithStubImpl$Query$FetchOrders<TRes>
+    implements CopyWith$Query$FetchOrders<TRes> {
+  _CopyWithStubImpl$Query$FetchOrders(this._res);
 
   TRes _res;
 
   call({
-    Query$GetOrders$orders? orders,
+    Query$FetchOrders$orders? orders,
     String? $__typename,
   }) =>
       _res;
-  CopyWith$Query$GetOrders$orders<TRes> get orders =>
-      CopyWith$Query$GetOrders$orders.stub(_res);
+  CopyWith$Query$FetchOrders$orders<TRes> get orders =>
+      CopyWith$Query$FetchOrders$orders.stub(_res);
 }
 
-const documentNodeQueryGetOrders = DocumentNode(definitions: [
+const documentNodeQueryFetchOrders = DocumentNode(definitions: [
   OperationDefinitionNode(
     type: OperationType.query,
-    name: NameNode(value: 'GetOrders'),
+    name: NameNode(value: 'FetchOrders'),
     variableDefinitions: [],
     directives: [],
     selectionSet: SelectionSetNode(selections: [
@@ -154,27 +156,6 @@ const documentNodeQueryGetOrders = DocumentNode(definitions: [
         selectionSet: SelectionSetNode(selections: [
           FieldNode(
             name: NameNode(value: 'created_at'),
-            alias: null,
-            arguments: [],
-            directives: [],
-            selectionSet: null,
-          ),
-          FieldNode(
-            name: NameNode(value: 'customer_latitude'),
-            alias: null,
-            arguments: [],
-            directives: [],
-            selectionSet: null,
-          ),
-          FieldNode(
-            name: NameNode(value: 'customer_longitude'),
-            alias: null,
-            arguments: [],
-            directives: [],
-            selectionSet: null,
-          ),
-          FieldNode(
-            name: NameNode(value: 'delivery_address'),
             alias: null,
             arguments: [],
             directives: [],
@@ -209,18 +190,134 @@ const documentNodeQueryGetOrders = DocumentNode(definitions: [
             selectionSet: null,
           ),
           FieldNode(
-            name: NameNode(value: 'user_id'),
+            name: NameNode(value: 'payment_response_id'),
             alias: null,
             arguments: [],
             directives: [],
             selectionSet: null,
           ),
           FieldNode(
-            name: NameNode(value: 'payment_id'),
+            name: NameNode(value: 'order_items'),
             alias: null,
             arguments: [],
             directives: [],
-            selectionSet: null,
+            selectionSet: SelectionSetNode(selections: [
+              FieldNode(
+                name: NameNode(value: 'item_quantity'),
+                alias: null,
+                arguments: [],
+                directives: [],
+                selectionSet: null,
+              ),
+              FieldNode(
+                name: NameNode(value: 'price'),
+                alias: null,
+                arguments: [],
+                directives: [],
+                selectionSet: null,
+              ),
+              FieldNode(
+                name: NameNode(value: 'variant'),
+                alias: null,
+                arguments: [],
+                directives: [],
+                selectionSet: SelectionSetNode(selections: [
+                  FieldNode(
+                    name: NameNode(value: 'mrp'),
+                    alias: null,
+                    arguments: [],
+                    directives: [],
+                    selectionSet: null,
+                  ),
+                  FieldNode(
+                    name: NameNode(value: 'price'),
+                    alias: null,
+                    arguments: [],
+                    directives: [],
+                    selectionSet: null,
+                  ),
+                  FieldNode(
+                    name: NameNode(value: 'product'),
+                    alias: null,
+                    arguments: [],
+                    directives: [],
+                    selectionSet: SelectionSetNode(selections: [
+                      FieldNode(
+                        name: NameNode(value: 'product_title'),
+                        alias: null,
+                        arguments: [],
+                        directives: [],
+                        selectionSet: null,
+                      ),
+                      FieldNode(
+                        name: NameNode(value: '__typename'),
+                        alias: null,
+                        arguments: [],
+                        directives: [],
+                        selectionSet: null,
+                      ),
+                    ]),
+                  ),
+                  FieldNode(
+                    name: NameNode(value: '__typename'),
+                    alias: null,
+                    arguments: [],
+                    directives: [],
+                    selectionSet: null,
+                  ),
+                ]),
+              ),
+              FieldNode(
+                name: NameNode(value: '__typename'),
+                alias: null,
+                arguments: [],
+                directives: [],
+                selectionSet: null,
+              ),
+            ]),
+          ),
+          FieldNode(
+            name: NameNode(value: 'address'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: SelectionSetNode(selections: [
+              FieldNode(
+                name: NameNode(value: 'address_type'),
+                alias: null,
+                arguments: [],
+                directives: [],
+                selectionSet: null,
+              ),
+              FieldNode(
+                name: NameNode(value: 'area_locality'),
+                alias: null,
+                arguments: [],
+                directives: [],
+                selectionSet: null,
+              ),
+              FieldNode(
+                name: NameNode(value: 'flat_floor_bldg'),
+                alias: null,
+                arguments: [],
+                directives: [],
+                selectionSet: null,
+              ),
+              FieldNode(
+                name: NameNode(value: 'location_address'),
+                alias: null,
+                arguments: [],
+                directives: [],
+                selectionSet: null,
+              ),
+              FieldNode(
+                name: NameNode(value: '__typename'),
+                alias: null,
+                arguments: [],
+                directives: [],
+                selectionSet: null,
+              ),
+            ]),
           ),
           FieldNode(
             name: NameNode(value: '__typename'),
@@ -241,24 +338,25 @@ const documentNodeQueryGetOrders = DocumentNode(definitions: [
     ]),
   ),
 ]);
-Query$GetOrders _parserFn$Query$GetOrders(Map<String, dynamic> data) =>
-    Query$GetOrders.fromJson(data);
-typedef OnQueryComplete$Query$GetOrders = FutureOr<void> Function(
+Query$FetchOrders _parserFn$Query$FetchOrders(Map<String, dynamic> data) =>
+    Query$FetchOrders.fromJson(data);
+typedef OnQueryComplete$Query$FetchOrders = FutureOr<void> Function(
   Map<String, dynamic>?,
-  Query$GetOrders?,
+  Query$FetchOrders?,
 );
 
-class Options$Query$GetOrders extends graphql.QueryOptions<Query$GetOrders> {
-  Options$Query$GetOrders({
+class Options$Query$FetchOrders
+    extends graphql.QueryOptions<Query$FetchOrders> {
+  Options$Query$FetchOrders({
     String? operationName,
     graphql.FetchPolicy? fetchPolicy,
     graphql.ErrorPolicy? errorPolicy,
     graphql.CacheRereadPolicy? cacheRereadPolicy,
     Object? optimisticResult,
-    Query$GetOrders? typedOptimisticResult,
+    Query$FetchOrders? typedOptimisticResult,
     Duration? pollInterval,
     graphql.Context? context,
-    OnQueryComplete$Query$GetOrders? onComplete,
+    OnQueryComplete$Query$FetchOrders? onComplete,
     graphql.OnQueryError? onError,
   })  : onCompleteWithParsed = onComplete,
         super(
@@ -273,14 +371,14 @@ class Options$Query$GetOrders extends graphql.QueryOptions<Query$GetOrders> {
               ? null
               : (data) => onComplete(
                     data,
-                    data == null ? null : _parserFn$Query$GetOrders(data),
+                    data == null ? null : _parserFn$Query$FetchOrders(data),
                   ),
           onError: onError,
-          document: documentNodeQueryGetOrders,
-          parserFn: _parserFn$Query$GetOrders,
+          document: documentNodeQueryFetchOrders,
+          parserFn: _parserFn$Query$FetchOrders,
         );
 
-  final OnQueryComplete$Query$GetOrders? onCompleteWithParsed;
+  final OnQueryComplete$Query$FetchOrders? onCompleteWithParsed;
 
   @override
   List<Object?> get properties => [
@@ -291,15 +389,15 @@ class Options$Query$GetOrders extends graphql.QueryOptions<Query$GetOrders> {
       ];
 }
 
-class WatchOptions$Query$GetOrders
-    extends graphql.WatchQueryOptions<Query$GetOrders> {
-  WatchOptions$Query$GetOrders({
+class WatchOptions$Query$FetchOrders
+    extends graphql.WatchQueryOptions<Query$FetchOrders> {
+  WatchOptions$Query$FetchOrders({
     String? operationName,
     graphql.FetchPolicy? fetchPolicy,
     graphql.ErrorPolicy? errorPolicy,
     graphql.CacheRereadPolicy? cacheRereadPolicy,
     Object? optimisticResult,
-    Query$GetOrders? typedOptimisticResult,
+    Query$FetchOrders? typedOptimisticResult,
     graphql.Context? context,
     Duration? pollInterval,
     bool? eagerlyFetchResults,
@@ -312,118 +410,116 @@ class WatchOptions$Query$GetOrders
           cacheRereadPolicy: cacheRereadPolicy,
           optimisticResult: optimisticResult ?? typedOptimisticResult?.toJson(),
           context: context,
-          document: documentNodeQueryGetOrders,
+          document: documentNodeQueryFetchOrders,
           pollInterval: pollInterval,
           eagerlyFetchResults: eagerlyFetchResults,
           carryForwardDataOnException: carryForwardDataOnException,
           fetchResults: fetchResults,
-          parserFn: _parserFn$Query$GetOrders,
+          parserFn: _parserFn$Query$FetchOrders,
         );
 }
 
-class FetchMoreOptions$Query$GetOrders extends graphql.FetchMoreOptions {
-  FetchMoreOptions$Query$GetOrders({required graphql.UpdateQuery updateQuery})
+class FetchMoreOptions$Query$FetchOrders extends graphql.FetchMoreOptions {
+  FetchMoreOptions$Query$FetchOrders({required graphql.UpdateQuery updateQuery})
       : super(
           updateQuery: updateQuery,
-          document: documentNodeQueryGetOrders,
+          document: documentNodeQueryFetchOrders,
         );
 }
 
-extension ClientExtension$Query$GetOrders on graphql.GraphQLClient {
-  Future<graphql.QueryResult<Query$GetOrders>> query$GetOrders(
-          [Options$Query$GetOrders? options]) async =>
-      await this.query(options ?? Options$Query$GetOrders());
-  graphql.ObservableQuery<Query$GetOrders> watchQuery$GetOrders(
-          [WatchOptions$Query$GetOrders? options]) =>
-      this.watchQuery(options ?? WatchOptions$Query$GetOrders());
-  void writeQuery$GetOrders({
-    required Query$GetOrders data,
+extension ClientExtension$Query$FetchOrders on graphql.GraphQLClient {
+  Future<graphql.QueryResult<Query$FetchOrders>> query$FetchOrders(
+          [Options$Query$FetchOrders? options]) async =>
+      await this.query(options ?? Options$Query$FetchOrders());
+  graphql.ObservableQuery<Query$FetchOrders> watchQuery$FetchOrders(
+          [WatchOptions$Query$FetchOrders? options]) =>
+      this.watchQuery(options ?? WatchOptions$Query$FetchOrders());
+  void writeQuery$FetchOrders({
+    required Query$FetchOrders data,
     bool broadcast = true,
   }) =>
       this.writeQuery(
         graphql.Request(
-            operation: graphql.Operation(document: documentNodeQueryGetOrders)),
+            operation:
+                graphql.Operation(document: documentNodeQueryFetchOrders)),
         data: data.toJson(),
         broadcast: broadcast,
       );
-  Query$GetOrders? readQuery$GetOrders({bool optimistic = true}) {
+  Query$FetchOrders? readQuery$FetchOrders({bool optimistic = true}) {
     final result = this.readQuery(
       graphql.Request(
-          operation: graphql.Operation(document: documentNodeQueryGetOrders)),
+          operation: graphql.Operation(document: documentNodeQueryFetchOrders)),
       optimistic: optimistic,
     );
-    return result == null ? null : Query$GetOrders.fromJson(result);
+    return result == null ? null : Query$FetchOrders.fromJson(result);
   }
 }
 
-graphql_flutter.QueryHookResult<Query$GetOrders> useQuery$GetOrders(
-        [Options$Query$GetOrders? options]) =>
-    graphql_flutter.useQuery(options ?? Options$Query$GetOrders());
-graphql.ObservableQuery<Query$GetOrders> useWatchQuery$GetOrders(
-        [WatchOptions$Query$GetOrders? options]) =>
-    graphql_flutter.useWatchQuery(options ?? WatchOptions$Query$GetOrders());
+graphql_flutter.QueryHookResult<Query$FetchOrders> useQuery$FetchOrders(
+        [Options$Query$FetchOrders? options]) =>
+    graphql_flutter.useQuery(options ?? Options$Query$FetchOrders());
+graphql.ObservableQuery<Query$FetchOrders> useWatchQuery$FetchOrders(
+        [WatchOptions$Query$FetchOrders? options]) =>
+    graphql_flutter.useWatchQuery(options ?? WatchOptions$Query$FetchOrders());
 
-class Query$GetOrders$Widget extends graphql_flutter.Query<Query$GetOrders> {
-  Query$GetOrders$Widget({
+class Query$FetchOrders$Widget
+    extends graphql_flutter.Query<Query$FetchOrders> {
+  Query$FetchOrders$Widget({
     widgets.Key? key,
-    Options$Query$GetOrders? options,
-    required graphql_flutter.QueryBuilder<Query$GetOrders> builder,
+    Options$Query$FetchOrders? options,
+    required graphql_flutter.QueryBuilder<Query$FetchOrders> builder,
   }) : super(
           key: key,
-          options: options ?? Options$Query$GetOrders(),
+          options: options ?? Options$Query$FetchOrders(),
           builder: builder,
         );
 }
 
-class Query$GetOrders$orders {
-  Query$GetOrders$orders({
+class Query$FetchOrders$orders {
+  Query$FetchOrders$orders({
     this.created_at,
-    required this.customer_latitude,
-    required this.customer_longitude,
-    required this.delivery_address,
     required this.delivery_fee,
     required this.id,
     required this.order_status,
     required this.payment_amount,
-    required this.user_id,
-    required this.payment_id,
+    required this.payment_response_id,
+    required this.order_items,
+    this.address,
     this.$__typename = 'Order',
   });
 
-  factory Query$GetOrders$orders.fromJson(Map<String, dynamic> json) {
+  factory Query$FetchOrders$orders.fromJson(Map<String, dynamic> json) {
     final l$created_at = json['created_at'];
-    final l$customer_latitude = json['customer_latitude'];
-    final l$customer_longitude = json['customer_longitude'];
-    final l$delivery_address = json['delivery_address'];
     final l$delivery_fee = json['delivery_fee'];
     final l$id = json['id'];
     final l$order_status = json['order_status'];
     final l$payment_amount = json['payment_amount'];
-    final l$user_id = json['user_id'];
-    final l$payment_id = json['payment_id'];
+    final l$payment_response_id = json['payment_response_id'];
+    final l$order_items = json['order_items'];
+    final l$address = json['address'];
     final l$$__typename = json['__typename'];
-    return Query$GetOrders$orders(
+    return Query$FetchOrders$orders(
       created_at: (l$created_at as String?),
-      customer_latitude: (l$customer_latitude as num).toDouble(),
-      customer_longitude: (l$customer_longitude as num).toDouble(),
-      delivery_address: (l$delivery_address as String),
       delivery_fee: (l$delivery_fee as num).toDouble(),
       id: (l$id as int),
       order_status: (l$order_status as String),
       payment_amount: (l$payment_amount as num).toDouble(),
-      user_id: (l$user_id as String),
-      payment_id: (l$payment_id as String),
+      payment_response_id: (l$payment_response_id as String),
+      order_items: (l$order_items as List<dynamic>)
+          .map((e) => e == null
+              ? null
+              : Query$FetchOrders$orders$order_items.fromJson(
+                  (e as Map<String, dynamic>)))
+          .toList(),
+      address: l$address == null
+          ? null
+          : Query$FetchOrders$orders$address.fromJson(
+              (l$address as Map<String, dynamic>)),
       $__typename: (l$$__typename as String),
     );
   }
 
   final String? created_at;
-
-  final double customer_latitude;
-
-  final double customer_longitude;
-
-  final String delivery_address;
 
   final double delivery_fee;
 
@@ -433,9 +529,11 @@ class Query$GetOrders$orders {
 
   final double payment_amount;
 
-  final String user_id;
+  final String payment_response_id;
 
-  final String payment_id;
+  final List<Query$FetchOrders$orders$order_items?> order_items;
+
+  final Query$FetchOrders$orders$address? address;
 
   final String $__typename;
 
@@ -443,12 +541,6 @@ class Query$GetOrders$orders {
     final _resultData = <String, dynamic>{};
     final l$created_at = created_at;
     _resultData['created_at'] = l$created_at;
-    final l$customer_latitude = customer_latitude;
-    _resultData['customer_latitude'] = l$customer_latitude;
-    final l$customer_longitude = customer_longitude;
-    _resultData['customer_longitude'] = l$customer_longitude;
-    final l$delivery_address = delivery_address;
-    _resultData['delivery_address'] = l$delivery_address;
     final l$delivery_fee = delivery_fee;
     _resultData['delivery_fee'] = l$delivery_fee;
     final l$id = id;
@@ -457,10 +549,12 @@ class Query$GetOrders$orders {
     _resultData['order_status'] = l$order_status;
     final l$payment_amount = payment_amount;
     _resultData['payment_amount'] = l$payment_amount;
-    final l$user_id = user_id;
-    _resultData['user_id'] = l$user_id;
-    final l$payment_id = payment_id;
-    _resultData['payment_id'] = l$payment_id;
+    final l$payment_response_id = payment_response_id;
+    _resultData['payment_response_id'] = l$payment_response_id;
+    final l$order_items = order_items;
+    _resultData['order_items'] = l$order_items.map((e) => e?.toJson()).toList();
+    final l$address = address;
+    _resultData['address'] = l$address?.toJson();
     final l$$__typename = $__typename;
     _resultData['__typename'] = l$$__typename;
     return _resultData;
@@ -469,27 +563,23 @@ class Query$GetOrders$orders {
   @override
   int get hashCode {
     final l$created_at = created_at;
-    final l$customer_latitude = customer_latitude;
-    final l$customer_longitude = customer_longitude;
-    final l$delivery_address = delivery_address;
     final l$delivery_fee = delivery_fee;
     final l$id = id;
     final l$order_status = order_status;
     final l$payment_amount = payment_amount;
-    final l$user_id = user_id;
-    final l$payment_id = payment_id;
+    final l$payment_response_id = payment_response_id;
+    final l$order_items = order_items;
+    final l$address = address;
     final l$$__typename = $__typename;
     return Object.hashAll([
       l$created_at,
-      l$customer_latitude,
-      l$customer_longitude,
-      l$delivery_address,
       l$delivery_fee,
       l$id,
       l$order_status,
       l$payment_amount,
-      l$user_id,
-      l$payment_id,
+      l$payment_response_id,
+      Object.hashAll(l$order_items.map((v) => v)),
+      l$address,
       l$$__typename,
     ]);
   }
@@ -499,28 +589,13 @@ class Query$GetOrders$orders {
     if (identical(this, other)) {
       return true;
     }
-    if (!(other is Query$GetOrders$orders) ||
+    if (!(other is Query$FetchOrders$orders) ||
         runtimeType != other.runtimeType) {
       return false;
     }
     final l$created_at = created_at;
     final lOther$created_at = other.created_at;
     if (l$created_at != lOther$created_at) {
-      return false;
-    }
-    final l$customer_latitude = customer_latitude;
-    final lOther$customer_latitude = other.customer_latitude;
-    if (l$customer_latitude != lOther$customer_latitude) {
-      return false;
-    }
-    final l$customer_longitude = customer_longitude;
-    final lOther$customer_longitude = other.customer_longitude;
-    if (l$customer_longitude != lOther$customer_longitude) {
-      return false;
-    }
-    final l$delivery_address = delivery_address;
-    final lOther$delivery_address = other.delivery_address;
-    if (l$delivery_address != lOther$delivery_address) {
       return false;
     }
     final l$delivery_fee = delivery_fee;
@@ -543,14 +618,26 @@ class Query$GetOrders$orders {
     if (l$payment_amount != lOther$payment_amount) {
       return false;
     }
-    final l$user_id = user_id;
-    final lOther$user_id = other.user_id;
-    if (l$user_id != lOther$user_id) {
+    final l$payment_response_id = payment_response_id;
+    final lOther$payment_response_id = other.payment_response_id;
+    if (l$payment_response_id != lOther$payment_response_id) {
       return false;
     }
-    final l$payment_id = payment_id;
-    final lOther$payment_id = other.payment_id;
-    if (l$payment_id != lOther$payment_id) {
+    final l$order_items = order_items;
+    final lOther$order_items = other.order_items;
+    if (l$order_items.length != lOther$order_items.length) {
+      return false;
+    }
+    for (int i = 0; i < l$order_items.length; i++) {
+      final l$order_items$entry = l$order_items[i];
+      final lOther$order_items$entry = lOther$order_items[i];
+      if (l$order_items$entry != lOther$order_items$entry) {
+        return false;
+      }
+    }
+    final l$address = address;
+    final lOther$address = other.address;
+    if (l$address != lOther$address) {
       return false;
     }
     final l$$__typename = $__typename;
@@ -562,80 +649,72 @@ class Query$GetOrders$orders {
   }
 }
 
-extension UtilityExtension$Query$GetOrders$orders on Query$GetOrders$orders {
-  CopyWith$Query$GetOrders$orders<Query$GetOrders$orders> get copyWith =>
-      CopyWith$Query$GetOrders$orders(
+extension UtilityExtension$Query$FetchOrders$orders
+    on Query$FetchOrders$orders {
+  CopyWith$Query$FetchOrders$orders<Query$FetchOrders$orders> get copyWith =>
+      CopyWith$Query$FetchOrders$orders(
         this,
         (i) => i,
       );
 }
 
-abstract class CopyWith$Query$GetOrders$orders<TRes> {
-  factory CopyWith$Query$GetOrders$orders(
-    Query$GetOrders$orders instance,
-    TRes Function(Query$GetOrders$orders) then,
-  ) = _CopyWithImpl$Query$GetOrders$orders;
+abstract class CopyWith$Query$FetchOrders$orders<TRes> {
+  factory CopyWith$Query$FetchOrders$orders(
+    Query$FetchOrders$orders instance,
+    TRes Function(Query$FetchOrders$orders) then,
+  ) = _CopyWithImpl$Query$FetchOrders$orders;
 
-  factory CopyWith$Query$GetOrders$orders.stub(TRes res) =
-      _CopyWithStubImpl$Query$GetOrders$orders;
+  factory CopyWith$Query$FetchOrders$orders.stub(TRes res) =
+      _CopyWithStubImpl$Query$FetchOrders$orders;
 
   TRes call({
     String? created_at,
-    double? customer_latitude,
-    double? customer_longitude,
-    String? delivery_address,
     double? delivery_fee,
     int? id,
     String? order_status,
     double? payment_amount,
-    String? user_id,
-    String? payment_id,
+    String? payment_response_id,
+    List<Query$FetchOrders$orders$order_items?>? order_items,
+    Query$FetchOrders$orders$address? address,
     String? $__typename,
   });
+  TRes order_items(
+      Iterable<Query$FetchOrders$orders$order_items?> Function(
+              Iterable<
+                  CopyWith$Query$FetchOrders$orders$order_items<
+                      Query$FetchOrders$orders$order_items>?>)
+          _fn);
+  CopyWith$Query$FetchOrders$orders$address<TRes> get address;
 }
 
-class _CopyWithImpl$Query$GetOrders$orders<TRes>
-    implements CopyWith$Query$GetOrders$orders<TRes> {
-  _CopyWithImpl$Query$GetOrders$orders(
+class _CopyWithImpl$Query$FetchOrders$orders<TRes>
+    implements CopyWith$Query$FetchOrders$orders<TRes> {
+  _CopyWithImpl$Query$FetchOrders$orders(
     this._instance,
     this._then,
   );
 
-  final Query$GetOrders$orders _instance;
+  final Query$FetchOrders$orders _instance;
 
-  final TRes Function(Query$GetOrders$orders) _then;
+  final TRes Function(Query$FetchOrders$orders) _then;
 
   static const _undefined = <dynamic, dynamic>{};
 
   TRes call({
     Object? created_at = _undefined,
-    Object? customer_latitude = _undefined,
-    Object? customer_longitude = _undefined,
-    Object? delivery_address = _undefined,
     Object? delivery_fee = _undefined,
     Object? id = _undefined,
     Object? order_status = _undefined,
     Object? payment_amount = _undefined,
-    Object? user_id = _undefined,
-    Object? payment_id = _undefined,
+    Object? payment_response_id = _undefined,
+    Object? order_items = _undefined,
+    Object? address = _undefined,
     Object? $__typename = _undefined,
   }) =>
-      _then(Query$GetOrders$orders(
+      _then(Query$FetchOrders$orders(
         created_at: created_at == _undefined
             ? _instance.created_at
             : (created_at as String?),
-        customer_latitude:
-            customer_latitude == _undefined || customer_latitude == null
-                ? _instance.customer_latitude
-                : (customer_latitude as double),
-        customer_longitude:
-            customer_longitude == _undefined || customer_longitude == null
-                ? _instance.customer_longitude
-                : (customer_longitude as double),
-        delivery_address:
-            delivery_address == _undefined || delivery_address == null
-                ? _instance.delivery_address
-                : (delivery_address as String),
         delivery_fee: delivery_fee == _undefined || delivery_fee == null
             ? _instance.delivery_fee
             : (delivery_fee as double),
@@ -646,35 +725,743 @@ class _CopyWithImpl$Query$GetOrders$orders<TRes>
         payment_amount: payment_amount == _undefined || payment_amount == null
             ? _instance.payment_amount
             : (payment_amount as double),
-        user_id: user_id == _undefined || user_id == null
-            ? _instance.user_id
-            : (user_id as String),
-        payment_id: payment_id == _undefined || payment_id == null
-            ? _instance.payment_id
-            : (payment_id as String),
+        payment_response_id:
+            payment_response_id == _undefined || payment_response_id == null
+                ? _instance.payment_response_id
+                : (payment_response_id as String),
+        order_items: order_items == _undefined || order_items == null
+            ? _instance.order_items
+            : (order_items as List<Query$FetchOrders$orders$order_items?>),
+        address: address == _undefined
+            ? _instance.address
+            : (address as Query$FetchOrders$orders$address?),
+        $__typename: $__typename == _undefined || $__typename == null
+            ? _instance.$__typename
+            : ($__typename as String),
+      ));
+  TRes order_items(
+          Iterable<Query$FetchOrders$orders$order_items?> Function(
+                  Iterable<
+                      CopyWith$Query$FetchOrders$orders$order_items<
+                          Query$FetchOrders$orders$order_items>?>)
+              _fn) =>
+      call(
+          order_items: _fn(_instance.order_items.map((e) => e == null
+              ? null
+              : CopyWith$Query$FetchOrders$orders$order_items(
+                  e,
+                  (i) => i,
+                ))).toList());
+  CopyWith$Query$FetchOrders$orders$address<TRes> get address {
+    final local$address = _instance.address;
+    return local$address == null
+        ? CopyWith$Query$FetchOrders$orders$address.stub(_then(_instance))
+        : CopyWith$Query$FetchOrders$orders$address(
+            local$address, (e) => call(address: e));
+  }
+}
+
+class _CopyWithStubImpl$Query$FetchOrders$orders<TRes>
+    implements CopyWith$Query$FetchOrders$orders<TRes> {
+  _CopyWithStubImpl$Query$FetchOrders$orders(this._res);
+
+  TRes _res;
+
+  call({
+    String? created_at,
+    double? delivery_fee,
+    int? id,
+    String? order_status,
+    double? payment_amount,
+    String? payment_response_id,
+    List<Query$FetchOrders$orders$order_items?>? order_items,
+    Query$FetchOrders$orders$address? address,
+    String? $__typename,
+  }) =>
+      _res;
+  order_items(_fn) => _res;
+  CopyWith$Query$FetchOrders$orders$address<TRes> get address =>
+      CopyWith$Query$FetchOrders$orders$address.stub(_res);
+}
+
+class Query$FetchOrders$orders$order_items {
+  Query$FetchOrders$orders$order_items({
+    required this.item_quantity,
+    required this.price,
+    this.variant,
+    this.$__typename = 'OrderItem',
+  });
+
+  factory Query$FetchOrders$orders$order_items.fromJson(
+      Map<String, dynamic> json) {
+    final l$item_quantity = json['item_quantity'];
+    final l$price = json['price'];
+    final l$variant = json['variant'];
+    final l$$__typename = json['__typename'];
+    return Query$FetchOrders$orders$order_items(
+      item_quantity: (l$item_quantity as int),
+      price: (l$price as num).toDouble(),
+      variant: l$variant == null
+          ? null
+          : Query$FetchOrders$orders$order_items$variant.fromJson(
+              (l$variant as Map<String, dynamic>)),
+      $__typename: (l$$__typename as String),
+    );
+  }
+
+  final int item_quantity;
+
+  final double price;
+
+  final Query$FetchOrders$orders$order_items$variant? variant;
+
+  final String $__typename;
+
+  Map<String, dynamic> toJson() {
+    final _resultData = <String, dynamic>{};
+    final l$item_quantity = item_quantity;
+    _resultData['item_quantity'] = l$item_quantity;
+    final l$price = price;
+    _resultData['price'] = l$price;
+    final l$variant = variant;
+    _resultData['variant'] = l$variant?.toJson();
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
+  }
+
+  @override
+  int get hashCode {
+    final l$item_quantity = item_quantity;
+    final l$price = price;
+    final l$variant = variant;
+    final l$$__typename = $__typename;
+    return Object.hashAll([
+      l$item_quantity,
+      l$price,
+      l$variant,
+      l$$__typename,
+    ]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (!(other is Query$FetchOrders$orders$order_items) ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$item_quantity = item_quantity;
+    final lOther$item_quantity = other.item_quantity;
+    if (l$item_quantity != lOther$item_quantity) {
+      return false;
+    }
+    final l$price = price;
+    final lOther$price = other.price;
+    if (l$price != lOther$price) {
+      return false;
+    }
+    final l$variant = variant;
+    final lOther$variant = other.variant;
+    if (l$variant != lOther$variant) {
+      return false;
+    }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
+      return false;
+    }
+    return true;
+  }
+}
+
+extension UtilityExtension$Query$FetchOrders$orders$order_items
+    on Query$FetchOrders$orders$order_items {
+  CopyWith$Query$FetchOrders$orders$order_items<
+          Query$FetchOrders$orders$order_items>
+      get copyWith => CopyWith$Query$FetchOrders$orders$order_items(
+            this,
+            (i) => i,
+          );
+}
+
+abstract class CopyWith$Query$FetchOrders$orders$order_items<TRes> {
+  factory CopyWith$Query$FetchOrders$orders$order_items(
+    Query$FetchOrders$orders$order_items instance,
+    TRes Function(Query$FetchOrders$orders$order_items) then,
+  ) = _CopyWithImpl$Query$FetchOrders$orders$order_items;
+
+  factory CopyWith$Query$FetchOrders$orders$order_items.stub(TRes res) =
+      _CopyWithStubImpl$Query$FetchOrders$orders$order_items;
+
+  TRes call({
+    int? item_quantity,
+    double? price,
+    Query$FetchOrders$orders$order_items$variant? variant,
+    String? $__typename,
+  });
+  CopyWith$Query$FetchOrders$orders$order_items$variant<TRes> get variant;
+}
+
+class _CopyWithImpl$Query$FetchOrders$orders$order_items<TRes>
+    implements CopyWith$Query$FetchOrders$orders$order_items<TRes> {
+  _CopyWithImpl$Query$FetchOrders$orders$order_items(
+    this._instance,
+    this._then,
+  );
+
+  final Query$FetchOrders$orders$order_items _instance;
+
+  final TRes Function(Query$FetchOrders$orders$order_items) _then;
+
+  static const _undefined = <dynamic, dynamic>{};
+
+  TRes call({
+    Object? item_quantity = _undefined,
+    Object? price = _undefined,
+    Object? variant = _undefined,
+    Object? $__typename = _undefined,
+  }) =>
+      _then(Query$FetchOrders$orders$order_items(
+        item_quantity: item_quantity == _undefined || item_quantity == null
+            ? _instance.item_quantity
+            : (item_quantity as int),
+        price: price == _undefined || price == null
+            ? _instance.price
+            : (price as double),
+        variant: variant == _undefined
+            ? _instance.variant
+            : (variant as Query$FetchOrders$orders$order_items$variant?),
+        $__typename: $__typename == _undefined || $__typename == null
+            ? _instance.$__typename
+            : ($__typename as String),
+      ));
+  CopyWith$Query$FetchOrders$orders$order_items$variant<TRes> get variant {
+    final local$variant = _instance.variant;
+    return local$variant == null
+        ? CopyWith$Query$FetchOrders$orders$order_items$variant.stub(
+            _then(_instance))
+        : CopyWith$Query$FetchOrders$orders$order_items$variant(
+            local$variant, (e) => call(variant: e));
+  }
+}
+
+class _CopyWithStubImpl$Query$FetchOrders$orders$order_items<TRes>
+    implements CopyWith$Query$FetchOrders$orders$order_items<TRes> {
+  _CopyWithStubImpl$Query$FetchOrders$orders$order_items(this._res);
+
+  TRes _res;
+
+  call({
+    int? item_quantity,
+    double? price,
+    Query$FetchOrders$orders$order_items$variant? variant,
+    String? $__typename,
+  }) =>
+      _res;
+  CopyWith$Query$FetchOrders$orders$order_items$variant<TRes> get variant =>
+      CopyWith$Query$FetchOrders$orders$order_items$variant.stub(_res);
+}
+
+class Query$FetchOrders$orders$order_items$variant {
+  Query$FetchOrders$orders$order_items$variant({
+    this.mrp,
+    this.price,
+    this.product,
+    this.$__typename = 'Variant',
+  });
+
+  factory Query$FetchOrders$orders$order_items$variant.fromJson(
+      Map<String, dynamic> json) {
+    final l$mrp = json['mrp'];
+    final l$price = json['price'];
+    final l$product = json['product'];
+    final l$$__typename = json['__typename'];
+    return Query$FetchOrders$orders$order_items$variant(
+      mrp: (l$mrp as num?)?.toDouble(),
+      price: (l$price as num?)?.toDouble(),
+      product: l$product == null
+          ? null
+          : Query$FetchOrders$orders$order_items$variant$product.fromJson(
+              (l$product as Map<String, dynamic>)),
+      $__typename: (l$$__typename as String),
+    );
+  }
+
+  final double? mrp;
+
+  final double? price;
+
+  final Query$FetchOrders$orders$order_items$variant$product? product;
+
+  final String $__typename;
+
+  Map<String, dynamic> toJson() {
+    final _resultData = <String, dynamic>{};
+    final l$mrp = mrp;
+    _resultData['mrp'] = l$mrp;
+    final l$price = price;
+    _resultData['price'] = l$price;
+    final l$product = product;
+    _resultData['product'] = l$product?.toJson();
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
+  }
+
+  @override
+  int get hashCode {
+    final l$mrp = mrp;
+    final l$price = price;
+    final l$product = product;
+    final l$$__typename = $__typename;
+    return Object.hashAll([
+      l$mrp,
+      l$price,
+      l$product,
+      l$$__typename,
+    ]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (!(other is Query$FetchOrders$orders$order_items$variant) ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$mrp = mrp;
+    final lOther$mrp = other.mrp;
+    if (l$mrp != lOther$mrp) {
+      return false;
+    }
+    final l$price = price;
+    final lOther$price = other.price;
+    if (l$price != lOther$price) {
+      return false;
+    }
+    final l$product = product;
+    final lOther$product = other.product;
+    if (l$product != lOther$product) {
+      return false;
+    }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
+      return false;
+    }
+    return true;
+  }
+}
+
+extension UtilityExtension$Query$FetchOrders$orders$order_items$variant
+    on Query$FetchOrders$orders$order_items$variant {
+  CopyWith$Query$FetchOrders$orders$order_items$variant<
+          Query$FetchOrders$orders$order_items$variant>
+      get copyWith => CopyWith$Query$FetchOrders$orders$order_items$variant(
+            this,
+            (i) => i,
+          );
+}
+
+abstract class CopyWith$Query$FetchOrders$orders$order_items$variant<TRes> {
+  factory CopyWith$Query$FetchOrders$orders$order_items$variant(
+    Query$FetchOrders$orders$order_items$variant instance,
+    TRes Function(Query$FetchOrders$orders$order_items$variant) then,
+  ) = _CopyWithImpl$Query$FetchOrders$orders$order_items$variant;
+
+  factory CopyWith$Query$FetchOrders$orders$order_items$variant.stub(TRes res) =
+      _CopyWithStubImpl$Query$FetchOrders$orders$order_items$variant;
+
+  TRes call({
+    double? mrp,
+    double? price,
+    Query$FetchOrders$orders$order_items$variant$product? product,
+    String? $__typename,
+  });
+  CopyWith$Query$FetchOrders$orders$order_items$variant$product<TRes>
+      get product;
+}
+
+class _CopyWithImpl$Query$FetchOrders$orders$order_items$variant<TRes>
+    implements CopyWith$Query$FetchOrders$orders$order_items$variant<TRes> {
+  _CopyWithImpl$Query$FetchOrders$orders$order_items$variant(
+    this._instance,
+    this._then,
+  );
+
+  final Query$FetchOrders$orders$order_items$variant _instance;
+
+  final TRes Function(Query$FetchOrders$orders$order_items$variant) _then;
+
+  static const _undefined = <dynamic, dynamic>{};
+
+  TRes call({
+    Object? mrp = _undefined,
+    Object? price = _undefined,
+    Object? product = _undefined,
+    Object? $__typename = _undefined,
+  }) =>
+      _then(Query$FetchOrders$orders$order_items$variant(
+        mrp: mrp == _undefined ? _instance.mrp : (mrp as double?),
+        price: price == _undefined ? _instance.price : (price as double?),
+        product: product == _undefined
+            ? _instance.product
+            : (product
+                as Query$FetchOrders$orders$order_items$variant$product?),
+        $__typename: $__typename == _undefined || $__typename == null
+            ? _instance.$__typename
+            : ($__typename as String),
+      ));
+  CopyWith$Query$FetchOrders$orders$order_items$variant$product<TRes>
+      get product {
+    final local$product = _instance.product;
+    return local$product == null
+        ? CopyWith$Query$FetchOrders$orders$order_items$variant$product.stub(
+            _then(_instance))
+        : CopyWith$Query$FetchOrders$orders$order_items$variant$product(
+            local$product, (e) => call(product: e));
+  }
+}
+
+class _CopyWithStubImpl$Query$FetchOrders$orders$order_items$variant<TRes>
+    implements CopyWith$Query$FetchOrders$orders$order_items$variant<TRes> {
+  _CopyWithStubImpl$Query$FetchOrders$orders$order_items$variant(this._res);
+
+  TRes _res;
+
+  call({
+    double? mrp,
+    double? price,
+    Query$FetchOrders$orders$order_items$variant$product? product,
+    String? $__typename,
+  }) =>
+      _res;
+  CopyWith$Query$FetchOrders$orders$order_items$variant$product<TRes>
+      get product =>
+          CopyWith$Query$FetchOrders$orders$order_items$variant$product.stub(
+              _res);
+}
+
+class Query$FetchOrders$orders$order_items$variant$product {
+  Query$FetchOrders$orders$order_items$variant$product({
+    this.product_title,
+    this.$__typename = 'Product',
+  });
+
+  factory Query$FetchOrders$orders$order_items$variant$product.fromJson(
+      Map<String, dynamic> json) {
+    final l$product_title = json['product_title'];
+    final l$$__typename = json['__typename'];
+    return Query$FetchOrders$orders$order_items$variant$product(
+      product_title: (l$product_title as String?),
+      $__typename: (l$$__typename as String),
+    );
+  }
+
+  final String? product_title;
+
+  final String $__typename;
+
+  Map<String, dynamic> toJson() {
+    final _resultData = <String, dynamic>{};
+    final l$product_title = product_title;
+    _resultData['product_title'] = l$product_title;
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
+  }
+
+  @override
+  int get hashCode {
+    final l$product_title = product_title;
+    final l$$__typename = $__typename;
+    return Object.hashAll([
+      l$product_title,
+      l$$__typename,
+    ]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (!(other is Query$FetchOrders$orders$order_items$variant$product) ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$product_title = product_title;
+    final lOther$product_title = other.product_title;
+    if (l$product_title != lOther$product_title) {
+      return false;
+    }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
+      return false;
+    }
+    return true;
+  }
+}
+
+extension UtilityExtension$Query$FetchOrders$orders$order_items$variant$product
+    on Query$FetchOrders$orders$order_items$variant$product {
+  CopyWith$Query$FetchOrders$orders$order_items$variant$product<
+          Query$FetchOrders$orders$order_items$variant$product>
+      get copyWith =>
+          CopyWith$Query$FetchOrders$orders$order_items$variant$product(
+            this,
+            (i) => i,
+          );
+}
+
+abstract class CopyWith$Query$FetchOrders$orders$order_items$variant$product<
+    TRes> {
+  factory CopyWith$Query$FetchOrders$orders$order_items$variant$product(
+    Query$FetchOrders$orders$order_items$variant$product instance,
+    TRes Function(Query$FetchOrders$orders$order_items$variant$product) then,
+  ) = _CopyWithImpl$Query$FetchOrders$orders$order_items$variant$product;
+
+  factory CopyWith$Query$FetchOrders$orders$order_items$variant$product.stub(
+          TRes res) =
+      _CopyWithStubImpl$Query$FetchOrders$orders$order_items$variant$product;
+
+  TRes call({
+    String? product_title,
+    String? $__typename,
+  });
+}
+
+class _CopyWithImpl$Query$FetchOrders$orders$order_items$variant$product<TRes>
+    implements
+        CopyWith$Query$FetchOrders$orders$order_items$variant$product<TRes> {
+  _CopyWithImpl$Query$FetchOrders$orders$order_items$variant$product(
+    this._instance,
+    this._then,
+  );
+
+  final Query$FetchOrders$orders$order_items$variant$product _instance;
+
+  final TRes Function(Query$FetchOrders$orders$order_items$variant$product)
+      _then;
+
+  static const _undefined = <dynamic, dynamic>{};
+
+  TRes call({
+    Object? product_title = _undefined,
+    Object? $__typename = _undefined,
+  }) =>
+      _then(Query$FetchOrders$orders$order_items$variant$product(
+        product_title: product_title == _undefined
+            ? _instance.product_title
+            : (product_title as String?),
         $__typename: $__typename == _undefined || $__typename == null
             ? _instance.$__typename
             : ($__typename as String),
       ));
 }
 
-class _CopyWithStubImpl$Query$GetOrders$orders<TRes>
-    implements CopyWith$Query$GetOrders$orders<TRes> {
-  _CopyWithStubImpl$Query$GetOrders$orders(this._res);
+class _CopyWithStubImpl$Query$FetchOrders$orders$order_items$variant$product<
+        TRes>
+    implements
+        CopyWith$Query$FetchOrders$orders$order_items$variant$product<TRes> {
+  _CopyWithStubImpl$Query$FetchOrders$orders$order_items$variant$product(
+      this._res);
 
   TRes _res;
 
   call({
-    String? created_at,
-    double? customer_latitude,
-    double? customer_longitude,
-    String? delivery_address,
-    double? delivery_fee,
-    int? id,
-    String? order_status,
-    double? payment_amount,
-    String? user_id,
-    String? payment_id,
+    String? product_title,
+    String? $__typename,
+  }) =>
+      _res;
+}
+
+class Query$FetchOrders$orders$address {
+  Query$FetchOrders$orders$address({
+    this.address_type,
+    this.area_locality,
+    this.flat_floor_bldg,
+    this.location_address,
+    this.$__typename = 'Address',
+  });
+
+  factory Query$FetchOrders$orders$address.fromJson(Map<String, dynamic> json) {
+    final l$address_type = json['address_type'];
+    final l$area_locality = json['area_locality'];
+    final l$flat_floor_bldg = json['flat_floor_bldg'];
+    final l$location_address = json['location_address'];
+    final l$$__typename = json['__typename'];
+    return Query$FetchOrders$orders$address(
+      address_type: (l$address_type as String?),
+      area_locality: (l$area_locality as String?),
+      flat_floor_bldg: (l$flat_floor_bldg as String?),
+      location_address: (l$location_address as String?),
+      $__typename: (l$$__typename as String),
+    );
+  }
+
+  final String? address_type;
+
+  final String? area_locality;
+
+  final String? flat_floor_bldg;
+
+  final String? location_address;
+
+  final String $__typename;
+
+  Map<String, dynamic> toJson() {
+    final _resultData = <String, dynamic>{};
+    final l$address_type = address_type;
+    _resultData['address_type'] = l$address_type;
+    final l$area_locality = area_locality;
+    _resultData['area_locality'] = l$area_locality;
+    final l$flat_floor_bldg = flat_floor_bldg;
+    _resultData['flat_floor_bldg'] = l$flat_floor_bldg;
+    final l$location_address = location_address;
+    _resultData['location_address'] = l$location_address;
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
+  }
+
+  @override
+  int get hashCode {
+    final l$address_type = address_type;
+    final l$area_locality = area_locality;
+    final l$flat_floor_bldg = flat_floor_bldg;
+    final l$location_address = location_address;
+    final l$$__typename = $__typename;
+    return Object.hashAll([
+      l$address_type,
+      l$area_locality,
+      l$flat_floor_bldg,
+      l$location_address,
+      l$$__typename,
+    ]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (!(other is Query$FetchOrders$orders$address) ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$address_type = address_type;
+    final lOther$address_type = other.address_type;
+    if (l$address_type != lOther$address_type) {
+      return false;
+    }
+    final l$area_locality = area_locality;
+    final lOther$area_locality = other.area_locality;
+    if (l$area_locality != lOther$area_locality) {
+      return false;
+    }
+    final l$flat_floor_bldg = flat_floor_bldg;
+    final lOther$flat_floor_bldg = other.flat_floor_bldg;
+    if (l$flat_floor_bldg != lOther$flat_floor_bldg) {
+      return false;
+    }
+    final l$location_address = location_address;
+    final lOther$location_address = other.location_address;
+    if (l$location_address != lOther$location_address) {
+      return false;
+    }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
+      return false;
+    }
+    return true;
+  }
+}
+
+extension UtilityExtension$Query$FetchOrders$orders$address
+    on Query$FetchOrders$orders$address {
+  CopyWith$Query$FetchOrders$orders$address<Query$FetchOrders$orders$address>
+      get copyWith => CopyWith$Query$FetchOrders$orders$address(
+            this,
+            (i) => i,
+          );
+}
+
+abstract class CopyWith$Query$FetchOrders$orders$address<TRes> {
+  factory CopyWith$Query$FetchOrders$orders$address(
+    Query$FetchOrders$orders$address instance,
+    TRes Function(Query$FetchOrders$orders$address) then,
+  ) = _CopyWithImpl$Query$FetchOrders$orders$address;
+
+  factory CopyWith$Query$FetchOrders$orders$address.stub(TRes res) =
+      _CopyWithStubImpl$Query$FetchOrders$orders$address;
+
+  TRes call({
+    String? address_type,
+    String? area_locality,
+    String? flat_floor_bldg,
+    String? location_address,
+    String? $__typename,
+  });
+}
+
+class _CopyWithImpl$Query$FetchOrders$orders$address<TRes>
+    implements CopyWith$Query$FetchOrders$orders$address<TRes> {
+  _CopyWithImpl$Query$FetchOrders$orders$address(
+    this._instance,
+    this._then,
+  );
+
+  final Query$FetchOrders$orders$address _instance;
+
+  final TRes Function(Query$FetchOrders$orders$address) _then;
+
+  static const _undefined = <dynamic, dynamic>{};
+
+  TRes call({
+    Object? address_type = _undefined,
+    Object? area_locality = _undefined,
+    Object? flat_floor_bldg = _undefined,
+    Object? location_address = _undefined,
+    Object? $__typename = _undefined,
+  }) =>
+      _then(Query$FetchOrders$orders$address(
+        address_type: address_type == _undefined
+            ? _instance.address_type
+            : (address_type as String?),
+        area_locality: area_locality == _undefined
+            ? _instance.area_locality
+            : (area_locality as String?),
+        flat_floor_bldg: flat_floor_bldg == _undefined
+            ? _instance.flat_floor_bldg
+            : (flat_floor_bldg as String?),
+        location_address: location_address == _undefined
+            ? _instance.location_address
+            : (location_address as String?),
+        $__typename: $__typename == _undefined || $__typename == null
+            ? _instance.$__typename
+            : ($__typename as String),
+      ));
+}
+
+class _CopyWithStubImpl$Query$FetchOrders$orders$address<TRes>
+    implements CopyWith$Query$FetchOrders$orders$address<TRes> {
+  _CopyWithStubImpl$Query$FetchOrders$orders$address(this._res);
+
+  TRes _res;
+
+  call({
+    String? address_type,
+    String? area_locality,
+    String? flat_floor_bldg,
+    String? location_address,
     String? $__typename,
   }) =>
       _res;

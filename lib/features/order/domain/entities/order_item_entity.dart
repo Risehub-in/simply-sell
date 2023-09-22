@@ -4,12 +4,14 @@ class OrderItemEntity extends Equatable {
   final int itemQuantity;
   final int? orderId;
   final int variantId;
+  final int productId;
   final double price;
 
   OrderItemEntity({
     required this.itemQuantity,
     this.orderId,
     required this.variantId,
+    required this.productId,
     required this.price,
   });
 
@@ -18,6 +20,7 @@ class OrderItemEntity extends Equatable {
         itemQuantity,
         orderId,
         variantId,
+        productId,
         price,
       ];
 }

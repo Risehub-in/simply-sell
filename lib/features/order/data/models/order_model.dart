@@ -1,5 +1,6 @@
 import 'package:simply_sell/features/order/domain/entities/order_entity.dart';
 
+import '../../../address/data/model/address_model.dart';
 import 'order_item_model.dart';
 
 class OrderModel extends OrderEntity {
@@ -13,6 +14,7 @@ class OrderModel extends OrderEntity {
     required double paymentAmount,
     String? orderStatus,
     required List<OrderItemModel> orderItems,
+    AddressModel? address,
   }) : super(
           id: id,
           dateTime: dateTime,

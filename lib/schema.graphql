@@ -1,6 +1,7 @@
 #  ---------------- Queries ----------------------- #
 type Query {
   orders: Order
+  products: Product
 }
 
 #  ---------------- Subscription ----------------------- #
@@ -15,8 +16,6 @@ enum OrderByDirection {
   desc
 }
 
-
-
 #  ---------------- Subscription ----------------------- #
 type Mutation {
   # ---- Add To Cart ----
@@ -27,15 +26,47 @@ type Mutation {
     _set: CartItemUpdate # Use the input type for updating
   ): UpdateCartQuantityResponse
 
+  insert_orders(objects: [order_insert_input!]!): OrderMutationResponse!
 
-
-  insert_orders(objects: [Order!]!): OrderMutationResponse!
-
-  insert_order_items(objects: [OrderItem!]!): OrderItemsMutationResponse!
+  insert_order_items(
+    objects: [order_items_insert_input!]!
+  ): OrderItemsMutationResponse!
 
   delete_cart_items(where: CartUserIdFilter): CartItemResponse!
 
-  delete_cart_items_by_pk(id: CartItemFilter) : CartItemDeletedResponse
+  delete_cart_items_by_pk(id: CartItemFilter): CartItemDeletedResponse
+}
+
+# ---- Input ---- #
+input CartItemUpdate {
+  cart_quantity: smallint!
+}
+
+input CartUserIdFilter {
+  user_id: uuid!
+}
+
+input InsertCartItemInput {
+  user_id: uuid!
+  variant_id: bigint!
+  cart_quantity: smallint!
+}
+
+input order_items_insert_input {
+  item_quantity: smallint!
+  order_id: bigint!
+  variant_id: bigint!
+  price: numeric!
+  product_id: bigint!
+}
+
+input order_insert_input {
+  id: bigint!
+  user_id: uuid!
+  delivery_fee: numeric!
+  address_id: bigint!
+  payment_response_id: String!
+  payment_amount: numeric!
 }
 
 # ---- Mutation Response ---- #
@@ -59,35 +90,11 @@ type UpdateCartQuantityResponse {
   affected_rows: Int!
 }
 
-
-
 input CartItemFilter {
   id: bigint!
 }
 
-input CartItemUpdate {
-  cart_quantity: smallint!
-}
-
-
-input CartUserIdFilter {
-  user_id: uuid!
-}
-
-input InsertCartItemInput {
-  user_id: uuid!
-  variant_id: bigint!
-  cart_quantity: smallint!
-}
-
-input order_items_insert_input {
-  item_quantity: smallint!
-  order_id: bigint!
-  variant_id: bigint!
-  price: numeric!
-}
-
-## ------------------Types------------------------------ ##
+## ------------------Types for Query------------------------------ ##
 
 # Orders
 type Order {
@@ -99,15 +106,23 @@ type Order {
   delivery_fee: numeric!
   order_status: String!
   user_id: uuid!
-  payment_id: String!
+  payment_response_id: String!
   payment_amount: numeric!
   order_items: [OrderItem]!
+  address: Address
 }
 
 type Address {
   id: bigint
+  user_id: uuid
+  flat_floor_bldg: String
+  area_locality: String
+  landmark: String
+  latitude: float8
+  longitude: float8
+  address_type: String
+  location_address: String
 }
-
 
 type OrderItem {
   created_at: String
@@ -117,6 +132,7 @@ type OrderItem {
   order_id: bigint!
   variant_id: bigint!
   price: numeric!
+  variant: Variant
 }
 
 # Cart
@@ -138,7 +154,11 @@ type CartItem {
 type Product {
   id: bigint
   product_title: String
+  is_available: boolean
+  category_id: bigint
   featured_image: String
+  description: String
+  brand_id: bigint
 }
 
 type Variant {
@@ -153,9 +173,6 @@ type Variant {
 type UOM {
   uom_name: String
 }
-
-
-
 
 # Scalars
 scalar numeric

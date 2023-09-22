@@ -108,98 +108,6 @@ class _CopyWithStubImpl$Input$CartItemOrderByInput<TRes>
   call({Enum$OrderByDirection? created_at}) => _res;
 }
 
-class Input$CartItemFilter {
-  factory Input$CartItemFilter({required int id}) => Input$CartItemFilter._({
-        r'id': id,
-      });
-
-  Input$CartItemFilter._(this._$data);
-
-  factory Input$CartItemFilter.fromJson(Map<String, dynamic> data) {
-    final result$data = <String, dynamic>{};
-    final l$id = data['id'];
-    result$data['id'] = (l$id as int);
-    return Input$CartItemFilter._(result$data);
-  }
-
-  Map<String, dynamic> _$data;
-
-  int get id => (_$data['id'] as int);
-  Map<String, dynamic> toJson() {
-    final result$data = <String, dynamic>{};
-    final l$id = id;
-    result$data['id'] = l$id;
-    return result$data;
-  }
-
-  CopyWith$Input$CartItemFilter<Input$CartItemFilter> get copyWith =>
-      CopyWith$Input$CartItemFilter(
-        this,
-        (i) => i,
-      );
-  @override
-  bool operator ==(Object other) {
-    if (identical(this, other)) {
-      return true;
-    }
-    if (!(other is Input$CartItemFilter) || runtimeType != other.runtimeType) {
-      return false;
-    }
-    final l$id = id;
-    final lOther$id = other.id;
-    if (l$id != lOther$id) {
-      return false;
-    }
-    return true;
-  }
-
-  @override
-  int get hashCode {
-    final l$id = id;
-    return Object.hashAll([l$id]);
-  }
-}
-
-abstract class CopyWith$Input$CartItemFilter<TRes> {
-  factory CopyWith$Input$CartItemFilter(
-    Input$CartItemFilter instance,
-    TRes Function(Input$CartItemFilter) then,
-  ) = _CopyWithImpl$Input$CartItemFilter;
-
-  factory CopyWith$Input$CartItemFilter.stub(TRes res) =
-      _CopyWithStubImpl$Input$CartItemFilter;
-
-  TRes call({int? id});
-}
-
-class _CopyWithImpl$Input$CartItemFilter<TRes>
-    implements CopyWith$Input$CartItemFilter<TRes> {
-  _CopyWithImpl$Input$CartItemFilter(
-    this._instance,
-    this._then,
-  );
-
-  final Input$CartItemFilter _instance;
-
-  final TRes Function(Input$CartItemFilter) _then;
-
-  static const _undefined = <dynamic, dynamic>{};
-
-  TRes call({Object? id = _undefined}) => _then(Input$CartItemFilter._({
-        ..._instance._$data,
-        if (id != _undefined && id != null) 'id': (id as int),
-      }));
-}
-
-class _CopyWithStubImpl$Input$CartItemFilter<TRes>
-    implements CopyWith$Input$CartItemFilter<TRes> {
-  _CopyWithStubImpl$Input$CartItemFilter(this._res);
-
-  TRes _res;
-
-  call({int? id}) => _res;
-}
-
 class Input$CartItemUpdate {
   factory Input$CartItemUpdate({required int cart_quantity}) =>
       Input$CartItemUpdate._({
@@ -541,12 +449,14 @@ class Input$order_items_insert_input {
     required int order_id,
     required int variant_id,
     required double price,
+    required int product_id,
   }) =>
       Input$order_items_insert_input._({
         r'item_quantity': item_quantity,
         r'order_id': order_id,
         r'variant_id': variant_id,
         r'price': price,
+        r'product_id': product_id,
       });
 
   Input$order_items_insert_input._(this._$data);
@@ -561,6 +471,8 @@ class Input$order_items_insert_input {
     result$data['variant_id'] = (l$variant_id as int);
     final l$price = data['price'];
     result$data['price'] = (l$price as num).toDouble();
+    final l$product_id = data['product_id'];
+    result$data['product_id'] = (l$product_id as int);
     return Input$order_items_insert_input._(result$data);
   }
 
@@ -570,6 +482,7 @@ class Input$order_items_insert_input {
   int get order_id => (_$data['order_id'] as int);
   int get variant_id => (_$data['variant_id'] as int);
   double get price => (_$data['price'] as double);
+  int get product_id => (_$data['product_id'] as int);
   Map<String, dynamic> toJson() {
     final result$data = <String, dynamic>{};
     final l$item_quantity = item_quantity;
@@ -580,6 +493,8 @@ class Input$order_items_insert_input {
     result$data['variant_id'] = l$variant_id;
     final l$price = price;
     result$data['price'] = l$price;
+    final l$product_id = product_id;
+    result$data['product_id'] = l$product_id;
     return result$data;
   }
 
@@ -617,6 +532,11 @@ class Input$order_items_insert_input {
     if (l$price != lOther$price) {
       return false;
     }
+    final l$product_id = product_id;
+    final lOther$product_id = other.product_id;
+    if (l$product_id != lOther$product_id) {
+      return false;
+    }
     return true;
   }
 
@@ -626,11 +546,13 @@ class Input$order_items_insert_input {
     final l$order_id = order_id;
     final l$variant_id = variant_id;
     final l$price = price;
+    final l$product_id = product_id;
     return Object.hashAll([
       l$item_quantity,
       l$order_id,
       l$variant_id,
       l$price,
+      l$product_id,
     ]);
   }
 }
@@ -649,6 +571,7 @@ abstract class CopyWith$Input$order_items_insert_input<TRes> {
     int? order_id,
     int? variant_id,
     double? price,
+    int? product_id,
   });
 }
 
@@ -670,6 +593,7 @@ class _CopyWithImpl$Input$order_items_insert_input<TRes>
     Object? order_id = _undefined,
     Object? variant_id = _undefined,
     Object? price = _undefined,
+    Object? product_id = _undefined,
   }) =>
       _then(Input$order_items_insert_input._({
         ..._instance._$data,
@@ -680,6 +604,8 @@ class _CopyWithImpl$Input$order_items_insert_input<TRes>
         if (variant_id != _undefined && variant_id != null)
           'variant_id': (variant_id as int),
         if (price != _undefined && price != null) 'price': (price as double),
+        if (product_id != _undefined && product_id != null)
+          'product_id': (product_id as int),
       }));
 }
 
@@ -694,8 +620,302 @@ class _CopyWithStubImpl$Input$order_items_insert_input<TRes>
     int? order_id,
     int? variant_id,
     double? price,
+    int? product_id,
   }) =>
       _res;
+}
+
+class Input$order_insert_input {
+  factory Input$order_insert_input({
+    required int id,
+    required String user_id,
+    required double delivery_fee,
+    required int address_id,
+    required String payment_response_id,
+    required double payment_amount,
+  }) =>
+      Input$order_insert_input._({
+        r'id': id,
+        r'user_id': user_id,
+        r'delivery_fee': delivery_fee,
+        r'address_id': address_id,
+        r'payment_response_id': payment_response_id,
+        r'payment_amount': payment_amount,
+      });
+
+  Input$order_insert_input._(this._$data);
+
+  factory Input$order_insert_input.fromJson(Map<String, dynamic> data) {
+    final result$data = <String, dynamic>{};
+    final l$id = data['id'];
+    result$data['id'] = (l$id as int);
+    final l$user_id = data['user_id'];
+    result$data['user_id'] = (l$user_id as String);
+    final l$delivery_fee = data['delivery_fee'];
+    result$data['delivery_fee'] = (l$delivery_fee as num).toDouble();
+    final l$address_id = data['address_id'];
+    result$data['address_id'] = (l$address_id as int);
+    final l$payment_response_id = data['payment_response_id'];
+    result$data['payment_response_id'] = (l$payment_response_id as String);
+    final l$payment_amount = data['payment_amount'];
+    result$data['payment_amount'] = (l$payment_amount as num).toDouble();
+    return Input$order_insert_input._(result$data);
+  }
+
+  Map<String, dynamic> _$data;
+
+  int get id => (_$data['id'] as int);
+  String get user_id => (_$data['user_id'] as String);
+  double get delivery_fee => (_$data['delivery_fee'] as double);
+  int get address_id => (_$data['address_id'] as int);
+  String get payment_response_id => (_$data['payment_response_id'] as String);
+  double get payment_amount => (_$data['payment_amount'] as double);
+  Map<String, dynamic> toJson() {
+    final result$data = <String, dynamic>{};
+    final l$id = id;
+    result$data['id'] = l$id;
+    final l$user_id = user_id;
+    result$data['user_id'] = l$user_id;
+    final l$delivery_fee = delivery_fee;
+    result$data['delivery_fee'] = l$delivery_fee;
+    final l$address_id = address_id;
+    result$data['address_id'] = l$address_id;
+    final l$payment_response_id = payment_response_id;
+    result$data['payment_response_id'] = l$payment_response_id;
+    final l$payment_amount = payment_amount;
+    result$data['payment_amount'] = l$payment_amount;
+    return result$data;
+  }
+
+  CopyWith$Input$order_insert_input<Input$order_insert_input> get copyWith =>
+      CopyWith$Input$order_insert_input(
+        this,
+        (i) => i,
+      );
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (!(other is Input$order_insert_input) ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$id = id;
+    final lOther$id = other.id;
+    if (l$id != lOther$id) {
+      return false;
+    }
+    final l$user_id = user_id;
+    final lOther$user_id = other.user_id;
+    if (l$user_id != lOther$user_id) {
+      return false;
+    }
+    final l$delivery_fee = delivery_fee;
+    final lOther$delivery_fee = other.delivery_fee;
+    if (l$delivery_fee != lOther$delivery_fee) {
+      return false;
+    }
+    final l$address_id = address_id;
+    final lOther$address_id = other.address_id;
+    if (l$address_id != lOther$address_id) {
+      return false;
+    }
+    final l$payment_response_id = payment_response_id;
+    final lOther$payment_response_id = other.payment_response_id;
+    if (l$payment_response_id != lOther$payment_response_id) {
+      return false;
+    }
+    final l$payment_amount = payment_amount;
+    final lOther$payment_amount = other.payment_amount;
+    if (l$payment_amount != lOther$payment_amount) {
+      return false;
+    }
+    return true;
+  }
+
+  @override
+  int get hashCode {
+    final l$id = id;
+    final l$user_id = user_id;
+    final l$delivery_fee = delivery_fee;
+    final l$address_id = address_id;
+    final l$payment_response_id = payment_response_id;
+    final l$payment_amount = payment_amount;
+    return Object.hashAll([
+      l$id,
+      l$user_id,
+      l$delivery_fee,
+      l$address_id,
+      l$payment_response_id,
+      l$payment_amount,
+    ]);
+  }
+}
+
+abstract class CopyWith$Input$order_insert_input<TRes> {
+  factory CopyWith$Input$order_insert_input(
+    Input$order_insert_input instance,
+    TRes Function(Input$order_insert_input) then,
+  ) = _CopyWithImpl$Input$order_insert_input;
+
+  factory CopyWith$Input$order_insert_input.stub(TRes res) =
+      _CopyWithStubImpl$Input$order_insert_input;
+
+  TRes call({
+    int? id,
+    String? user_id,
+    double? delivery_fee,
+    int? address_id,
+    String? payment_response_id,
+    double? payment_amount,
+  });
+}
+
+class _CopyWithImpl$Input$order_insert_input<TRes>
+    implements CopyWith$Input$order_insert_input<TRes> {
+  _CopyWithImpl$Input$order_insert_input(
+    this._instance,
+    this._then,
+  );
+
+  final Input$order_insert_input _instance;
+
+  final TRes Function(Input$order_insert_input) _then;
+
+  static const _undefined = <dynamic, dynamic>{};
+
+  TRes call({
+    Object? id = _undefined,
+    Object? user_id = _undefined,
+    Object? delivery_fee = _undefined,
+    Object? address_id = _undefined,
+    Object? payment_response_id = _undefined,
+    Object? payment_amount = _undefined,
+  }) =>
+      _then(Input$order_insert_input._({
+        ..._instance._$data,
+        if (id != _undefined && id != null) 'id': (id as int),
+        if (user_id != _undefined && user_id != null)
+          'user_id': (user_id as String),
+        if (delivery_fee != _undefined && delivery_fee != null)
+          'delivery_fee': (delivery_fee as double),
+        if (address_id != _undefined && address_id != null)
+          'address_id': (address_id as int),
+        if (payment_response_id != _undefined && payment_response_id != null)
+          'payment_response_id': (payment_response_id as String),
+        if (payment_amount != _undefined && payment_amount != null)
+          'payment_amount': (payment_amount as double),
+      }));
+}
+
+class _CopyWithStubImpl$Input$order_insert_input<TRes>
+    implements CopyWith$Input$order_insert_input<TRes> {
+  _CopyWithStubImpl$Input$order_insert_input(this._res);
+
+  TRes _res;
+
+  call({
+    int? id,
+    String? user_id,
+    double? delivery_fee,
+    int? address_id,
+    String? payment_response_id,
+    double? payment_amount,
+  }) =>
+      _res;
+}
+
+class Input$CartItemFilter {
+  factory Input$CartItemFilter({required int id}) => Input$CartItemFilter._({
+        r'id': id,
+      });
+
+  Input$CartItemFilter._(this._$data);
+
+  factory Input$CartItemFilter.fromJson(Map<String, dynamic> data) {
+    final result$data = <String, dynamic>{};
+    final l$id = data['id'];
+    result$data['id'] = (l$id as int);
+    return Input$CartItemFilter._(result$data);
+  }
+
+  Map<String, dynamic> _$data;
+
+  int get id => (_$data['id'] as int);
+  Map<String, dynamic> toJson() {
+    final result$data = <String, dynamic>{};
+    final l$id = id;
+    result$data['id'] = l$id;
+    return result$data;
+  }
+
+  CopyWith$Input$CartItemFilter<Input$CartItemFilter> get copyWith =>
+      CopyWith$Input$CartItemFilter(
+        this,
+        (i) => i,
+      );
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (!(other is Input$CartItemFilter) || runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$id = id;
+    final lOther$id = other.id;
+    if (l$id != lOther$id) {
+      return false;
+    }
+    return true;
+  }
+
+  @override
+  int get hashCode {
+    final l$id = id;
+    return Object.hashAll([l$id]);
+  }
+}
+
+abstract class CopyWith$Input$CartItemFilter<TRes> {
+  factory CopyWith$Input$CartItemFilter(
+    Input$CartItemFilter instance,
+    TRes Function(Input$CartItemFilter) then,
+  ) = _CopyWithImpl$Input$CartItemFilter;
+
+  factory CopyWith$Input$CartItemFilter.stub(TRes res) =
+      _CopyWithStubImpl$Input$CartItemFilter;
+
+  TRes call({int? id});
+}
+
+class _CopyWithImpl$Input$CartItemFilter<TRes>
+    implements CopyWith$Input$CartItemFilter<TRes> {
+  _CopyWithImpl$Input$CartItemFilter(
+    this._instance,
+    this._then,
+  );
+
+  final Input$CartItemFilter _instance;
+
+  final TRes Function(Input$CartItemFilter) _then;
+
+  static const _undefined = <dynamic, dynamic>{};
+
+  TRes call({Object? id = _undefined}) => _then(Input$CartItemFilter._({
+        ..._instance._$data,
+        if (id != _undefined && id != null) 'id': (id as int),
+      }));
+}
+
+class _CopyWithStubImpl$Input$CartItemFilter<TRes>
+    implements CopyWith$Input$CartItemFilter<TRes> {
+  _CopyWithStubImpl$Input$CartItemFilter(this._res);
+
+  TRes _res;
+
+  call({int? id}) => _res;
 }
 
 enum Enum$OrderByDirection { asc, desc, $unknown }

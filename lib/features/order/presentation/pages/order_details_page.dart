@@ -17,10 +17,19 @@ class _OrderDetailsPageState extends State<OrderDetailsPage> {
       body: Center(
         child: ElevatedButton(
           onPressed: () async {
-            final client = HasuraService(supabase: Supabase.instance).client;
-            final result =
-                await client.query$GetOrders(Options$Query$GetOrders());
-            print(result.data);
+            try {
+              final client = HasuraService(supabase: Supabase.instance).client;
+              final result =
+                  await client.query$FetchOrders(Options$Query$FetchOrders());
+              final dynamicList = result.data?['products'] as List<dynamic>;
+              final parsedData = dynamicList
+                  .map((product) => Query$FetchOrders$orders.fromJson(product))
+                  .toList();
+
+              print(parsedData);
+            } catch (e) {
+              print(e.toString());
+            }
           },
           child: Text('Pay Now'),
         ),
